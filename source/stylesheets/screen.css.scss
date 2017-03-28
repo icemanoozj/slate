@@ -292,7 +292,8 @@ html, body {
   .lang-selector {
     position: fixed;
     z-index: 50;
-    border-bottom: 5px solid $lang-select-active-bg;
+    padding:8px;
+    //border-bottom: 5px solid $lang-select-active-bg;
   }
 }
 
@@ -317,6 +318,7 @@ html, body {
     &.active {
       background-color: $lang-select-active-bg;
       color: $lang-select-active-text;
+      border-radius: 14px;
     }
   }
 
