@@ -7,11 +7,9 @@
 ## query banks2
 This interface provide banks query function. The returns are the banks that supported by UMF.
 
-column0 | column1 | column2 | column3 | column4 | column5
+prod_name | prod_sub_class | 产品负责人 | 开发负责人 | 测试负责人 | UAT-运营负责人
 ------- | ------- | ------- | ------- | ------- | -------
- |  | 产品负责人 | 开发负责人 | 测试负责人 | UAT-运营负责人
 收结汇 | （收外币） | 孙宇彤（王思思） | 光顺安 |  | 徐春龙
- |  |  |  |  | 
 跨境付款-B2C | （付外币） | 孙宇彤（王思思） | 光顺安 |  | 徐春龙
 跨境付款-B2B | （付外币） | 刘家宇（王思思） | 李驰 |  | 徐春龙
 跨境收银台 | 微信支付 | 史丹宁（王思思） | 冯健 |  | 徐春龙

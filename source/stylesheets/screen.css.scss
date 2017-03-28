@@ -367,11 +367,11 @@ html, body {
     font-size: 30px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid #ccc;
+//    border-bottom: 1px solid #ccc;
     margin-bottom: $h1-margin-bottom;
     margin-top: 2em;
-    border-top: 1px solid #ddd;
-    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
+//    border-top: 1px solid #ddd;
+//    background-image: linear-gradient(to bottom, #fff, #f9f9f9);
   }
 
   h1:first-child, div:first-child + h1 {
@@ -433,9 +433,13 @@ html, body {
       padding: 10px;
     }
 
-    tr:last-child {
-      border-bottom: 1px solid #ccc;
+    tr{
+       border-bottom: 1px solid #ccc;
     }
+
+    // tr:last-child {
+    //   border-bottom: 1px solid #373b3e;
+    // }
 
     tr:nth-child(odd)>td {
       background-color: lighten($main-bg,4.2%);
