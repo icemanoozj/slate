@@ -1,5 +1,8 @@
-# Payments
+# Reference
 
+If you are a non-US developer, see International Developer Questions.
+
+The PayPal API uses HTTP methods and a RESTful endpoint structure. The API authorization framework is OAuth 2.0. You format requests in JSON and the APIs return JSON-formatted responses.
 
 ## query banks
 
@@ -40,7 +43,11 @@ prod_name | prod_sub_class | 产品负责人 | 开发负责人 | 测试负责人
 ## query refund
 
 
-# PayTest
+## Create cumtoms clearance
+
+
+
+## Query customs clearance status
 
 
 
