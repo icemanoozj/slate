@@ -1,15 +1,12 @@
 # Overview
 
-If you are a non-US developer, see International Developer Questions.
+The UMF REST API uses HTTP methods and a RESTful endpoint structure. The API authorization framework is OAuth 2.0. You format requests in JSON and the APIs return JSON-formatted responses.
 
-The PayPal API uses HTTP methods and a RESTful endpoint structure. The API authorization framework is OAuth 2.0. You format requests in JSON and the APIs return JSON-formatted responses.
-
-API operations
-Authentication and headers
-Filtering and pagination
-HATEOAS links
+<aside class="notice">
 Important: You cannot run the sample requests in this guide as-is. Replace call-specific parameters, such as tokens and IDs, with your own values.
-API operations
+</aside>
+
+## API operations
 
 Use the PayPal REST APIs in these environments:
 
@@ -25,6 +22,15 @@ HTTP headers, if required
 The JSON-formatted payload, if required
 For example, this request creates a payment:
 
+## Sequence diagram
 
+```mermaid
+sequenceDiagram
+    loop every day
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+        Alice->>Json: hello
+    end
+```
 
 
