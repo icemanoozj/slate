@@ -1,11 +1,13 @@
 ---
-title: UMF REST API Reference
+title: API Reference
 
 language_tabs:
+  - json: JSON
   - shell: cURL
   - java: Java
   - php: PHP
-  - c#:  C# 
+  - csharp: C#
+
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -15,6 +17,7 @@ includes:
   - overview
   - tutorials
   - api_reference
+  - objs
   - errors
   - faqs
   - demos
