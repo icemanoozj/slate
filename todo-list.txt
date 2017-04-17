@@ -1,0 +1,3 @@
+rest url
+rest uat url
+
