@@ -37,32 +37,6 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 Make a /oauth/authorize call with your app's OAuth client_id and secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials. 
 
-<<<<<<< HEAD
-4.2.	OAuth获取Token接口
-POST: /oauth/authorize
-此接口用于获取Access Token。除了本接口外，所有其它请求必须在http head中带有access token. 格式如下：
-Authorization: Bearer <Access-Token> 
-例如：
-	Authorization: Bearer WE34dsrwefEerwDSF 
-4.2.1.	Request
-Request 的类型为POST, 参数为grant_type, client_id, client_secret。接口参数中的client_id, client_secret必须通过OAuth 系统得到，一般跟https证书一起发给客户。
- HTTP Head：
-Content-Type: application/json  
-HTTP Body（JSON）：
-{
-	"client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-	"grant_type": "client_credentials",
-	"client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9"
-}
-4.2.2.	Response
-返回信息为Token的相关信息（token及有效期）。
-{
- "expires_in": 3600,
-"access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
-}
-
-
-=======
 ### Request
 
 **POST**: /oauth/authorize
@@ -87,7 +61,6 @@ Paramter | Description
 ------- | -------
 expires_in | The remaining lifetime of the access token.
 access_token | The access_token.
->>>>>>> gh-pages
 
 ## 3.2 Query available banks
 
@@ -143,9 +116,6 @@ type | The type of bank cards. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 The response is a list of [bank](#bank) object. See the example on the right.
 
-<<<<<<< HEAD
-## create a payment
-=======
 Parameter | Description
 ------- | -------
 name | The full name of the bank.
@@ -155,7 +125,11 @@ type | The supported card type of the bank.
 
 ## 3.3 Create a payment
 
->>>>>>> gh-pages
+**POST**: /payments/payment
+
+Creates a payment to be captured later.
+
+To create a sale, authorization, or order, include the payment details in the JSON request body. Set the intent to sale, authorize, or order. Include payer, transaction details, and, for PayPal payments only, redirect URLs. The combination of the payment_method and funding_instrument determines the type of payment that is created.
 
 
 ## execute a payment

@@ -137,11 +137,7 @@ To construct a REST call, combine:
 
 - The HTTP method
 - The full URI to the resource
-<<<<<<< HEAD
-- HTTP headers, if required
-=======
 - HTTP headers
->>>>>>> gh-pages
 - The JSON-formatted payload, if required
 
 The Example is listed on the right.
@@ -150,14 +146,9 @@ The Example is listed on the right.
 Note: You can use cURL commands on the command line to try code. If needed, download cURL software. Include your own access token and payment-specific IDs for calls.
 </aside>
 
-<<<<<<< HEAD
-Merchant will get the following information after becaming the partener of 
-
-=======
 Merchant will get the following information after becaming the partener of UMF.
 
 Type | Description
->>>>>>> gh-pages
 ------- | -------
 Merchant rsa private key | For signing the request to UMFinTech
 Merchant rsa public key | key pair of Merchant rsa private key
@@ -190,26 +181,17 @@ To make a REST API call, you must include request headers including the Authoriz
 If the request is a post request, the request headers must include the following information:
 
 - Content-Type: application/json
-<<<<<<< HEAD
-- Signature:[SignatureOfPostBody](#1-6-signature-and-verify-signature) 
-=======
 - Signature:[SignatureOfPostBody](#1-6-signature-and-verify-signature)
->>>>>>> gh-pages
 
 
 ## 1.4 HTTP response
 
 All the http response always is a json string. There are two parts information.
-<<<<<<< HEAD
-HTTP  Response中一般包括以下几部分内容：
-meta：表示响应的基本信息，包括返回码，返回信息，分页信息，签名。
-result: 表示响应的相关业务实体，result并不是固定的名称，具体的名称根据返回的实体类型而定。例如：当返回的是一个payment信息时，该字段名称为payment, 类型为对象“{}”；当返回的是一组payment信息时，该字段的名称是payments，类型为数组“ []”。
-=======
 
 - **meta**：The common information of each response. Includes response message, sign, error code etc.
 
 - **result**: The object(s) of entity. The name of "result" is not always "result", it changes by the entity type and the quantify of objects. For example: If the returned object is a payment object, then the name of result definitely is a "payment" object, and the content is a json object of payment. If the returned objects maybe many payment objects, then the name of result is "payments", and the content is a json array of payment.
->>>>>>> gh-pages
+
 
 ### HTTP response code
 
@@ -230,6 +212,7 @@ Status code | Description
 Both private key and public key are necessary for DSA or RSA signature. Both private key and public key are generated with OPENSSL by UMFinTech. UMFinTech will send the SSL key pair to partner. Therefore, partner uses Alipay public key and partner private key.
 
 ### Sign for request
+
 All the post request should have a http head of 'Signature'. The content of post should be a JSON string. The partner private key and the JSON string are used in the RSA signature algorithm by the RSA signature function to get the result string. (the value is given to http header "Signature").
 
 For Example:
@@ -237,6 +220,7 @@ For Example:
 `Signature:AWD234SDKEBuYviyhggoopDOUEFLKDSJFI7655DFDFOIUOIulkjj`
 
 ### Signature Verification for response
+
 After receiving the response JSON string during responding from UMFinTech system, the result  and the parameter “sign” are used in the RSA or DSA signature asymmetric algorithm by the RSA or DSA signature function to accomplish the signature verification.
 
 Due to the Chinese
