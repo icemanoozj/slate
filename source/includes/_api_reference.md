@@ -37,6 +37,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 Make a /oauth/authorize call with your app's OAuth client_id and secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials. 
 
+<<<<<<< HEAD
 4.2.	OAuth获取Token接口
 POST: /oauth/authorize
 此接口用于获取Access Token。除了本接口外，所有其它请求必须在http head中带有access token. 格式如下：
@@ -61,6 +62,32 @@ HTTP Body（JSON）：
 }
 
 
+=======
+### Request
+
+**POST**: /oauth/authorize
+
+Every request must have access_token in the the http request head. This interface returns a access_token of current_user. Each token have an expires_in parameter which means this token only avaliable during this period. But if user apply a new access_token, the old one will be disabled immediately.
+
+Parameters:
+
+Paramter | Description
+------- | -------
+client_id | The client identifier issued to the merchant. 
+client_secret | The secret of client issued to the merchant. 
+grant_type | The type of OAuth authentication request. For this scenario, it must be **"client_credentials"** .
+
+### Response
+
+The response is a json format string. It include the access_token and expires_in. 
+
+Response:
+
+Paramter | Description
+------- | -------
+expires_in | The remaining lifetime of the access token.
+access_token | The access_token.
+>>>>>>> gh-pages
 
 ## 3.2 Query available banks
 
@@ -116,7 +143,19 @@ type | The type of bank cards. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 The response is a list of [bank](#bank) object. See the example on the right.
 
+<<<<<<< HEAD
 ## create a payment
+=======
+Parameter | Description
+------- | -------
+name | The full name of the bank.
+code | The bank code inside China.
+type | The supported card type of the bank.
+
+
+## 3.3 Create a payment
+
+>>>>>>> gh-pages
 
 
 ## execute a payment
