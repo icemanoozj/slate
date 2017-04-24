@@ -1,3 +1,3 @@
-# FAQs
+# 6. FAQs
 
 To be done.

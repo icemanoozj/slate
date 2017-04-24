@@ -1,4 +1,4 @@
-# 4. Common Object Definitions
+# 4. Object Definitions
 
 ## address
 
