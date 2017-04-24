@@ -20,7 +20,7 @@ includes:
   - objs
   - errors
   - faqs
-  - demos
+  - appendix
 
 search: true
 ---

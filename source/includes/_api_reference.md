@@ -125,33 +125,489 @@ type | The supported card type of the bank.
 
 ## 3.3 Create a payment
 
+```json
+{
+  "payer": {
+    "payment_method": "CREDIT_CARD",
+    "bank_code": "CCB",
+    "payer_info": {
+      "bankCard": {
+        "phone": "15210838198"
+      }
+    }
+  },
+  "order": {
+    "mer_reference_id": "20170411543977",
+    "mer_date": "20170410",
+    "amount": {
+      "total": "100.02",
+      "currency": "USD"
+    },
+    "order_summary": "maimaimai",
+    "expire_time ": "360",
+    "sub_orders": [
+      {
+        "mer_sub_reference_id": "04115439771",
+        "amount": {
+          "total": "50.02",
+          "currency": "USD"
+        },
+        "trans_code": "01121990",
+        "sub_trans_type": "1",
+        "is_customs": "TRUE",
+        "items": [
+          {
+            "mer_item_id": "041154397711",
+            "type": "FOOD",
+            "name": "yifu1",
+            "description": "yifu1",
+            "item_quantity": "2",
+            "amount": {
+              "total": "30.02",
+              "currency": "USD"
+            }
+          },
+          {
+            "mer_item_id": "041154397712",
+            "type": "ELECTRONIC",
+            "name": "yifu2",
+            "description": "yifu2",
+            "item_quantity": "3",
+            "amount": {
+              "total": "20.00",
+              "currency": "USD"
+            }
+          }
+        ]
+      },
+      {
+        "mer_sub_reference_id": "04115439772",
+        "amount": {
+          "total": "50.00",
+          "currency": "USD"
+        },
+        "trans_code": "03223010",
+        "sub_trans_type": "3"
+      }
+    ]
+  },
+  "notify_url": "http://10.10.81.127:8080/spay_rest/payments/test/mer",
+  "risk_info": {
+    "trans_type": "02",
+    "goods_type": "1",
+    "real_name": "0",
+    "business_type": "Y"
+  }
+}
+```
+
+```shell
+$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
+-H "Content-Type:application/json" \
+-H "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
+-H "Signature=p+owOiuS9eVrDQIHaP9CwwR89k99+6MdALuetVW9SKpBJvbvQdO8Sx8P1wlgIN9naa9YQeha/oiVhTFh57dtEpE92HU4jsYXZ2aj8puIP6IXbyDG18vr7Qs1sCfdtT7ziXrv31BIIahn6HKZLtVf/fus2NIyO7f2zl+b34In4dM="
+-d '{
+  "payer": {
+    "payment_method": "CREDIT_CARD",
+    "bank_code": "CCB",
+    "payer_info": {
+      "bankCard": {
+        "phone": "15210838198"
+      }
+    }
+  },
+  "order": {
+    "mer_reference_id": "20170411543977",
+    "mer_date": "20170410",
+    "amount": {
+      "total": "100.02",
+      "currency": "USD"
+    },
+    "order_summary": "maimaimai",
+    "expire_time ": "360",
+    "sub_orders": [
+      {
+        "mer_sub_reference_id": "04115439771",
+        "amount": {
+          "total": "50.02",
+          "currency": "USD"
+        },
+        "trans_code": "01121990",
+        "sub_trans_type": "1",
+        "is_customs": "TRUE",
+        "items": [
+          {
+            "mer_item_id": "041154397711",
+            "type": "FOOD",
+            "name": "yifu1",
+            "description": "yifu1",
+            "item_quantity": "2",
+            "amount": {
+              "total": "30.02",
+              "currency": "USD"
+            }
+          },
+          {
+            "mer_item_id": "041154397712",
+            "type": "ELECTRONIC",
+            "name": "yifu2",
+            "description": "yifu2",
+            "item_quantity": "3",
+            "amount": {
+              "total": "20.00",
+              "currency": "USD"
+            }
+          }
+        ]
+      },
+      {
+        "mer_sub_reference_id": "04115439772",
+        "amount": {
+          "total": "50.00",
+          "currency": "USD"
+        },
+        "trans_code": "03223010",
+        "sub_trans_type": "3"
+      }
+    ]
+  },
+  "notify_url": "http://10.10.81.127:8080/spay_rest/payments/test/mer",
+  "risk_info": {
+    "trans_type": "02",
+    "goods_type": "1",
+    "real_name": "0",
+    "business_type": "Y"
+  }
+}'
+
+```
+
+
 **POST**: /payments/payment
 
-Creates a payment to be captured later.
+Creates a payment to be execute later or execute right now, it depends on the payment type.
 
-To create a sale, authorization, or order, include the payment details in the JSON request body. Set the intent to sale, authorize, or order. Include payer, transaction details, and, for PayPal payments only, redirect URLs. The combination of the payment_method and funding_instrument determines the type of payment that is created.
+The following table shows the payement types that UMF support, All the payment must pay by RMB(Chinese Yuan):
+
+Payment Type | Description
+------- | -------
+Credit Card | Pay by credit card
+Debit Card | Pay by debit card
+WeChat QRCode | UMF return a QR-Code String. The customer may use their wechat scan the QR-Code to pay.
+WeChat Offical Account | The customer may pay the order inside the wechat browser.
+WeChat APP | The customer may pay the order inside a native app.
+AliPay QRCode | UMF return a QR-Code String. The customer may use their wechat scan the QR-Code to pay.
+Protocol ID | This id present the payment information. The merchant can use this id to pay the order. Payment information include card_no, user name, phone, cvv2, etc. Same card in different merchant have different protocol id.
+
+Parameters:
+
+parameters | Description
+------- | -------
+payer | Object. The payment information. 
+order | Object. The order information. Includes sub orders.
+notify_url | String. Url of the merchant server. To receive the payment result.
+
+Response:
+
+parameters | Description
+------- | -------
+payer | Object. The payment information. 
+order | Object. The order information. Includes sub orders.
+notify_url | String. Url of the merchant server. To receive the payment result.
+links | Object Array. The next step links. Depents on the status and payment type. Those links are HATEOAS links.
+
+## 3.4 SMS verification
+
+``` json
+Request:
+{
+  "payer": {
+    "payer_info": {
+      "bankCard": {
+        "number": "TRP7vS5yHoMa3V1vWIn4fJlZTPVGmuxWRyoGqQIrAyqJVfYk03sEwVwktg1IyQjHqexQt71Qv1hCszQqKR68YKShomMg9cHcTu3f3hYWebDPCE6QmW+++br6B/Dcprzz9KI+CDHSdIEP6uR7z0bTFeaC+pZS3L/DuqDG/C4Swp8=",
+        "citizen_id_number": "qXhTKG5nkeEC10GHiPiV3iqkMHawRpWXQ0ln3b+RxfRQKBeea+Ex9XiPSrxF/VORuMHA2xOFI4dFDVRZnlihNkbCNlmK14RkP4GjPyLqvowLtGFc9VxHs16aDUnNf35G2GK8D8+V2xNSRqItsjpaHDU+KPfcHTp/juBxv5Zwb4Y=",
+        "citizen_id_type": "1",
+        "payer_name": "lb3812wHxk6tC8H3/7Un5HubqhDv76D7JGne/DwDVoJjqSe+lW+A7TrhJGzL+M87dfz0BM1gf37kLDKPyY0yVUY26z7pBB8/sruygg78mBp8rm2m5XSn2k5h8OzIzjjms7XoVeRifVy+8eR4HjOQJZ5Pyo21WAhYWVx0G4OAdTc=",
+        "phone": "15012345678",
+        "valid_date": "BcF2VPrCmMZoZo1ui4MRPgh1/OPFsNl7rgZCCMvG7wYbKV7vk5bNtreGlz84+0Fzs2osasev6e82CNvIuLTNGI57glEWkX4JG0rpuHh3+IOW8CgsCaPfhDWErtZW2QQKfNlWn0dE+B/Ail700Psxndzo+FIT5S+s/DDssPGY3uY=",
+        "cvv2": "OoClPlildcQa0C6OVNRM/XjJ7LFJyiNBhR9bFzMxQ9VtwJyH6S+KRvYDKCScO2joNdBGGd3fcjv+uv7c56CQYTwRoiHe9NwCrZph+QB0NZtR85XHegUEebvszSJPqzuwLoGmOxCu5XEbVovMAOE0mkXDNIDQ6lT86kZhlwoWJ7A=",
+        "mer_cust_id": ""
+      },
+      "payerAgreement": {
+        "agreement_id": "",
+        "busi_agreement_id": ""
+      }
+    }
+  }
+}
+
+```
+
+```json
+Response:
+
+{
+  "meta": {
+    "sign": "pyuLSLDsZJPkOTl55l6zIplOil2uRIkeWv0RGzHQQl7Sov96oGvFsolUmuMLbEYRbhp9CedIi+liuFPeFzb9ycafWE59hp792yK3E8dbrjEvmYout5denFGWEOeCKUeKj1pE96FF0MCjrdkdKf6Zlh+LmhLI9as6PV7P+e4IDL0=",
+    "ret_msg": "Success",
+    "ret_code": "0000"
+  },
+  "links": [
+    {
+      "ref": "self",
+      "method": "POST",
+      "href": "http://10.10.77.79:8081/V1/spay_rest/payments/payment/PAY_AAGSRXVMGCDZOAJTY2VD2/query?mer_reference_id=20170411543977&mer_date=20170410"
+    },
+    {
+      "ref": "confirm",
+      "method": "POST",
+      "href": "http://10.10.77.79:8081/V1/spay_rest/payments/payment/PAY_AAGSRXVMGCDZOAJTY2VD2/execute"
+    }
+  ]
+}
+```
+
+```shell
+$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
+-H "Content-Type:application/json" \
+-H "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
+-H  "Signature=qJIC9lz/1TIjEe5rw2Wj8YfvBX3RHyICWNCRmusOu4EeCBcDYNJlWgZCo2/1V1FnZg2alfwSlIAzHetqsEIdDfqy2tlxJriBr7VIIjM3/e9n7TOKGoiHDPuC2/U82xlQUFi8ua/3kv0o7eTVbKLDr1LacEFWFWWy3RpXFFa57SA=" \
+-d '{
+  "payer": {
+    "payer_info": {
+      "bankCard": {
+        "number": "TRP7vS5yHoMa3V1vWIn4fJlZTPVGmuxWRyoGqQIrAyqJVfYk03sEwVwktg1IyQjHqexQt71Qv1hCszQqKR68YKShomMg9cHcTu3f3hYWebDPCE6QmW+++br6B/Dcprzz9KI+CDHSdIEP6uR7z0bTFeaC+pZS3L/DuqDG/C4Swp8=",
+        "citizen_id_number": "qXhTKG5nkeEC10GHiPiV3iqkMHawRpWXQ0ln3b+RxfRQKBeea+Ex9XiPSrxF/VORuMHA2xOFI4dFDVRZnlihNkbCNlmK14RkP4GjPyLqvowLtGFc9VxHs16aDUnNf35G2GK8D8+V2xNSRqItsjpaHDU+KPfcHTp/juBxv5Zwb4Y=",
+        "citizen_id_type": "1",
+        "payer_name": "lb3812wHxk6tC8H3/7Un5HubqhDv76D7JGne/DwDVoJjqSe+lW+A7TrhJGzL+M87dfz0BM1gf37kLDKPyY0yVUY26z7pBB8/sruygg78mBp8rm2m5XSn2k5h8OzIzjjms7XoVeRifVy+8eR4HjOQJZ5Pyo21WAhYWVx0G4OAdTc=",
+        "phone": "15012345678",
+        "valid_date": "BcF2VPrCmMZoZo1ui4MRPgh1/OPFsNl7rgZCCMvG7wYbKV7vk5bNtreGlz84+0Fzs2osasev6e82CNvIuLTNGI57glEWkX4JG0rpuHh3+IOW8CgsCaPfhDWErtZW2QQKfNlWn0dE+B/Ail700Psxndzo+FIT5S+s/DDssPGY3uY=",
+        "cvv2": "OoClPlildcQa0C6OVNRM/XjJ7LFJyiNBhR9bFzMxQ9VtwJyH6S+KRvYDKCScO2joNdBGGd3fcjv+uv7c56CQYTwRoiHe9NwCrZph+QB0NZtR85XHegUEebvszSJPqzuwLoGmOxCu5XEbVovMAOE0mkXDNIDQ6lT86kZhlwoWJ7A=",
+        "mer_cust_id": ""
+      },
+      "payerAgreement": {
+        "agreement_id": "",
+        "busi_agreement_id": ""
+      }
+    }
+  }
+}'
+
+```
+
+This step is only available in bank card payment. Merchant send the bank card information, and UMF(or the bank) will send SMS to customer's phone. This SMS is part of the parameters of execute the payment.
+
+### Request
+
+**POST**:/payments/payment/payment_id/verify
+
+The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+
+### Parameters
+
+Parameter | Description
+----------|------------
+[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMPay public key. See the description of payer object.
+
+### Response
+
+The response just includes the links of next steps. See the example.
+If the request is vaild, the sms will be sent to customer's phone. 
+
+Parameter | Description
+------- | -------
+[meta](#meta) | object. The common information of response.
+[links](#link) | object array. The links of next steps.
+
+Error Codes:
+
+Return code  | Description of return code 
+-------------|----------------------------
+00060700 | Fail to verify parameter (***illegal) 
+00200025 | Information of the card is incorrect. 
+00200026 | The card has expired. 
+00060999 | The system is busy. 
+00080706 | Acquire verification codes too many times within a minute. 
+00060875 | Fail to validate the card bin (validation failure due to the incorrect card number) 
+00080707 | The times for requesting the verification code for same order number exceeds the maximum. 
+00200027 | The bank is not linked with the merchant on UMpay’s platform. 
+00060869 | Merchant goods are not registered on UMpay platform.
+
+## 3.5 execute a payment
+
+When you execute a payment, the transaction completes and moves money from the customer's account into your merchant account in UMF.
+
+To execute a payment, include the payment ID in the URI and include a payer object in the JSON body. 
+
+The result of execute will not returned immediately. The merchant have two ways to get the execute result.
+
+-- Make a payment query. If the state is "TRADE_SUCCESS", then the execute was success.
+-- Wait the notification from UMF. Merchant needs to write a http(s) service. UMF will call this service, when the payment have a result.
+
+### Request
+
+**POST**:/payments/payment/payment_id/execute
+
+The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+
+### Parameters
+
+Parameter | Description
+----------|------------
+[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMPay public key. See the description of payer object. If the pay_type is bank card. The verification code should be included in the payer object.
+
+### Response
+
+The response includes the payment object. But the bank card info will not be returned. Such as card number, cvv2, citizen_id, etc.
+
+Parameter | Description
+------- | -------
+[meta](#meta) | object. The common information of response.
+[payment](#payment) | object. The payment object.
 
 
-## execute a payment
+## 3.6 Payment result notification
+
+After processing the payment request data of the merchant, the platform will call merchant's service to nofify the payment result.
+
+Merchant should give a response after received the call.
+
+### Request 
+
+This request is called by UMF. The url is the merchant service url.
+
+Parameter | Description
+------- | -------
+trade_no | UMPay transaction number 
+order_id | Order number 
+mer_date | Merchant order date 
+pay_date | Payment date 
+amount | Transaction amount 
+currency | Transaction currency 
+cny_amount | Transaction amount in RMB 
+exchange_rate | Exchange rate 
+pay_type | Payment method 
+media_id | Media identification 
+media_type | Media type 
+settle_date | Reconciliation date 
+mer_priv | Merchant private field 
+trade_state | Transaction status 
+pay_seq | Bank statement 
+error_code | Transaction error code 
+
+### Response
+
+The response is sent from merchant. 
+
+Parameter | Description
+------- | -------
+order_id | Merchant unique order number 
+mer_date | Merchant order date 
+ret_code | Return code 
+ret_msg | Return message 
+mer_check_date | Merchant reconciliation date 
+mer_trace | Merchant processing statement 
 
 
-## query a payment
+## 3.7 Query a payment
+
+**GET**: payments/payment/payment_id
+
+The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+
+Merchant may call this url anytime. UMF will return the payment object.
+
+## 3.8 Create a refund
+
+**POST**:/payments/payment/payment_id/refund
+
+The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+
+This request creates a refund object. The reqeust send a refund object, and the response is the refund object that the UMF created.
+
+UMF supports full or partial refund. Partial refund can be made multi times.
+
+The refund must be the same currency with the payment and the refund amount must be no more than the total amount.
+
+### Parameters
+
+Parameter | Description
+----------|------------
+[refund](#refund) | Object. The refund object. The order, amount and nofify_url should be filled.
+
+### Response
+
+The response includes the refund object. The returned refund object has refund_id and state. 
+
+Parameter | Description
+------- | -------
+[meta](#meta) | object. The common information of response.
+[refund](#refund) | object. The refund object.
+
+## 3.9 Query refund
+
+**GET**: /payments/refund/refund_id
+
+The refund_id in the url is the real payment id that created in the previous step([create a refund](#create_a_refund)).
+
+Merchant may call this url anytime. UMF will return the refund object. If the state is "REFUND_SUCCESS", the refund is succeed.
+
+## 3.10 Create cumtoms clearance
+
+**POST**: /payments/payment/payment_id/apply_to_customs
+
+This interface is optional. When merchant need UMF commit the payment information to a Customs, this interface will be called. As soon as the merchant call this url, the payment information will be sent to the cumstoms system. 
+
+The merchant provides the declaration data of sub-order to the platform within 1 month after placing an order, and the platform updates the declaration data to customs system of the sub-order after receiving it. 
+
+### Request
+
+The request include a [customs_declaration](#customs_declaration) object. 
+
+### Response
+
+The response will include a customs_declaration object and meta information.
+
+## 3.11 Query customs clearance status
+
+**GET**: payments/customs_ declarations/customs_declaration_id
+
+The customs_ declaration_id in the url is the id of customs_declaration object which created in the previous step([Create cumtoms clearance](#Create_cumtoms_clearance)).
+
+## 3.12 Download transaction list
+
+TODO
+
+## 3.13 Download statement
+
+TODO
 
 
+## 3.14 Query exchange rate
 
-## refund
+**GET**: /exchange_rate?currency=USD
 
+Get the real-time exchange rate. The returned information is the corresponding amount of RMB.
 
+### Request
 
-## query refund
+The parameter is currency which is [the code of currency](Currency_codes).
 
+### Response
 
-## Create cumtoms clearance
+The response will include a [exchange_rate](#exchange_rate) object and meta information.
 
+## 3.15 Notification
 
+This interface is a common interface. All the payment, refund and customs_declaration request will not get the result in the response. The result will be notified by UMF when the things done. So the merchant has to provide a service to receive the notification, and give the right response.
 
-## Query customs clearance status
+### Request
 
+The request is sent by UMF server. The request url is the notify_url in each object.
 
+The request content is JSON format. It is the json object depend on which object needs to be notified. The object maybe a payment object, or a refund object, or a customs_declaration object.
 
+### Response
+
+The response will include a meta information and the object that merchant received. The object does not need to set all the values. What UMF needs is the object id.
 

@@ -192,6 +192,7 @@ All the http response always is a json string. There are two parts information.
 
 - **result**: The object(s) of entity. The name of "result" is not always "result", it changes by the entity type and the quantify of objects. For example: If the returned object is a payment object, then the name of result definitely is a "payment" object, and the content is a json object of payment. If the returned objects maybe many payment objects, then the name of result is "payments", and the content is a json array of payment.
 
+Normal response will include a [meta](#meta object, which is the common information of each response.
 
 ### HTTP response code
 
