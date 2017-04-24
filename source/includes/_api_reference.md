@@ -35,17 +35,17 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 ```
 
-Make a /oauth/authorize call with your app's OAuth client_id and secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials. 
+Make an oauth authorize call with your app's OAuth client_id and client_secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials.
 
 ### Request
 
 **POST**: /oauth/authorize
 
-Every request must have access_token in the the http request head. This interface returns a access_token of current_user. Each token have an expires_in parameter which means this token only avaliable during this period. But if user apply a new access_token, the old one will be disabled immediately.
+Every request must have access_token in the http request header. This interface returns a access_token of current_user. Each token has an expires_in parameter which means this token only available during this period. But if user applies a new access_token, the old one will be disabled immediately.
 
 Parameters:
 
-Paramter | Description
+Parameter | Description
 ------- | -------
 client_id | The client identifier issued to the merchant. 
 client_secret | The secret of client issued to the merchant. 
@@ -57,7 +57,7 @@ The response is a json format string. It include the access_token and expires_in
 
 Response:
 
-Paramter | Description
+Parameter | Description
 ------- | -------
 expires_in | The remaining lifetime of the access token.
 access_token | The access_token.
@@ -104,23 +104,23 @@ https://uatfx.paysoo.com/rest/v1/bank?type=CREDIT_CARD
 
 Each merchant can only accept bank cards that was included in the contract.
 
-This API will return the banks list that are avaliable for current merchant of the indicate type.
+This API will return the list of banks that are available for current merchant of the indicated type.
 
 ### Parameters
 
 Parameter | Description
 ----------|------------
-type | The type of bank cards. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
+type | ENUM. The type of bank cards. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 ### Response
 
-The response is a list of [bank](#bank) object. See the example on the right.
+The response is a list of [bank](#bank) objects. See the example on the right.
 
 Parameter | Description
 ------- | -------
 name | The full name of the bank.
 code | The bank code inside China.
-type | The supported card type of the bank.
+type | The supported card type of the bank. **CREDIT_CARD**, **DEBIT_CARD**
 
 
 ## 3.3 Create a payment
@@ -285,23 +285,23 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 **POST**: /payments/payment
 
-Creates a payment to be execute later or execute right now, it depends on the payment type.
+Creates a payment to execute later or execute right now, it depends on the payment type.
 
-The following table shows the payement types that UMF support, All the payment must pay by RMB(Chinese Yuan):
+The following table shows the payment types that UMF supports, all payments must be paid in RMB(Chinese Yuan):
 
 Payment Type | Description
 ------- | -------
 Credit Card | Pay by credit card
 Debit Card | Pay by debit card
-WeChat QRCode | UMF return a QR-Code String. The customer may use their wechat scan the QR-Code to pay.
-WeChat Offical Account | The customer may pay the order inside the wechat browser.
-WeChat APP | The customer may pay the order inside a native app.
-AliPay QRCode | UMF return a QR-Code String. The customer may use their wechat scan the QR-Code to pay.
-Protocol ID | This id present the payment information. The merchant can use this id to pay the order. Payment information include card_no, user name, phone, cvv2, etc. Same card in different merchant have different protocol id.
+WeChat QRCode | UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay.
+WeChat Offical Account | The customer may pay for the order inside the WeChat browser.
+WeChat APP | The customer may pay for the order inside a native app.
+AliPay QRCode | UMF returns a QR-Code String. The customer may use their WeChat to scan the QR-Code to pay.
+Protocol ID | This ID presents the payment information. The merchant can use this ID to pay for the order. Payment information includes card_no, user name, phone, cvv2, etc. Same card in different merchant has different protocol ID.
 
 Parameters:
 
-parameters | Description
+Parameters | Description
 ------- | -------
 payer | Object. The payment information. 
 order | Object. The order information. Includes sub orders.
@@ -309,12 +309,12 @@ notify_url | String. Url of the merchant server. To receive the payment result.
 
 Response:
 
-parameters | Description
+Parameters | Description
 ------- | -------
 payer | Object. The payment information. 
 order | Object. The order information. Includes sub orders.
 notify_url | String. Url of the merchant server. To receive the payment result.
-links | Object Array. The next step links. Depents on the status and payment type. Those links are HATEOAS links.
+links | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
 ## 3.4 SMS verification
 
@@ -395,19 +395,19 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 ```
 
-This step is only available in bank card payment. Merchant send the bank card information, and UMF(or the bank) will send SMS to customer's phone. This SMS is part of the parameters of execute the payment.
+This step is only available for card payment. Merchant sends the card information, and UMF(or the bank) will send SMS to customer's phone. This SMS is part of the parameters of executing the payment.
 
 ### Request
 
 **POST**:/payments/payment/payment_id/verify
 
-The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+The payment_id in the url is the real payment id that was created in the previous step([Create a payment](#Create_a_payment)).
 
 ### Parameters
 
 Parameter | Description
 ----------|------------
-[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMPay public key. See the description of payer object.
+[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMF public key. See the description of payer object.
 
 ### Response
 
@@ -423,42 +423,42 @@ Error Codes:
 
 Return code  | Description of return code 
 -------------|----------------------------
-00060700 | Fail to verify parameter (***illegal) 
+00060700 | Failed to verify parameter
 00200025 | Information of the card is incorrect. 
 00200026 | The card has expired. 
 00060999 | The system is busy. 
-00080706 | Acquire verification codes too many times within a minute. 
-00060875 | Fail to validate the card bin (validation failure due to the incorrect card number) 
-00080707 | The times for requesting the verification code for same order number exceeds the maximum. 
-00200027 | The bank is not linked with the merchant on UMpay’s platform. 
-00060869 | Merchant goods are not registered on UMpay platform.
+00080706 | Acquire verification codes too many times within one minute. 
+00060875 | Failed to validate the card bin (validation failure due to incorrect card number) 
+00080707 | The number of verification code requests for the order exceeds the maximum.
+00200027 | The bank is not linked with the merchant on UMF's platform.
+00060869 | Merchant goods are not registered on UMF platform.
 
-## 3.5 execute a payment
+## 3.5 Execute a payment
 
-When you execute a payment, the transaction completes and moves money from the customer's account into your merchant account in UMF.
+When executing a payment, the transaction completes and transfers money from the customer's account into merchant account with UMF.
 
 To execute a payment, include the payment ID in the URI and include a payer object in the JSON body. 
 
-The result of execute will not returned immediately. The merchant have two ways to get the execute result.
+The result of executing will not returned immediately. The merchant has two ways to get the result.
 
--- Make a payment query. If the state is "TRADE_SUCCESS", then the execute was success.
--- Wait the notification from UMF. Merchant needs to write a http(s) service. UMF will call this service, when the payment have a result.
+-- Make a query of payment. If the payment state is "TRADE_SUCCESS", then the payment was successful.
+-- Wait for the notification from UMF. Merchant needs to write a http(s) service. UMF will call this service when the payment has a result.
 
 ### Request
 
 **POST**:/payments/payment/payment_id/execute
 
-The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+The payment_id in the url is the real payment ID that was created in the previous step([Create a payment](#Create_a_payment)).
 
 ### Parameters
 
 Parameter | Description
 ----------|------------
-[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMPay public key. See the description of payer object. If the pay_type is bank card. The verification code should be included in the payer object.
+[payer](#payer) | Object. The payer information. Some parameters should be encrypted by UMF public key. See the description of payer object. If the pay_type is credit card or debit card, the verification code should be included in the payer object.
 
 ### Response
 
-The response includes the payment object. But the bank card info will not be returned. Such as card number, cvv2, citizen_id, etc.
+The response includes the payment object. But the bank card info will not be returned, such as card number, cvv2, citizen_id, etc.
 
 Parameter | Description
 ------- | -------
@@ -468,36 +468,21 @@ Parameter | Description
 
 ## 3.6 Payment result notification
 
-After processing the payment request data of the merchant, the platform will call merchant's service to nofify the payment result.
+After processing the payment request data of the merchant, UMF will call merchant's service with the payment result.
 
-Merchant should give a response after received the call.
+Merchant should give a response after receiving the call.
 
-### Request 
+### Request
 
-This request is called by UMF. The url is the merchant service url.
+UMF calls this service which is provided by merchant. The url of service is a merchant service url.
 
 Parameter | Description
 ------- | -------
-trade_no | UMPay transaction number 
-order_id | Order number 
-mer_date | Merchant order date 
-pay_date | Payment date 
-amount | Transaction amount 
-currency | Transaction currency 
-cny_amount | Transaction amount in RMB 
-exchange_rate | Exchange rate 
-pay_type | Payment method 
-media_id | Media identification 
-media_type | Media type 
-settle_date | Reconciliation date 
-mer_priv | Merchant private field 
-trade_state | Transaction status 
-pay_seq | Bank statement 
-error_code | Transaction error code 
+payment | Object. The payment object.
 
 ### Response
 
-The response is sent from merchant. 
+The response is sent from merchant to UMF.
 
 Parameter | Description
 ------- | -------
@@ -513,7 +498,7 @@ mer_trace | Merchant processing statement
 
 **GET**: payments/payment/payment_id
 
-The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+The payment_id in the url is the real payment id that was created in the previous step([Create a payment](#Create_a_payment)).
 
 Merchant may call this url anytime. UMF will return the payment object.
 
@@ -521,23 +506,23 @@ Merchant may call this url anytime. UMF will return the payment object.
 
 **POST**:/payments/payment/payment_id/refund
 
-The payment_id in the url is the real payment id that created in the previous step([Create a payment](#Create_a_payment)).
+The payment_id in the url is the real payment ID that was created in the previous step([Create a payment](#Create_a_payment)).
 
-This request creates a refund object. The reqeust send a refund object, and the response is the refund object that the UMF created.
+This request creates a refund object. The request sends a refund object, and the response is the refund object that UMF created.
 
-UMF supports full or partial refund. Partial refund can be made multi times.
+UMF supports full or partial refund. Partial refund can be made multiple times.
 
-The refund must be the same currency with the payment and the refund amount must be no more than the total amount.
+The refund must be the same currency as the payment and the refund amount must be no more than the total payment amount.
 
 ### Parameters
 
 Parameter | Description
 ----------|------------
-[refund](#refund) | Object. The refund object. The order, amount and nofify_url should be filled.
+[refund](#refund) | Object. The refund object. The order, amount and nofify_url should be entered.
 
 ### Response
 
-The response includes the refund object. The returned refund object has refund_id and state. 
+The response includes the refund object. The returned refund object has refund_id and state.
 
 Parameter | Description
 ------- | -------
@@ -548,21 +533,21 @@ Parameter | Description
 
 **GET**: /payments/refund/refund_id
 
-The refund_id in the url is the real payment id that created in the previous step([create a refund](#create_a_refund)).
+The refund_id in the url is the real payment ID that was created in the previous step([create a refund](#create_a_refund)).
 
-Merchant may call this url anytime. UMF will return the refund object. If the state is "REFUND_SUCCESS", the refund is succeed.
+Merchant may call this url anytime. UMF will return the refund object. If the state is "REFUND_SUCCESS", the refund is successful.
 
-## 3.10 Create cumtoms clearance
+## 3.10 Create customs clearance
 
 **POST**: /payments/payment/payment_id/apply_to_customs
 
-This interface is optional. When merchant need UMF commit the payment information to a Customs, this interface will be called. As soon as the merchant call this url, the payment information will be sent to the cumstoms system. 
+This interface is optional. When merchant needs UMF to commit the payment information to customs, this interface will be called. As soon as the merchant calls this url, the payment information will be sent to the customs system.
 
-The merchant provides the declaration data of sub-order to the platform within 1 month after placing an order, and the platform updates the declaration data to customs system of the sub-order after receiving it. 
+The merchant provides the sub-order declaration data to the platform within one month after placing an order, and the platform updates the sub-order declaration data to customs system after receiving it. 
 
 ### Request
 
-The request include a [customs_declaration](#customs_declaration) object. 
+The request includes a [customs_declaration](#customs_declaration) object. 
 
 ### Response
 
@@ -572,13 +557,13 @@ The response will include a customs_declaration object and meta information.
 
 **GET**: payments/customs_ declarations/customs_declaration_id
 
-The customs_ declaration_id in the url is the id of customs_declaration object which created in the previous step([Create cumtoms clearance](#Create_cumtoms_clearance)).
+The customs_ declaration_id in the url is the ID of customs_declaration object which was created in the previous step([Create customs clearance](#Create_customs_clearance)).
 
 ## 3.12 Download transaction list
 
 TODO
 
-## 3.13 Download statement
+## 3.13 Download reconciliation statement
 
 TODO
 
@@ -591,7 +576,7 @@ Get the real-time exchange rate. The returned information is the corresponding a
 
 ### Request
 
-The parameter is currency which is [the code of currency](Currency_codes).
+The parameter is currency which is [currency code](#Currency_codes).
 
 ### Response
 
@@ -599,15 +584,15 @@ The response will include a [exchange_rate](#exchange_rate) object and meta info
 
 ## 3.15 Notification
 
-This interface is a common interface. All the payment, refund and customs_declaration request will not get the result in the response. The result will be notified by UMF when the things done. So the merchant has to provide a service to receive the notification, and give the right response.
+This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not include the results. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results.
 
 ### Request
 
-The request is sent by UMF server. The request url is the notify_url in each object.
+The request is sent from UMF server to merchant server. The request url is the notify_url in each object.
 
-The request content is JSON format. It is the json object depend on which object needs to be notified. The object maybe a payment object, or a refund object, or a customs_declaration object.
+The request content is JSON object. The object maybe a payment object, or a refund object, or a customs_declaration object.
 
 ### Response
 
-The response will include a meta information and the object that merchant received. The object does not need to set all the values. What UMF needs is the object id.
+The response will include a meta information and the object that merchant received. The object does not need to set all values. UMF only needs the object id.
 

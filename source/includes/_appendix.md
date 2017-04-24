@@ -52,47 +52,47 @@ No. | Error code  | Description
 5 | 00060721 | The user chose the online bank he or she does not have. 
 6 | 00060722 | Please reselect the paying bank. 
 7 | 00060723 | Wrong password, please re-enter. 
-8 | 00060724 | Payment password was inputted incorrectly for more than three times, it means payment failure. 
+8 | 00060724 | Payment password was incorrect more than three times. 
 9 | 00060730 | User account balance is insufficient, please deposit. 
-10 | 00060740 | Fail to generate payment order. 
-11 | 00060750 | Fail to pay. 
-12 | 00060751 | Overtime pay is being reversed. 
-13 | 00060760 | Payment order absent. 
-14 | 00060761 | Orders are being paid. Please wait. 
-15 | 00060762 | Order has expired, please re-order. 
+10 | 00060740 | Failed to generate payment order. 
+11 | 00060750 | Failed to pay. 
+12 | 00060751 | Payment expired. 
+13 | 00060760 | Payment not exist. 
+14 | 00060761 | Payment in process. 
+15 | 00060762 | Payment expired, please order again. 
 16 | 00060763 | Orders have been closed. 
-17 | 00060764 | Orders have not paid, please continue to pay. 
-18 | 00060765 | Payment failure, please re-select the payment method. 
-19 | 00060766 | No refund allowable. 
+17 | 00060764 | Orders have not been paid. 
+18 | 00060765 | Payment failed. 
+19 | 00060766 | No refund allowed. 
 20 | 00060767 | Refund request failure. 
 21 | 00060768 | Refund amount is inconsistent with the payment amount. 
-22 | 00060769 | No withdrawal allowable. 
+22 | 00060769 | No withdrawal allowed. 
 23 | 00060770 | Withdrawn amount is inconsistent with the payment amount. 
 24 | 00060022 | ID number is not legitimate. 
 25 | 00060076 | Unsupported bank card account. 
-26 | 00060101 | Bank card account has been registered. 
-27 | 00060100 | User's phone number has been registered. 
+26 | 00060101 | Bank card account has already been registered. 
+27 | 00060100 | User's phone number has already been registered. 
 28 | 00060105 | Real-name authentication failure. 
 29 | 00060114 | Merchant permissions restricted. 
-30 | 00060310 | The user does not subscribe the merchant protocol. 
+30 | 00060310 | The user does not subscribe to the merchant protocol. 
 31 | 00060314 | Unregistered user. 
-32 | 00060315 | Inactive users. 
-33 | 00281017 | Currencies unaccepted by the merchant. 
+32 | 00060315 | Inactive user. 
+33 | 00281017 | Currency not accepted by the merchant. 
 34 | 00200005 | SMS verification code not found. 
-35 | 00281017 | Merchant does not have the privilege to use this currency.
+35 | 00281017 | Merchant cannot use this currency.
 36 | 00202012 | Customs unavailable. 
 37 | 00202013 | The customs information has been updated and shall not be updated again. 
-38 | 00202014 | Whether the declaration at the customs is N, require for updating the customs information. 
-39 | 00202015 | The cross-border sub-order absent. 
-40 | 00202016 | The cross-border cargo information sheet absent. 
-41 | 00202000 | The exchange rate quire response parameter error. 
-42 | 00202001 | The foreign currency amount of order shall not be blank. 
-43 | 00202002 | The foreign currency amount of order shall be integer. 
-44 | 00202003 | The foreign currency amount of order shall be larger than 0. 
-45 | 00202005 | Fail to update the order extension sheet. 
-46 | 00202006 | Fail to update the order extension sheet - conversion ID type. 
-47 | 00202007 | Fail to update the cross-border order extension sheet. 
-48 | 00202008 | The cross-border order extension data absent. 
+38 | 00202014 | The customs declaration is not required for the order.
+39 | 00202015 | The cross-border sub-order is absent. 
+40 | 00202016 | The cross-border cargo information sheet is absent. 
+41 | 00202000 | The exchange rate query response parameter error. 
+42 | 00202001 | The foreign currency amount of order must not be blank. 
+43 | 00202002 | The foreign currency amount of order must be integer value. 
+44 | 00202003 | The foreign currency amount of order must be larger than 0. 
+45 | 00202005 | Failed to update the order extension sheet. 
+46 | 00202006 | Failed to update the order extension sheet - conversion ID type. 
+47 | 00202007 | Failed to update the cross-border order extension sheet. 
+48 | 00202008 | The cross-border order extension data is absent. 
 49 | 00202009 | The refund amount in the refund application is incorrect. 
 50 | 00202010 | The refund amount in the refund application is inconsistent with the original order amount. 
 51 | 00202011 | The currency in the refund application is inconsistent with the original order currency. 
@@ -102,8 +102,8 @@ No. | Error code  | Description
 No. | Enumeration name  | Description  | Note 
 ----|-------------------|--------------|------
 1 | WAIT_BUYER_PAY | Was accepted, waiting for the buyer to pay.  | 
-2 | TRADE_SUCCESS | The transaction is successful, cannot be traded again.  | 
-3 | TRADE_CLOSED | Transaction is closed since transaction is not completed within certain period.  | 
+2 | TRADE_SUCCESS | The transaction was successful.  | 
+3 | TRADE_CLOSED | Transaction was closed since transaction expired. | 
 4 | TRADE_CANCEL | Cancelled.  | 
 5 | TRADE_FAIL | Failed.  | 
 
@@ -112,17 +112,17 @@ No. | Enumeration name  | Description  | Note
 
 No. | Enumeration name  | Description  | Note 
 ----|-------------------|--------------|------
-1 | REFUND_SUCCESS | Refund succeeds.  | 
+1 | REFUND_SUCCESS | Refund successful.  | 
 2 | REFUND_CLOSE | Refund is closed. | Refund request is rejected.
 3 | REFUND_PROCESS | Refund in process.  | 
-4 | REFUND_FAIL | Refund failed.  | Technical issues caused. 
+4 | REFUND_FAIL | Refund failed.  |  
 
 
 ## Currency codes
 
 No| Currency code  | Currency description 
 ------|----------------|----------------------
-1 | CNY | Ren Min Bi 
+1 | CNY | Chinese yuan 
 2 | HKD | Hong Kong dollar 
 3 | USD | United States dollar 
 4 | EUR | EURO 
@@ -132,7 +132,7 @@ No| Currency code  | Currency description
 8 | CAD | Canadian dollar
 9 | NZD | New Zealand dollar
 10 | SGD | Singapore dollar
-12 | CHF | Swing Franc
+12 | CHF | Swiss Franc
 13 | SEK | Swedish Krona
 14 | DKK | Danish Kroner
 15 | NOK | Norwegian Krona

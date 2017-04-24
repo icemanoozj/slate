@@ -127,16 +127,16 @@ Use the UMF REST APIs in these environments:
 
 Environment | Description | Endpoint
 ------------|-------------|---------
-Sandbox - China | Test. For the servers in China. Use your test client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://uat.soopay.net 
-Live - China | Production. For the servers in China. Use your live client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://pay.soopay.com
-Sandbox - American | Test. For the servers in American. Use your test client_id and client_secret to generate an access token to make calls to the live URIs. | https://uatfx.soopay.net
-Live - American | Production. For the servers in American. Use your live client_id and client_secret to generate an access token to make calls to the live URIs. | https://payfx.soopay.net
+Sandbox - China | Test. For servers in China. Use your test client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://uat.soopay.net 
+Live - China | Production. For servers in China. Use your live client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://pay.soopay.com
+Sandbox - American | Test. For servers in North America. Use your test client_id and client_secret to generate an access token to make calls to the live URIs. | https://uatfx.soopay.net
+Live - American | Production. For servers in North America. Use your live client_id and client_secret to generate an access token to make calls to the live URIs. | https://payfx.soopay.net
 
 
 To construct a REST call, combine:
 
 - The HTTP method
-- The full URI to the resource
+- The full URI of the resource
 - HTTP headers
 - The JSON-formatted payload, if required
 
@@ -146,20 +146,20 @@ The Example is listed on the right.
 Note: You can use cURL commands on the command line to try code. If needed, download cURL software. Include your own access token and payment-specific IDs for calls.
 </aside>
 
-Merchant will get the following information after becaming the partener of UMF.
+Merchant will get the following information after becaming the partner of UMF.
 
 Type | Description
 ------- | -------
 Merchant rsa private key | For signing the request to UMFinTech
-Merchant rsa public key | key pair of Merchant rsa private key
-UMFinTech public key | For encrypting the sensitvie information.
+Merchant rsa public key | Key pair of Merchant rsa private key
+UMFinTech public key | For encrypting the sensitive information
 Merchant client id | For OAuth2 authentication
 Merchant client secret | For OAuth2 authentication
 
 
 ## 1.2 Authentication
 
-The UMFinTech system support OAuth2. It use [Client Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.4) to generate access token. Each merchant has a client_id and a client_secret. Merchant use client_id and client_secret to get the access Token. Each request must be made over HTTPS and add access token in the http header.
+The UMFinTech system supports OAuth2. It uses [Client Credentials Grant](https://tools.ietf.org/html/rfc6749#section-4.4) to generate access token. Each merchant has a client_id and a client_secret. Merchant use client_id and client_secret to get the access Token. Each request must be made over HTTPS  with access token in the http header.
 
 <aside class="notify">
  Remember: DO NOT share your merchant ID, secret key, or bearer token with unauthorized individuals or applications; they are unique to each merchant and contain private information. Please ensure only properly authorized individuals have access to this information within your organization.
@@ -169,7 +169,7 @@ If you believe either your merchant ID, secret key, or bearer token have been co
 
 ## 1.3 HTTP Request
 
-UMFinTech system support GET and POST request. 
+UMF system supports GET and POST requests.
 
 - GET: Inquiry an object or a list of objects.
 - POST：Create or update an object. 
@@ -178,7 +178,7 @@ UMFinTech system support GET and POST request.
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
 
-If the request is a post request, the request headers must include the following information:
+If the request is a POST request, the request headers must include the following information:
 
 - Content-Type: application/json
 - Signature:[SignatureOfPostBody](#1-6-signature-and-verify-signature)
@@ -186,13 +186,11 @@ If the request is a post request, the request headers must include the following
 
 ## 1.4 HTTP response
 
-All the http response always is a json string. There are two parts information.
+All http responses always are json format string with two parts.
 
-- **meta**：The common information of each response. Includes response message, sign, error code etc.
+- **meta**：The common information of each response. Includes response message, sign, error code, etc.
 
-- **result**: The object(s) of entity. The name of "result" is not always "result", it changes by the entity type and the quantify of objects. For example: If the returned object is a payment object, then the name of result definitely is a "payment" object, and the content is a json object of payment. If the returned objects maybe many payment objects, then the name of result is "payments", and the content is a json array of payment.
-
-Normal response will include a [meta](#meta object, which is the common information of each response.
+- **result**: The entity object(s). The name of "result" is not always "result", it changes by the entity type and the quantity of objects. For example: If the returned object is a payment object, then the name of result definitely is a "payment" object, and the content is a json object of payment. If the returned objects may be multiple payment objects, then the name of result is "payments", and the content is a json array of payment.
 
 ### HTTP response code
 
@@ -205,16 +203,16 @@ Status code | Description
 402 | Failed request
 403 | Forbidden
 404 | Resource was not found
-50n | UMPay server error
+50n | UMF server error
 
 
 ## 1.6 Signature and Verify Signature
 
-Both private key and public key are necessary for DSA or RSA signature. Both private key and public key are generated with OPENSSL by UMFinTech. UMFinTech will send the SSL key pair to partner. Therefore, partner uses Alipay public key and partner private key.
+Both private key and public key are necessary for DSA or RSA signature. Both private key and public key are generated with OPENSSL by UMF. UMF will send the SSL key pair to merchant. Therefore, merchant uses UMF public key and merchant private key.
 
 ### Sign for request
 
-All the post request should have a http head of 'Signature'. The content of post should be a JSON string. The partner private key and the JSON string are used in the RSA signature algorithm by the RSA signature function to get the result string. (the value is given to http header "Signature").
+All POST requests should have a http head of 'Signature'. The content of POST should be a JSON string. The merchant private key and the JSON string are used in the RSA signature algorithm by the RSA signature function to get the result string. (the value is given to http header "Signature").
 
 For Example:
 
@@ -222,33 +220,36 @@ For Example:
 
 ### Signature Verification for response
 
-After receiving the response JSON string during responding from UMFinTech system, the result  and the parameter “sign” are used in the RSA or DSA signature asymmetric algorithm by the RSA or DSA signature function to accomplish the signature verification.
+After receiving the response JSON string from UMF system, the result and the parameter “sign” are used in the RSA or DSA signature asymmetric algorithm by the RSA or DSA signature function to accomplish the signature verification.
 
-Due to the Chinese
-Sign when request 
-When the character string to be signed at request is obtained, convert the character string to bytes in GBK encoding. 2.RSA encrypt the bytes with UMPay public key. 3.Use BASE64 encode bytes to string.
+Signature request
+
+--When the character string to be signed at request is obtained, convert the character string to bytes in UTF8 encoding.
+--RSA encrypt the bytes with Merchant private key.
+--Use BASE64 encode bytes to string.
 
 Signature verification
+
 When the character string to be signed and notified to return is obtained, input the character string to be signed, public key provided by the platform, and the sign value in the return parameter noticed by the platform into the RSA function signature for asymmetric signature calculation, to determine whether the signature is verified. 
 
-## 1.7 Encript of sensitive information
+## 1.7 Encrypt all sensitive information
 
-All the sensitive information should be encrypt in the http request. The sensitive information includes:
+All sensitive information should be encrypted in the http request. The sensitive information includes:
 
-- bank card number
+- card number
 - card holder's name
 - cvv2
-- expire (only avaliable for credit card)
-- citizen ID number (Chinese only)
+- expiration date (only available for credit card)
+- citizen ID number (For Chinese users only)
 - phone number
 
-### Encrypt algorithm
+### Encryption algorithm
 
 String -> Bytes(UTF-8 decode) -> Bytes(RSA encrypt by UMFinTech public key) -> String(Base64 encode)
 
 ## 1.8 Date and time format
 
-All the Date and DateTime in UMFinTech system are formated by [ISO8601](https://en.wikipedia.org/wiki/ISO_8601).
+All Date and DateTime in UMF system are formatted by [ISO8601](https://en.wikipedia.org/wiki/ISO_8601).
 
 ### DateTime format
 

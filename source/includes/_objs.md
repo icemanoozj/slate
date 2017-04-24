@@ -4,20 +4,20 @@
 
 Parameter | Description
 ----------|------------
- recipient_name  | The name of recipient.
+recipient_name  | The name of recipient.
 line1  | The first line of the address. For example, number, street, and so on. Maximum length is 100 characters.
 line2 | The second line of the address. For example, suite, apartment number, and so on. Maximum length is 100 characters.
 city  | The city name. Maximum length is 50 characters.
  state  | The two-letter code for US states or the equivalent for other countries. Maximum length is 100 characters.
  country_code  | [The two-character country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
-postal_code  | The zip code or equivalent. Typically required for countries that have them. Maximum length is 20 characters.Required in certain countries.
-phone | The phone number, Maximum length is 50 characters.
+postal_code  | The zip code or equivalent. Typically required for countries that have them. Maximum length is 20 characters. Required in certain countries.
+phone | The phone number's maximum length is 50 characters.
 
 ## amount
 
 Parameter | Description
 ----------|------------
-total | The total amount charged to the payee by the payer. For refunds, represents the amount that the payee refunds to the original payer. Maximum length is 10 characters. Supports two decimal places.
+total | The total amount charged or refunded. Maximum length is 10 characters. Supports two decimal places.
 currency | The three-character ISO-4217 https://en.wikipedia.org/wiki/ISO_4217#Active_codes currency code. 
 total_cny | The amount in CNY(Chinese Yuan). **Optional**.
 exchange_rate | The exchange_rate. **Optional**.
@@ -123,28 +123,28 @@ NO. | Bank code  | Bank
 
 Parameter | Description
 ------- | -------
-number | String. **need to be encrypted**. The bank card number. 
-valid_date | String. **need to be encrypted**. The valid date of bank card.
-cvv2 | String. **need to be encrypted**. CVV2 of bank card.
-card_holder | String. **need to be encrypted**. The name of card holder
+number | String. **need encryption**. The card number. 
+valid_date | String. **need encryption**. The valid date of bank card.
+cvv2 | String. **need encryption**. CVV2 of bank card.
+card_holder | String. **need encryption**. The name of card holder
 external_customer_id | String. The customer id in merchant system.
 state | ENUM. The state of bank card.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need to be encrypted**. The number of citizen id.
+citizen_id_number | String. **need encryption**. Citizen id number.
 
 ## customs_declaration
 
 Parameter | Description
 ------- | -------
-id | String. Id of object.
+id | String. ID of object.
 sub_order | Object. The sub_order object.
-customs_id | The customs channel number during customs declaration (such as HZ, NB and GZ respectively represents for Hangzhou, Ningbo and Guangzhou)
-mer_customs_code | The merchant id in customs
-freight_amount | Object. Amount object. Freight payment 
+customs_id | The customs channel number during customs declaration (such as HZ, NB and GZ respectively represents for Hangzhou, Ningbo and Guangzhou).
+mer_customs_code | The merchant ID in customs.
+freight_amount | Object. Amount object. Freight payment.
 tax_amount | Object. Amount object. Customs tax.
-ec_plat_id | File numbr of E-commerce platform
+ec_plat_id | Account number of E-commerce platform.
 notify_url | The url of merchant service. To receive the notification from UMF.
-state | ACCEPTED - 未报送 <br /> SUBMITED - 已报送待处理 <br /> SUCCESS - 成功 <br /> FAIL - 失败
+state | ACCEPTED <br /> SUBMITTED <br /> SUCCESS <br /> FAIL.
 customs_clearance_date | request customs date format is yyyymmdd.
 
 ## exchange_rate
@@ -160,8 +160,8 @@ Item is the information of same goods in a sub_order object.
 
 Parameter | Description
 ------- | -------
-mer_item_id | String. The id in merchant system.
-type | ENUM. The type of goods. **CLOTHING**,  **FOOD**, **ELECTRONIC**, **OTHER**. 
+mer_item_id | String. The ID in merchant system.
+type | ENUM. The type of goods. **CLOTHING**,  **FOOD**, **ELECTRONICS**, **OTHER**. 
 name | String. The goods name.
 description | String. The description of goods.
 amount | Object. The amount object. The price of goods.
@@ -170,11 +170,11 @@ quantity | Number. The quantity of goods.
 
 ## link
 
-The link object is a part of payment object, refund object. It is the available next step of those object. The links is different depends on the state of main object.
+The link object is a part of payment object, refund object. It is the next available step of those objects. The link depends on the state of object.
 
 ## meta
 
-The meta object is one of the part of each response. It include the common informations of response.
+The meta object is one part of each response. It includes the common information of response.
 
 Parameter | Description
 ------- | -------
@@ -185,80 +185,78 @@ sign | The signature of current response. The receiver should verify the signatu
 
 ## order
 
-The order information. The detail information of order items must in the sub_order object. 
+The order information. The detail information of order items must be in the sub_order object.
 
 Parameter | Description
 ------- | -------
 [amount](#amount) | Object. The total amount of an order.
 order_summary | String. The summary of an order.
-mer_reference_id | String. The id of order. The same order id of a merchant will pay only once.
-mer_date | String. The date of order. This time will show as-is in the statement. 
-expire_time | String. The deadline of payment. If the time expires, current order will refuse to pay by UMF.
+mer_reference_id | String. The ID of order. The same order ID of a merchant will pay only once.
+mer_date | String. The order date. This time will show as-is in the statement. 
+expire_time | String. The payment deadline. If the time expires, UMF will not execute the payment.
 sub_orders | Object Array. The array of sub_order objects. Each sub_order can only have same type goods.
 state | ENUM. The state of order.
-user_ip | String. This is the ip address when a customer make a payment request.
+user_ip | String. This is the IP address when a customer makes a payment request.
 
 ## payer
 
-The information of payer.
+The payer information.
 
 Parameter | Description
 ------- | -------
-payment_method | Enum. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WECHAT_PAY <br /> - ALIPAY
+payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WeChat_PAY <br /> - ALIPAY
 [bank_code](#bank) | String. The abbreviation of bank. Available in China. See [bank]
 [payer_info](#payer_info) | Object. The information of payer.
 
 ## payer_agreement
 
-Payer agreement represent a bank card of the customer. Merchant may use this object instead of bank_card object for the security reason.
+Payer agreement represents a card of the customer. Merchant may use this object instead of bank_card object for security.
 
 Parameter | Description
 ------- | -------
-usr_busi_agreement_id  | This id is a unique ID for each user of a merchant.
-usr_pay_agreement_id  | This id is a unique ID for each bank card of a usr_busi_agreement_id.
+usr_busi_agreement_id  | This ID is a unique ID for each user of a merchant.
+usr_pay_agreement_id  | This ID is a unique ID for each card of a usr_busi_agreement_id.
 gate_id  | The bank code.
-last_four_cardid  | The last for bank card number.
-valid_date  | The valid date of bank card.
-cvv2  | The CVV2 of bank card.
+last_four_cardid  | The last four card numbers.
+valid_date  | The valid date of card.
+cvv2  | The CVV2 of card.
 
 ## payer_info
-
-The pay info of customer.
 
 Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
 name | String. The abbreviation of bank. Available in China. See [bank]
-pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [wechat_scan](#wechat_scan) <br /> [wechat_app](#wechat_app) <br /> [wechat_browser](#wechat_browser) <br /> [wechat_scan](#wechat_scan)<br />  [alipay_scan](#alipay_scan) <br /> [payer_agreement](#payer_agreement)
-verify_code | String. Only avaliable in bank_card payment. The bank should send a verification code to customer. This verification code will be commited to bank to prevent fraud.
+pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [WeChat_scan](#WeChat_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br /> [WeChat_scan](#WeChat_scan)<br />  [alipay_scan](#alipay_scan) <br /> [payer_agreement](#payer_agreement)
+verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
 ## payment
 
-Payment object is the core concept of this API. A payment object is a bill needs to pay. It has the following informations:
+Payment object is the core concept of this API. It has the following information:
 
 parameters | Description
 ------- | -------
-payment_id | The id of payment object.
-payer | Object. The payment information. 
+payment_id | The ID of payment object.
+payer | Object. The payment information.
 order | Object. The order information. Includes sub orders.
 notify_url | String. Url of the merchant server. To receive the payment result.
-links | Object Array. The next step links. Depents on the status and payment type. Those links are HATEOAS links.
+links | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
 ## refund
 
-Refund object depends on a payment object. One payment may connect many refund object. Which means one payment can be refund multi times. The sum  of amount of refund objects must be no more that the amount of payment object. It has the following informations.
+Refund object depends on a payment object. One payment may connect many refund objects, which means one payment can be refunded multiple times. The total amount of refund objects must be no more than the amount of payment object. It has the following information:
 
-parameters | Description
+Parameters | Description
 ------- | -------
-id | String. The id of refund object.
-order | Object. It is a order object which include the goods info of refund.
-notify_url | String. The merchant service url. Url of the merchant server. To receive the refund result.
+id | String. The ID of refund object.
+order | Object. It is an order object which includes the goods information to be returned.
+notify_url | String. The merchant service url. To receive the refund result.
 state | String. The state of refund object.
-parent_payment | String. The id of parent payment object.
+parent_payment | String. The ID of parent payment object.
 
 ## risk_info
 
-This object is the informations of transcation. UMF use those info to approve or deny the transaction. If the risk of fraud is high, this transaction will be deny. The fraud algorithm is changed by the rules we found.
+This object is the information of transaction. UMF uses this info to approve or deny the transaction. If the risk of fraud is too high, this transaction will be denied. The anti fraud algorithm will be periodically adjusted.
 
 Codes  | Fields name  | Data type | Field description  | Send or not 
 -------|--------------|-----------|--------------------|-------------
@@ -292,37 +290,37 @@ The same trans_code of goods should in the same sub_order object.
 
 Parameter | Description
 ------- | -------
-mer_sub_reference_id | String. The id of sub_order object.
+mer_sub_reference_id | String. The ID of sub_order object.
 amount | Object. The amount of sub_order.
 order_summary | String. The summary of sub_order.
 trans_code | ENUM. The transaction of goods.
-is_customs | bool. If the merchant needs UMF submit the payment information to cumtoms.
+is_customs | bool. If the merchant needs UMF to submit the payment information to customs.
 items | Object Array. The items in sub_orders.
 
 
-## wechat scan
+## WeChat scan
 
-**To be Done if phrase 2.**
+**To be Done in phase 2.**
 
-The UMF will return a url. The merchant use standard tool to make t QR-Code. When user scan this QR-Code by wechat, they can pay it by wechat.
+The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
 
-## wechat app
+## WeChat app
 
-**To be Done if phrase 2.**
+**To be Done in phase 2.**
 
-The UMF will return all the information that wechat SDK required to active wechat and make a payment.
+The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment.
 
-## wechat browser
+## WeChat browser
 
-**To be Done if phrase 2.**
+**To be Done in phase 2.**
 
-The UMF will return all the information that wechat html5 SDK required to active wechat payment in wechat browser.
+The UMF will return all the information that WeChat html5 SDK required to activate WeChat payment in WeChat browser.
 
 ## alipay scan
 
-**To be Done if phrase 2.**
+**To be Done in phase 2.**
 
-The UMF will return a url. The merchant use standard tool to make t QR-Code. When user scan this QR-Code by Alipay, they can pay it by Alipay.
+The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by Alipay, they can pay with Alipay.
 
 
 
