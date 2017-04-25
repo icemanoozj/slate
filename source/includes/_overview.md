@@ -218,19 +218,28 @@ For Example:
 
 `Signature:AWD234SDKEBuYviyhggoopDOUEFLKDSJFI7655DFDFOIUOIulkjj`
 
+Sign algorighm:
+
+*Translate JSON String to bytes using UTF8 encoding.
+*Using SHA256 algorithm to get the hashed bytes of UTF8 encoded bytes.
+*Using merchant RSA private key to encryte the hash bytes.
+*Translate hashed bytes to String by base64 encoding.
+
+The last step is the signature of request.
+
 ### Signature Verification for response
 
-After receiving the response JSON string from UMF system, the result and the parameter “sign” are used in the RSA or DSA signature asymmetric algorithm by the RSA or DSA signature function to accomplish the signature verification.
+The response of request was signed for security by UMF. The merchant should check the signature after receiving the response.
 
-Signature request
+The response is a JSON string, it has two parts. The first one is "meta". Signature are included in the "meta" object. The another is a [result object(s)](#1-4-http-response). The signature is signed based on those objects.
 
---When the character string to be signed at request is obtained, convert the character string to bytes in UTF8 encoding.
---RSA encrypt the bytes with Merchant private key.
---Use BASE64 encode bytes to string.
+Checking steps:
 
-Signature verification
-
-When the character string to be signed and notified to return is obtained, input the character string to be signed, public key provided by the platform, and the sign value in the return parameter noticed by the platform into the RSA function signature for asymmetric signature calculation, to determine whether the signature is verified. 
+*Translate result JSON String to bytes using UTF8 encoding.
+*Using SHA256 algorithm to get the hashed bytes of UTF8 encoded bytes.(bytes array of content hashing)
+*Using base64 decoding the signature String to bytes.
+*Using UMF RSA public key to decrypt the bytes.(bytes array of signature)
+*Checking if the two bytes array are the same. If they are equal, then the signature is a valid one, otherwise the response maybe modified or intercepted during the transmission.
 
 ## 1.7 Encrypt all sensitive information
 

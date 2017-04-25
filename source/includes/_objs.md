@@ -142,7 +142,7 @@ customs_id | The customs channel number during customs declaration (such as HZ, 
 mer_customs_code | The merchant ID in customs.
 freight_amount | Object. Amount object. Freight payment.
 tax_amount | Object. Amount object. Customs tax.
-ec_plat_id | Account number of E-commerce platform.
+ec_plat_id | Account number of E-commerce platform in Customs's system.
 notify_url | The url of merchant service. To receive the notification from UMF.
 state | ACCEPTED <br /> SUBMITTED <br /> SUCCESS <br /> FAIL.
 customs_clearance_date | request customs date format is yyyymmdd.
@@ -171,6 +171,13 @@ quantity | Number. The quantity of goods.
 ## link
 
 The link object is a part of payment object, refund object. It is the next available step of those objects. The link depends on the state of object.
+
+Parameter | Description
+------- | -------
+href | String. The url of object. It may be the object or the available actions of the object.
+rel | String. The relation of url and the object.
+method | ENUM. The http method. POST, GET
+
 
 ## meta
 

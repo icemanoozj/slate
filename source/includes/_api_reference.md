@@ -303,18 +303,18 @@ Parameters:
 
 Parameters | Description
 ------- | -------
-payer | Object. The payment information. 
-order | Object. The order information. Includes sub orders.
+[payer](#payer) | Object. The payment information. 
+[order](#order) | Object. The order information. Includes sub orders.
 notify_url | String. Url of the merchant server. To receive the payment result.
 
 Response:
 
 Parameters | Description
 ------- | -------
-payer | Object. The payment information. 
-order | Object. The order information. Includes sub orders.
+[payer](#payer) | Object. The payment information. 
+[order](#order) | Object. The order information. Includes sub orders.
 notify_url | String. Url of the merchant server. To receive the payment result.
-links | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
+[links](#link) | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
 ## 3.4 SMS verification
 
@@ -478,7 +478,7 @@ UMF calls this service which is provided by merchant. The url of service is a me
 
 Parameter | Description
 ------- | -------
-payment | Object. The payment object.
+[payment](#payment) | Object. The payment object.
 
 ### Response
 
@@ -562,10 +562,19 @@ The customs_ declaration_id in the url is the ID of customs_declaration object w
 ## 3.12 Download transaction list
 
 TODO
+This report shows details for each transaction in the query used to run the report. Use this when you want to organize or print a list of transactions. This report is similar to the Journal Entry List Report, except that this only shows transactions for accounts included in the query used to run the report.
+Date – This shows the date of the transaction.
+Name – This shows the name of the constituent who made the transaction. Click this to access the account’s home page
+Fund – This shows the fund associated with a transaction.
+Type – This shows the transaction type. Click this to access the transaction.
+Pledged – If the transaction is a pledge, this shows the pledged amount.
+Received – This shows the amount received from a transaction.
+
 
 ## 3.13 Download reconciliation statement
 
 TODO
+A reconciliation statement is a document that begins with a company's own record of an account balance, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
 
 
 ## 3.14 Query exchange rate
