@@ -19,6 +19,30 @@ sequenceDiagram
 
 调用UMF REST请求说明:
 
+* Get an access token
+* Make an API call
+
+### [Get an access token](#3-1-get-an-access-token)
+
+Make a /oauth/authorize call with your app's OAuth client_id and secret keys for the basic authentication values. In the request body, set grant_type to client_credentials. When you run the command, UMF generates and returns an access token.
+
+For information about the request headers, see REST API authentication and headers.
+
+<aside class="notice">
+Note: The access token is valid for the number of seconds specified in the expires_in response field. You must have a valid access token to make API requests—request a new token when the current one expires.
+</aside>
+
+### Make an API call
+
+With a valid access token in hand, you're ready to make a request to a REST interface.
+
+The access token is an OAuth bearer token and is included in the header of your requests with the following syntax:
+
+>Authorization: Bearer Access-Token
+
+For details on authentication, see [Authentication](#1-2-authentication).
+
+
 ## 2.2 Pay by bank card of Union pay
 
 
