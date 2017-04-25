@@ -109,3 +109,15 @@ Special Thanks
 - [middleman-syntax](https://github.com/middleman/middleman-syntax)
 - [middleman-gh-pages](https://github.com/edgecase/middleman-gh-pages)
 - [Font Awesome](http://fortawesome.github.io/Font-Awesome/)
+
+How to install
+---------------------
+slate 安装：
+1. install ruby 2.3.3 X64（http://rubyinstaller.org/downloads/）
+2. install ruby DEVELOPMENT KIT (2.0 and above X64)（http://rubyinstaller.org/downloads/）
+3. install nodejs.(最新版即可）
+4. 在环境变量PATH中加入这两个程序.
+5. 安装bundle.    gem install bundler
+6. 安装slate依赖包。在slate目录下：  bundle install
+7. 运行server.           在slate目录下： ./run.bat
+8. 编译为HTML。     在slate目录下： ./build.bat
