@@ -143,8 +143,9 @@ To construct a REST call, combine:
 The Example is listed on the right.
 
 <aside class="notice">
-Note: You can use cURL commands on the command line to try code. If needed, download cURL software. Include your own access token and payment-specific IDs for calls.
+Note: You can use cURL commands on the command line to try. If your system does not has cURL command, please download and install it. . Include your own access token and payment-specific IDs for calls.
 </aside>
+[Here is a link of cURL](https://curl.haxx.se/download.html)
 
 Merchant will get the following information after becaming the partner of UMF.
 

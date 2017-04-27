@@ -319,7 +319,8 @@ notify_url | String. Url of the merchant server. To receive the payment result.
 ## 3.4 SMS verification
 
 ``` json
-Request:
+//Request:
+
 {
   "payer": {
     "payer_info": {
@@ -341,10 +342,7 @@ Request:
   }
 }
 
-```
-
-```json
-Response:
+//Response:
 
 {
   "meta": {
@@ -435,6 +433,124 @@ Return code  | Description of return code
 
 ## 3.5 Execute a payment
 
+```json
+//Request
+
+{
+    "payer":{
+        "payer_info":{
+            "bankCard":{
+                "number":"Wr8Vt44OCPPQCD+CEzIOf6QbBTSe1QRgQ1i1wSdepRrvICcRINjkyh2Uy6u+mTht3Z+0kpi9uXJDlGM2YVsDKxl71FYCnwv8HhQXKkuFapAeIj1XkdX/xxI1oFTM3NGHo8dDvaFnDTnlEutMxheOOVRdxKXFfeQlPQWJxNU/SFc=",
+                "citizen_id_number":"YUYrvncYAAo4p3VgaWjI3QT1aki+DoKjA1/iW+ZvF4gITSaApdSnZ9VigUPBC2B7FbrRxAM8iobeYVQeSUVoHX93i0relY7wZDWe1AfY5BtiaiOyTbyASIpVtuuvJHM7JIEvmNtPf3imxk+t3H3PUIX9Ji2gc5YT45LgoDgvuRM=",
+                "citizen_id_type":"1",
+                "payer_name":"Zar1j61YD5uPDX3IAwHw5oWPYU6oSoOTanIp24lL9/7Rvk+SGc/sgtGc42qCoI7y6X42+n9DsFN6Agvj1hp5LP2mqygnjLAvl59XR8z5Jzh5yCrmhUlpR7zCSN/lXIPSUhdGtAjEckVyP8NKAXFVwQHCuWGAr+IM4APpCcviW+U=",
+                "phone":"18710129807",
+                "external_customer_id":"",
+                "verify_code": "505976"
+            },
+            "payerAgreement":{
+                "usr_busi_agreement_id":"",
+                "usr_pay_agreement_id":""
+            }
+        }
+    }
+}
+
+//Response for card payment.
+
+{
+    "meta":{
+        "sign":"i8SgMrD/7dwhxrU8nMNgzbW+Zbj4nH/C8ptWUX6IW85fcqDWkFzwx3MNDIqd+gBBOL6UWXrR05t/9DrYkrVnGbVu5bVx3/eIsyZtEQ2UnKd310kTBxvWFqUih2tUzIJyYyv8JEfyMDAr4NlugvMQC+NrWnl4iPLvv8M/uohH/KE=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "payment":{
+        "settle_date":"20170418",
+        "state":"TRADE_SUCCESS",
+        "execute_success_time":"20170418",
+        "payer":{
+            "bank_code":"B001",
+            "payer_info":{
+                "payerAgreement":{
+                    "usr_busi_agreement_id":"",
+                    "last_four_cardId":"2419",
+                    "gate_id":"B001",
+                    "usr_pay_agreement_id":""
+                }
+            }
+        },
+        "order":{
+            "amount":{
+                "total":"690.46",
+                "currency":"USD",
+                "total_cny":"100.02"
+            },
+            "mer_date":"20170417",
+            "mer_reference_id":"201704185439700"
+        }
+    },
+    "links":[
+        {
+            "ref":"self",
+            "method":"POST",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW4CHTR5YOAJTY2YZE?mer_date=20170417"
+        },
+        {
+            "ref":"refund",
+            "method":"POST",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW4CHTR5YOAJTY2YZE/refund"
+        }
+    ]
+}
+
+//Response for card payment enable payer agreement.
+
+{
+    "meta":{
+        "sign":"nsHpWPtwJGuviB4yf8Ar9JtyOiTPPHRdYFwS+py2XL3A66/ppQALdm3dZHWOpqBhX0jFw3/rk6kJS61h0VS/aLAhon+SLG2ITXJ3xwfrkk2bJsz//SSA4B/Og1bKQy5ge83aQ/N+z2EQrepi04c/9svAbFIZ41aGKZxvhNOGrC4=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "payment":{
+        "settle_date":"20170424",
+        "state":"TRADE_SUCCESS",
+        "execute_success_time":"20170424",
+        "payer":{
+            "bank_code":"B001",
+            "payer_info":{
+                "payerAgreement":{
+                    "usr_busi_agreement_id":"UB201704201445250000000000533377",
+                    "last_four_cardId":"9442",
+                    "gate_id":"B001",
+                    "usr_pay_agreement_id":"P2017011114291400000000000532236"
+                }
+            }
+        },
+        "order":{
+            "amount":{
+                "total":"100.02",
+                "currency":"USD",
+                "total_cny":"690.37"
+            },
+            "mer_date":"20170424",
+            "mer_reference_id":"201704245435022"
+        }
+    },
+    "links":[
+        {
+            "ref":"self",
+            "method":"GET",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG"
+        },
+        {
+            "ref":"refund",
+            "method":"POST",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG/refund"
+        }
+    ]
+}
+```
+
 When executing a payment, the transaction completes and transfers money from the customer's account into merchant account with UMF.
 
 To execute a payment, include the payment ID in the URI and include a payer object in the JSON body. 
@@ -496,6 +612,43 @@ mer_trace | Merchant processing statement
 
 ## 3.7 Query a payment
 
+```json
+//Request: /payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG
+
+//Response
+{
+    "meta":{
+        "sign":"JPTGaIJlB1gEQL8yKqcjh15y799IN4XwvhzuDqmxFNkPl0W4NovFhht0iUjo6csw8edo7gYIc5yL2S6Q9nfG8vh9Rfks6BtBUTjUCoLQs7vx/XTTygDCA3kHlrl/elrHzDlbL6nPL6ktJwgUlP6mUa0DVQpCCS8t1V+tS7BTg30=",
+        "error_code":"",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "payment":{
+        "settle_date":"20170424",
+        "state":"TRADE_SUCCESS",
+        "execute_success_time":"20170424",
+        "payer":{
+            "payment_method":"CREDIT_CARD"
+        },
+        "order":{
+            "user_ip":"",
+            "amount":{
+                "total":"100.02",
+                "exchange_rate":{
+                    "rate":"6.9023",
+                    "currency":"USD"
+                },
+                "currency":"USD",
+                "total_cny":"690.37"
+            },
+            "mer_date":"20170424",
+            "expire_time":"",
+            "mer_reference_id":"201704245435022"
+        }
+    }
+}
+```
+
 **GET**: payments/payment/payment_id
 
 The payment_id in the url is the real payment id that was created in the previous step([Create a payment](#Create_a_payment)).
@@ -503,6 +656,107 @@ The payment_id in the url is the real payment id that was created in the previou
 Merchant may call this url anytime. UMF will return the payment object.
 
 ## 3.8 Create a refund
+
+```json
+//request
+{
+    "org_amount":{
+        "total":"100.02",
+        "currency":"USD"
+    },
+    "orders":[
+        {
+            "mer_reference_id":"9010040125",
+            "mer_date":"20170425",
+            "amount":{
+                "total":"100.02",
+                "currency":"USD"
+            },
+            "sub_orders":[
+                {
+                    "mer_sub_reference_id":"04245435028",
+                    "amount":{
+                        "total":"50.02",
+                        "currency":"USD"
+                    },
+                    "trans_code":"01121990",
+                    "sub_trans_type":"1",
+                    "is_customs":"FALSE",
+                    "items":[
+                        {
+                            "mer_item_id":"042454350281",
+                            "type":"CLOTHING",
+                            "name":"服装",
+                            "description":"服装",
+                            "item_quantity":"2",
+                            "amount":{
+                                "total":"30.02",
+                                "currency":"USD"
+                            }
+                        },
+                        {
+                            "mer_item_id":"042454350282",
+                            "type":"ELECTRONIC",
+                            "name":"电子产品",
+                            "description":"电子产品",
+                            "item_quantity":"3",
+                            "amount":{
+                                "total":"20.00",
+                                "currency":"USD"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "mer_sub_reference_id":"04245435029",
+                    "amount":{
+                        "total":"50.00",
+                        "currency":"USD"
+                    },
+                    "trans_code":"03223010",
+                    "sub_trans_type":"3"
+                }
+            ]
+        }
+    ]
+}
+
+
+// Response
+{
+    "meta":{
+        "sign":"Kg6T4Jy90ucPoZBEcRNG1kdRVn/vZJQCQBp1ULV680PA677t5WWyw7RBlqFSjNOPr3dJUv3tadohzE7C0alxuvZa7+oukW3ijBHBvBWGcVXDJPBYkTycRk+ACHNy05SjtbDS9C8NLEDgT/ru3mBLdXGFIfTEYx3U05kJefsEYFQ=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "links":[
+        {
+            "ref":"parent_payment",
+            "method":"GET",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW7TKBAZNSAJTY24BA"
+        },
+        {
+            "ref":"self",
+            "method":"GET",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/refund/REFUND_AAAAAAQZBJGT2AJTY24KS"
+        }
+    ],
+    "refund":{
+        "orders":[
+            {
+                "amount":{
+                    "total":"69037",
+                    "currency":"USD",
+                    "total_cny":""
+                },
+                "mer_date":"20170424",
+                "mer_reference_id":"201704245435028"
+            }
+        ],
+        "state":"REFUND_SUCCESS"
+    }
+}
+```
 
 **POST**:/payments/payment/payment_id/refund
 
@@ -524,12 +778,32 @@ Parameter | Description
 
 The response includes the refund object. The returned refund object has refund_id and state.
 
+If the state is "REFUND_SUCCESS", that means the transcation was done and the refund was successufl. If the state is "REFUND_PROCESS", that means the transaction is pending, when it is done, UMF will send a notification to the merchant. Or the merchant may query refund state by [Query refund](#3-9-query-refund)
+
 Parameter | Description
 ------- | -------
 [meta](#meta) | object. The common information of response.
 [refund](#refund) | object. The refund object.
 
 ## 3.9 Query refund
+
+```json
+//request: /payments/refund/REFUND_AAAAAAQZBJMOYAJTY2ZP6
+
+//response
+{
+    "meta":{
+        "sign":"k6tkaUOc/FpWnIs9zl/YAlrg8HKMT4opZq4eqbRfVoZw0kcH6CKSZFju5Sc3DVKj/rKHyWk75Ck0c1URvtGPq1OXCw5w934hgFNwUGCEkf2R/0J7JYk3x5m88EG5l14n+6wVapkd1GSsSPmPqBi5q0hlU+s7ySEuMeEXZHxuurg=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "refunds":[
+        {
+            "state":"REFUND_PROCESS"
+        }
+    ]
+}
+```
 
 **GET**: /payments/refund/refund_id
 
@@ -538,6 +812,98 @@ The refund_id in the url is the real payment ID that was created in the previous
 Merchant may call this url anytime. UMF will return the refund object. If the state is "REFUND_SUCCESS", the refund is successful.
 
 ## 3.10 Create customs clearance
+
+```json
+//Request: /payments/payment/PAY_AAEZW4UOJZ6GKAJTY2Z2I/apply_to_customs
+{
+    "customs_id": "NB",
+    "mer_customs_code": "2342362435435",
+    "freight_amount": {
+        "total": 344.91,
+        "total_cny": 344.91,
+        "currency": "CNY"
+    },
+    "tax_amount": {
+        "total": 0,
+        "total_cny": 0,
+        "currency": "CNY"
+    },
+    "sub_order_amount": {
+        "total": 344.91,
+        "total_cny": 344.91,
+        "currency": "CNY"
+    },
+    "ec_plat_id": "2342362435435",
+    "notify_url": "https://www.abcd.com/api/ump-notify",
+    "sub_order": {
+        "mer_sub_reference_id": "04185439116",
+        "items": [
+            {
+                "mer_item_id": "041854391161"
+            },
+            {
+                "mer_item_id": "041854391162"
+            }
+        ]
+    }
+}
+
+//Response
+{
+    "meta":{
+        "sign":"mIOSW4BHECZvK+d77VdmuutVMcbIpcN0fwZ4nAIItW8Y6tcqeampky5f+rdO+/NSYco+HnPM+XEwQYuHLisZiitps9FhOxNlmQdrKL/POR8PEZbnHN9jUbUE+7J4yXPlLTI89WJdCbuByVs1WxK7msGLBhWYmdfd54DUl6FMtCc=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "links":[
+        {
+            "ref":"parent_payment",
+            "method":"GET",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/payment/PAY_AAEZW4UOJZ6GKAJTY2Z2I"
+        },
+        {
+            "ref":"self",
+            "method":"GET",
+            "href":"http://10.10.179.74:8071/spay_rest/payments/customs_ declarations/CUST_AAAAAAHZPC5YYAJTY2ZXC"
+        }
+    ],
+    "customs_declarations":[
+        {
+            "tax_amount":{
+                "total":"0",
+                "currency":"CNY",
+                "total_cny":"0"
+            },
+            "freight_amount":{
+                "total":"344.91",
+                "currency":"CNY",
+                "total_cny":"344.91"
+            },
+            "customs_clearance_date":"20170419",
+            "mer_customs_code":"2342362435435",
+            "sub_order":{
+                "mer_sub_reference_id":"04185439116",
+                "items":[
+                    {
+                        "mer_item_id":"041854391161"
+                    },
+                    {
+                        "mer_item_id":"041854391162"
+                    }
+                ]
+            },
+            "ec_plat_id":"2342362435435",
+            "sub_order_amount":{
+                "total":"344.91",
+                "currency":"CNY",
+                "total_cny":"344.91"
+            },
+            "notify_url":"https://www.abcd.com/api/ump-notify",
+            "customs_id":"NB"
+        }
+    ]
+}
+```
 
 **POST**: /payments/payment/payment_id/apply_to_customs
 
@@ -561,23 +927,88 @@ The customs_ declaration_id in the url is the ID of customs_declaration object w
 
 ## 3.12 Download transaction list
 
-TODO
-This report shows details for each transaction in the query used to run the report. Use this when you want to organize or print a list of transactions. This report is similar to the Journal Entry List Report, except that this only shows transactions for accounts included in the query used to run the report.
-Date – This shows the date of the transaction.
-Name – This shows the name of the constituent who made the transaction. Click this to access the account’s home page
-Fund – This shows the fund associated with a transaction.
-Type – This shows the transaction type. Click this to access the transaction.
-Pledged – If the transaction is a pledge, this shows the pledged amount.
-Received – This shows the amount received from a transaction.
+**GET**: /payments/transactions_download?mer_date=20170213
 
+UMF will make a transaction list daily for each merchant. The list includes all the successful transaction within one day(mer_date). The merchant may download the list anytime. 
+
+This date of transaction list is merchant’s order date(mer_date). 
+
+<aside class="notice">
+Note: Please let the operation staff know merchant’s timezone to setup when to generate the list.
+</aside>
+
+### Request
+
+The request is a http get request. The mer_date must be in the URL.
+
+### Response
+
+This interface is an Http download interface and the transaction list is downloaded as a file.
+
+Each line represents a transaction expect the first and last line. 
+
+Transaction information are separated by comma and follow the order list below:
+
+TRANSDETAIL-START, Merchant number, reconciliation date
+
+Trade number, phone number, order_id, order date, payment date, successful transaction time, transaction foreign currency, price of transaction foreign currency, transaction amount in RMB, exchange rate, reconciliation date, transaction status, transaction type, product ID, refund No. 
+
+TRANSDETAIL-Detail-End, merchant number, reconciliation date, total transaction amount[Enter]
+
+Field instruction of transaction lists. 
+
+NO. | Field | Name | Description
+----|-------|------|------------
+1 | tradeNo | Trade number  | trade_no generated by platform 
+2 | mobileId | Phone number | User’s phone number
+3 | orderId | Order id  | Order id generated by merchant.orderId
+4 | orderDate | Order date  | merDate
+5 | platDate | Pay date | User confirm payment date
+6 | platTime | Payment success time | Payment success time or Refund success time
+7 | currency | Foreign currency | Foreign currency
+8 | cb_amount | Foreign currency amount | Unit: two decimal place
+9 | amount | RMB amount | Unit: tow decimal place
+10 | exchangeRate | Exchange rate when place order | Exchange rate 
+11 | transState | Transaction status  | -99: Generate Payment, 0: Success, 1: Failure, 3: Processing, 4: authorization, -1: Reversal.
+12 | transType | Transaction type. | **P**: Payment. <br /> **T**: Refund
+13 | productId | Paid product number  | Paid product defined by UMPay 
+14 | refundNo | Refund serial number  | The field has value for the refund transaction. Refund serial number generated by the merchant during refund
 
 ## 3.13 Download reconciliation statement
 
-TODO
-A reconciliation statement is a document that begins with a company's own record of an account balance, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
+**GET**: /payments/reconciliation_statement_download?mer_date=20170213
+
+A reconciliation statement is a document that begins with a merchant's own record of an account balance in UMF, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
+
+It has the same logic with transaction list download. The date of reconciliation statement is based on the mer_date.
+
+### Request
+
+The request is a http get request. The mer_date must be in the URL.
+
+### Response
+
+This interface is an Http download interface and the transaction list is downloaded as a file.
 
 
 ## 3.14 Query exchange rate
+
+```json
+///exchange_rate?currency=USD
+{
+    "meta":{
+        "sign":"Alc9iDPd4P2z3LzeaZj73aC2fmeHZmlh59d7+MvZoDRYUsOF3lLGe92VhqWhRERvXCBBOK+SarPSI72pj1rHCqTcVd6/hagHKJa/j4k0CodwsrYXhoayLhu6Y/XG7JllyY2pa84J+xLCv/D81KvwWukOpK3MRNf5yq9zrVaVD5E=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "exchangeRates":[
+        {
+            "rate":"6.9023",
+            "currency":"USD"
+        }
+    ]
+}
+```
 
 **GET**: /exchange_rate?currency=USD
 
@@ -593,7 +1024,7 @@ The response will include a [exchange_rate](#exchange_rate) object and meta info
 
 ## 3.15 Notification
 
-This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not include the results. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results.
+This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not return the results in the response. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results. See [3.6 Payment result notification](#3-6-payment-result-notification). 
 
 ### Request
 

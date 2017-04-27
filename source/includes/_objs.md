@@ -243,11 +243,17 @@ Payment object is the core concept of this API. It has the following information
 
 parameters | Description
 ------- | -------
-payment_id | The ID of payment object.
-payer | Object. The payment information.
-order | Object. The order information. Includes sub orders.
+payment_id | String. The ID of payment object.
+[payer](#paymer) | Object. The payment information.
+[order](#order) | Object. The order information. Includes sub orders.
+state | ENUM. **-WAIT_BUYER_PAY**: The payment need to be paid. <br /> **-TRADE_SUCCESS**: The payment was succcessufl.<br /> **-TRADE_CLOSED**:The payment was closed because the order was expired.<br /> **-TRADE_CANCEL**: The payment was cancelled.<br /> **-TRADE_FAIL**: The payment was failed.
 notify_url | String. Url of the merchant server. To receive the payment result.
-links | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
+ret_url | String. The return url after the payment was done. Only availabled when the merchant uses the checkout web page of UMF.
+execute_success_time | String. The time of transfer money from customer to UMF.
+mer_check_date | String. The date of this transaction. This date is from merchant system. It does not have timezone information. The transaction will be marked as this date in the transaction list and the reconciliation statement.
+settle_date | String. The date of this transaction in UMF.
+[risk_info](#risk_info) | Object. The information for anti fraud. Its content depends on the contract between the merchant and UMF.
+[links](#link) | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
 ## refund
 
@@ -256,9 +262,9 @@ Refund object depends on a payment object. One payment may connect many refund o
 Parameters | Description
 ------- | -------
 id | String. The ID of refund object.
-order | Object. It is an order object which includes the goods information to be returned.
+[order](#order) | Object. It is an order object which includes the goods information to be returned.
 notify_url | String. The merchant service url. To receive the refund result.
-state | String. The state of refund object.
+state | ENUM. The state of refund object. **REFUND_PROCESS**, **REFUND_SUCCESS**, **REFUND_FAIL**, **REFUND_CLOSE**.
 parent_payment | String. The ID of parent payment object.
 
 ## risk_info
@@ -269,27 +275,22 @@ Codes  | Fields name  | Data type | Field description  | Send or not
 -------|--------------|-----------|--------------------|-------------
 B0002 | Transaction type  | String | 01 Deposit, 02 Purchase | Y
 B0003 | Name of the recipient  | String  | When D0008 is either 1 or 3, it is required to send this Field. | C
-B0004 | Phone number of the recipient | String | When D0008 is either 1 or 3, it is required to send this Field.
-Such as: 13800011111 | C
-B0005 | Delivery address  | String | When D0008 is either 1 or 3, it is required to send this Field.
- | C
+B0004 | Phone number of the recipient | String | When D0008 is either 1 or 3, it is required to send this Field. <br /> Such as: 13800011111 | C
+B0005 | Delivery address  | String | When D0008 is either 1 or 3, it is required to send this Field. | C
 B0006 | Registered email  | String | Email of the customer used for registration, must be verified by the merchant | N
 B0007 | mobile phone number | String | Registrant mobile phone number | N
 B0008 | identity card number | String | Registrant identity card number, | When D0009 is 1, it is required to send this Field. | C
 D0001 | Device identification  | String | For example, the MAC code of mobile phone or the terminal identification ID defined internally.  | N
 D0002 | Type of Device  | String | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
 D0003 | User ID  | String  | UserID at the merchant platform | N
-D0004 | User Registration time |  | String | The time that the user registers for the product, which shall be read exactly on the second. 
-Such as:20150311120000 | N
+D0004 | User Registration time |  | String | The time that the user registers for the product, which shall be read exactly on the second. <br />Such as:20150311120000 | N
 D0005 | Production form  | String | 1 - android app ; 2 - IOS app; 3- PC | (web page); 4 - Mobile phone | (wap, or html5 page);  | N
 D0007 | The number of successful transactions | String | The number of successful transactions on the merchant platform | N
 D0008 | Category of commodities | String | 0: virtual goods, 1:physical goods, 2: air ticket, 3: electronics | Y
 D0009 | Real name purchase | String | 0: not real name system, 1: real name system | Y
 D0010 | Category of business  | String | 3: Cross-border Payment | Y
 
-## statement
-
-TODO.
+[todo]: <> ## statement
 
 ## sub_order
 
@@ -305,19 +306,23 @@ is_customs | bool. If the merchant needs UMF to submit the payment information t
 items | Object Array. The items in sub_orders.
 
 
-## WeChat scan
+## wechat_qr_code
+
+Merchant creates different QR codes for different goods. After users scan these codes by WeChat, they can see related product information and transaction guides on their phone.
+
+If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_code object needs to include in the payer_info object.
 
 **To be Done in phase 2.**
 
 The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
 
-## WeChat app
+## WeChat_in_app
 
 **To be Done in phase 2.**
 
 The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment.
 
-## WeChat browser
+## WeChat_in_app_web
 
 **To be Done in phase 2.**
 
