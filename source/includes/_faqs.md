@@ -4,7 +4,7 @@
 
 ### What is UMF International?
 
-UMF International (USA, “UMPIRE”) is a subsidiary of Union Mobile Financial Technology, a Shenzhen-listed company and a pioneer in China's payments and financial technology market. In 2015, UMF International received its cross-border currency conversion license from China's State Administration of Foreign Exchange. For more information [http://intl.umfintech.com](#http://intl.umfintech.com)
+UMF International (USA, “UMPIRE”) is a subsidiary of Union Mobile Financial Technology, a Shenzhen-listed company and a pioneer in China's payments and financial technology market. In 2015, UMF International received its cross-border currency conversion license from China's State Administration of Foreign Exchange. For more information [http://www.umfintech.com/en/index/].(#http://www.umfintech.com/en/index/)
 
 ### What are the licenses that UMF have?
 
@@ -16,6 +16,7 @@ UMF has a Payment Business License in China (for nationwide Internet payments, m
 - Trans-regional Value-Added Telecommunication Business License from MIIT
 - Use of Short Message Access Code Certification from MIIT (Ministry of Industry and Information Technology)
 - Telecommunication and Information Service Business License (Beijing ICP Certification) from Beijing Communications Authority
+- Payment Card Industry (PCI) Data (PCI DSS)
 
 [comment]: # (### What kinds of service UMF International provided?)
 
