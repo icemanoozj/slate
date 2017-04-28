@@ -314,7 +314,11 @@ If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_cod
 
 Parameter | Description
 ------- | -------
-qr_code_url | String. The url of wechat QR-Code pay. This information is filled by UMF.
+payer_name | String. **need encryption**. The name of payer.
+citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_number | String. **need encryption**. Citizen id number.
+phone_number | String. The phone number of payer.
+qr_code_url | String. The url of wechat QR-Code pay. This information is returned by UMF.
 
 The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
 
@@ -324,31 +328,36 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 
 Parameter | Description
 ------- | -------
-pay_info | Object. The unique identifier of the Official Account of UMF
-pay_info | Object. The unique identifier of the Official Account of UMF
-
+payer_name | String. **need encryption**. The name of payer.
+citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_number | String. **need encryption**. Citizen id number.
+phone_number | String. The phone number of payer.
+[pay_info](#pay_info) | Object. The information for calling WeChat native SDK to activate WeChat APP.
 
 ## WeChat_in_app_web
 
+The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment. Merchant does not need to modify all the information that WeChat need.
+
 Parameter | Description
 ------- | -------
-appId | String. The unique identifier of the Official Account of UMF
-timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
-signType | String. The type of signature. It will be "MD5" in this scenario.
-package | String. The ID of this WeChat payment.
-nonceStr | String. A random string for the generated signature.
-paySign | String. The signature of this request.
+open_id | String. The OpenID is a unique encrypted WeChat ID for each user of an official account, and users can have separate OpenIDs corresponding to different official accounts. 
+payer_name | String. **need encryption**. The name of payer.
+citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_number | String. **need encryption**. Citizen id number.
+phone_number | String. The phone number of payer.
+[pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 
-**To be Done in phase 2.**
+## ali_qr_scan
 
-The UMF will return all the information that WeChat html5 SDK required to activate WeChat payment in WeChat browser.
+The same as wechat_qr_code.
 
-## alipay scan
-
-**To be Done in phase 2.**
-
-The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by Alipay, they can pay with Alipay.
-
+Parameter | Description
+------- | -------
+payer_name | String. **need encryption**. The name of payer.
+citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_number | String. **need encryption**. Citizen id number.
+phone_number | String. The phone number of payer.
+qr_code_url | String. The url of Ali QR-Code pay. It is returned by UMF.
 
 ## pay_info
 
