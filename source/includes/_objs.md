@@ -290,7 +290,7 @@ D0008 | Category of commodities | String | 0: virtual goods, 1:physical goods, 2
 D0009 | Real name purchase | String | 0: not real name system, 1: real name system | Y
 D0010 | Category of business  | String | 3: Cross-border Payment | Y
 
-[todo]: <> ## statement
+[comment]: # (statement)
 
 ## sub_order
 
@@ -312,17 +312,32 @@ Merchant creates different QR codes for different goods. After users scan these 
 
 If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_code object needs to include in the payer_info object.
 
-**To be Done in phase 2.**
+Parameter | Description
+------- | -------
+qr_code_url | String. The url of wechat QR-Code pay. This information is filled by UMF.
 
-The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
+The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
 
 ## WeChat_in_app
 
-**To be Done in phase 2.**
-
 The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment.
 
+Parameter | Description
+------- | -------
+pay_info | Object. The unique identifier of the Official Account of UMF
+pay_info | Object. The unique identifier of the Official Account of UMF
+
+
 ## WeChat_in_app_web
+
+Parameter | Description
+------- | -------
+appId | String. The unique identifier of the Official Account of UMF
+timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+signType | String. The type of signature. It will be "MD5" in this scenario.
+package | String. The ID of this WeChat payment.
+nonceStr | String. A random string for the generated signature.
+paySign | String. The signature of this request.
 
 **To be Done in phase 2.**
 
@@ -335,4 +350,15 @@ The UMF will return all the information that WeChat html5 SDK required to activa
 The UMF will return a url. The merchant use standard tool to make a QR-Code. When user scan this QR-Code by Alipay, they can pay with Alipay.
 
 
+## pay_info
 
+The pay_info object includes the information of WeChat In-App Payment and WeChat In-App Web-based Payment. 
+
+Parameter | Description
+------- | -------
+appId | String. The unique identifier of the Official Account of UMF
+timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+signType | String. The type of signature. It will be "MD5" in this scenario.
+package | String. The ID of this WeChat payment.
+nonceStr | String. A random string for the generated signature.
+paySign | String. The signature of this request.

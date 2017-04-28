@@ -65,26 +65,28 @@ sequenceDiagram
 　　　participant Merchant
 　　　participant UMF
 　　　participant Bank
-　　　Customer\-\->>Merchant: Order goods
-　　　Merchant\-\->>Customer: Generate order
-　　　Customer\-\->>Merchant: Confirm order
-　　　Merchant\-\->>UMF: Acquire an access token
-　　　UMF\-\->>Merchant: Return access_token
-　　　Note right of UMF: Using access token to make api call
-　　　Merchant\-\->>UMF: Create a payment
-　　　UMF\-\->>Merchant: Return the payment object
-　　　Merchant\-\->>UMF: Optional. Get available banks
-　　　UMF\-\->>Merchant: Return banks
-　　　Merchant\-\->>Customer: Show the banks to customer.
-　　　Customer\-\->>Merchant: Select a bank, fill the payment info, acquire SMS to verify.
-　　　Merchant\-\->>UMF: Call verification API
-　　　UMF\-\->>Customer: Send SMS to customer
-　　　Customer\-\->>Merchant: Fill the SMS on the checkout page and submit
-　　　Merchant\-\->>UMF: Call payment execution API
-　　　UMF\-\->>Bank: Request deductions
-　　　Bank\-\->>UMF: Deduction result
-　　　UMF\-\->>Merchant: Payment result
-　　　Merchant\-\->>Customer: Payment result
+　　　Customer\-\->>Merchant: 1. Order goods
+　　　Merchant\-\->>Customer: 2. Generate order
+　　　Customer\-\->>Merchant: 3. Confirm order
+      Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call.
+　　　Merchant\-\->>UMF: 4. **Optional**. Acquire an access token
+　　　UMF\-\->>Merchant: 5. Return access_token
+　　　Note right of UMF:  Using access token to make API call
+　　　Merchant\-\->>UMF: 6. Create a payment
+　　　UMF\-\->>Merchant: 7. Return the payment object
+　　　Merchant\-\->>UMF: 8. **Optional**. Get available banks
+　　　UMF\-\->>Merchant: 9. Return banks
+　　　Merchant\-\->>Customer: 10. Show the banks to customer.
+　　　Customer\-\->>Merchant: 11. Fill the payment info, acquire verification SMS.
+　　　Merchant\-\->>UMF: 12. Call verification API
+      UMF\-\->>Merchant: 13. UMF return a response.
+　　　UMF\-\->>Customer: 14. Send SMS to customer
+　　　Customer\-\->>Merchant:15. Fill the SMS on the checkout page and submit
+　　　Merchant\-\->>UMF: 16. Call payment execution API
+　　　UMF\-\->>Bank: 17. Request deductions
+　　　Bank\-\->>UMF: 18. Deduction result
+　　　UMF\-\->>Merchant: 19. Payment result
+　　　Merchant\-\->>Customer: 20. Payment result
 </div>
 
 Explanation of flow chart：
@@ -95,43 +97,55 @@ Explanation of flow chart：
 
 3. Customer confirm the order.
 
-4. Merchant submit order data to UMF. Call [Create a payment](#3-3-Create-a-payment).
+4. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please step 4 and setp 5.
 
-5. UMF return the created payment.
+5. UMF returns an access token.
 
-6. Merchant show the payment page to customer
+6. Merchant submit order data to UMF. Call [Create a payment](#3-3-Create-a-payment).
 
-7. Customer select the bank, filling the card info and phone number, acquire a SMS for verification. The phone number must be the same with user regirested in the bank user selected. UMF will check it.
+7. UMF return the created payment.
 
-8. Merchant call the UMF to send a SMS to customer's phone number. Call [SMS verification](#3-4-SMS-verification).
+8. Optional. Merchant [query the availabled banks](#3-2-query-available-banks). The bank list is barely changed. Merchant may cache the result and use the cache to speed up the  loading.
 
-9. UMF(or Bank) will send a SMS to customer's phone.
+9. UMF returns the available banks.
 
-10. Customer fill the received SMS and submit.
+10. Merchant show the payment page to customer
 
-11. Merchant issues a payment request to the UMF. Call [Execute a payment](#3-5-Execute-a-payment).
+11. Customer select the bank, filling the card info and phone number, acquire a SMS for verification. The phone number must be the same with user regirested in the bank user selected. UMF will check it.
 
-12. UMF initiates deduction request to the bank.
+12. Merchant call the UMF to send a SMS to customer's phone number. Call [SMS verification](#3-4-SMS-verification).
 
-13. UMF receives the result of deduction.
+13. UMF returns a response to UMF to confirm that the SMS was sent.
 
-14. UMF send the result to merchant.
+14. UMF(or Bank) will send a SMS to customer's phone.
 
-15. Merchant show the result to the customer.
+15. Customer fill the received SMS and submit.
 
-[todo] ## 2.3 Pay by Wechat QR Code Payment
+16. Merchant issues a payment request to the UMF. Call [Execute a payment](#3-5-Execute-a-payment).
 
-[todo] Merchants creates different QR codes for different goods. After users scan these codes, they can see related product information and transaction guides on their phone.
+17. UMF initiates deduction request to the bank.
 
-[todo] ## 2.4 Pay by Wechat In-App Web-based Payment
+18. UMF receives the result of deduction.
 
-[todo] Merchants push product messages to their followers via Official Account. With WeChat Pay enabled, their followers can purchase products on the shopping page.
+19. UMF send the result to merchant.
 
-[todo] ## 2.5 Pay by Wechat In-App Payment
+20. Merchant show the result to the customer.
 
-[todo] Merchants can integrate WeChat Pay SDK into their apps. When users make payment in other apps, WeChat will be authorized to process the payment. Once the transaction is done, the page will redirect to the merchant's app.
+[comment]: # (This actually is the most platform independent comment)
 
-[todo] ## 2.6 Refund
+[comment]: # (## 2.3 Pay by Wechat QR Code Payment)
 
-[todo] UMF support full refund or partial refund of a payment.
+[comment]: # (Merchants creates different QR codes for different goods. After users scan these codes, they can see related product information and transaction guides on their phone.)
+
+[comment]: # (## 2.4 Pay by Wechat In-App Web-based Payment)
+
+[comment]: # (Merchants push product messages to their followers via Official Account. With WeChat Pay enabled, their followers can purchase products on the shopping page.)
+
+[comment]: # (## 2.5 Pay by Wechat In-App Payment)
+
+[comment]: # (Merchants can integrate WeChat Pay SDK into their apps. When users make payment in other apps, WeChat will be authorized to process the payment. Once the transaction is done, the page will redirect to the merchant's app.)
+
+[comment]: # ( ## 2.6 Refund)
+
+[comment]: # (UMF support full refund or partial refund of a payment.)
 
