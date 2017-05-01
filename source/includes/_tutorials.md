@@ -114,7 +114,9 @@ Explanation of flow chart：
 
 ## 2.3 Pay by WeChat/Alipay QR Code Payment
 
-UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay.
+UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. 
+
+**It will be released in June 2017.**
 
 <div class="mermaid">
 sequenceDiagram
@@ -163,61 +165,68 @@ Explanation of flow chart：
 
 Merchants push product messages to their followers via Official Account. With WeChat Pay enabled, their followers can purchase products on the shopping page.
 
+**It will be released in June 2017.**
+
 <div class="mermaid">
 sequenceDiagram
     participant Customer
+    participant WeChat Browser
     participant Merchant
     participant UMF
     participant WeChat
     Customer\-\->>Merchant: 1. Order goods
     Merchant\-\->>Customer: 2. Generate order
-    Customer\-\->>Merchant: 3. Confirm order
-    Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
-    Merchant\-\->>UMF: 4. **Optional**. Acquire an access token
-    UMF\-\->>Merchant: 5. Return access_token
-    Note right of Merchant:  Using access token to make API call
-    Merchant\-\->>UMF: 6. Request authorization info open_id
-    UMF\-\->>WeChat: 7. Request open_id
-    WeChat\-\->>UMF: 8. Return open_id
-    UMF\-\->>Merchant: 9. Return open_id
-    Note right of Merchant:  Using access token to make API call
-    Merchant\-\->>UMF: 10. Create a payment
-    UMF\-\->>WeChat: 11. Payment request
-    WeChat\-\->>UMF: 12. Return payment info
-    UMF\-\->>Merchant: 13. Return a WeChat_in_app_web object
-    Merchant\-\->>WeChat: 14. Activate payment widget
-    WeChat\-\->>Customer: 15. Payment widget Activated
-    Customer\-\->>WeChat: 16. Enter password, finish payment
-    WeChat\-\->>UMF: 17. Deduction result
-    UMF\-\->>Merchant: 18. Payment result
-    Merchant\-\->>Customer: 19. Payment result
+    Customer\-\->>WeChat Browser: 3. Confirm order with access token
+    Note right of WeChat Browser:  Call API with access token
+    WeChat Browser\-\->>UMF: 4. Request authorization page(html and javascript)
+    UMF\-\->>WeChat Browser: 5. Return autorization page.
+    WeChat Browser\-\->>WeChat: 6. Request open_id
+    WeChat\-\->>WeChat Browser: 7. Return open_id
+    WeChat Browser\-\->>Merchant: 8. Redirect page to notify_url
+    Merchant\-\->>WeChat Browser: 9. Return a pending page.
+    WeChat Browser\-\->>Merchant: 10. Request wechat pay.
+    Merchant\-\->>UMF: 11. Payment request
+    UMF\-\->>WeChat: 12. Payment request
+    WeChat\-\->>UMF: 13. Return payment info
+    UMF\-\->>Merchant: 14. Return a WeChat_in_app_web object
+    Merchant\-\->>WeChat Browser: 15. Activate payment widget
+    WeChat Browser\-\->>WeChat Browser: 16. Call WeChat JS-API
+    Customer\-\->>WeChat: 17. Enter password, finish payment
+    WeChat\-\->>WeChat Browser: 18. Return pending info.
+    WeChat Browser\-\->>WeChat Browser: 19. Redirect to ret_url.
+    WeChat\-\->>UMF: 20. Deduction result.
+    UMF\-\->>Merchant: 21. Payment result.
 </div>
 
 Explanation of flow chart：
 
 1. Customer orders goods at merchant platform.
-2. Merchant generate an order.
-3. Customer confirm the order.
-4. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token al ready, This token can be used to make a API call. Please ignore step 4 and setp 5.
-5. UMF returns an access token.
-6. Merchant request authorization info open_id. Call [Get WeChat open_id](#3-16-get-wechat-open_id).
-7. UMF sends a request for authorization info open_id to WeChat.
-8. WeChat returns authorization info open_id to UMF.
-9. UMF returns the authorization info open_id to merchant.
-10. Merchant submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
-11. UMF sends payment request to WeChat.
-12. WeChat returns payment info to UMF.
-13. UMF returns a WeChat_in_app_web object.
-14. Merchant activate Wechat payment widget.
-15. WeChat payment widget activated.
-16. Customer enter password and finish the payment in WeChat explore.
-17. UMF receives the result of deduction.
-18. UMF sends the result to merchant.
-19. Merchant shows the result to customer.
+2. Merchant generates an order.
+3. Customer confirms the order.
+4. Call the authorization page from UMF.Call [Get WeChat open_id](#3-16-get-wechat-open_id).
+5. UMF returns the authorization page.
+6. The authorization page requests WeChat open_id. 
+7. The WeChat returns the open_id of current WeChat user.
+8. The authorization page redirect to notify_url(step 4).
+9. **Optional**. The Merchat returns a pending page to wait.
+10. **Optional**. The pending page request a payment.
+11. Merchant send payment request to UMF.Call [Create a payment](#3-3-create-a-payment).
+12. UMF sends payment request to WeChat.
+13. WeChat returns payment info to UMF.
+14. UMF returns a WeChat_in_app_web object.
+15. Merchant returns info with WeChat_in_app_web object to browser.
+16. The return page activates Wechat payment widget(WeChat JS-API).
+17. Customer enter password and finish the payment in WeChat explore.
+18. WeChat return ap pending page.
+19. The pending page redirect to ret_url(step 11).
+20. WeChat send the payment result to UMF.
+21. UMF send the payment result to Merchat.
 
 ## 2.5 Pay by Wechat In-App Payment
 
 Merchants can integrate WeChat Pay SDK into their apps. When users make payment in other apps, WeChat will be authorized to process the payment. Once the transaction is done, the page will redirect to the merchant's app.
+
+**It will be released in June 2017.**
 
 <div class="mermaid">
 sequenceDiagram
