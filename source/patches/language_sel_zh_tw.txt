@@ -1,0 +1,8 @@
+        <div style="margin-left: auto;width: 75%;">
+          <lable>:</lable>
+          <select id="lang_sel" onchange="window.location = this.value">
+              <option value="/index.html">English</option>
+              <option value="/index_zh_cn.html">简体中文</option>
+              <option value="/index_zh_tw.html">繁體中文</option>
+          </select>
+        </div>
