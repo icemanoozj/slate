@@ -38,19 +38,12 @@ Because of the requirement of Chinese State Administration of Foreign Exchange, 
 
 The following is the queto of that document:
 
->Article 5. Any payment institution applying for the registration on the List of Enterprises Making Foreign Exchange Receipts and Payments under Trade shall present the following documents to the foreign exchange authority at the place of incorporation:
+>Article 19.In handling cross-border foreign exchange payment business, a payment institution shall acquire the true transaction information, collect the detailed data of each transaction under the principles of completeness and traceability, and keep them for future reference.
 
->(I) Written application, stating the applicant's informationsuch as name, place of incorporation, registered capital, equity structure, organizational structure, and the types and scopes of existing payment business and the cross-border foreign exchange payment business being applied for;
+>The detailed data under trade in goods shall, in principle, include the name and quantity of the subject matter, transaction currency, amount, parties of transaction and countries they are from, and order time; the detailed data under trade in services shall, in principle, include the type of service, specific transaction information (such as the scheduled flight and time under air ticket, the hotel name and time of accommodation, letter of admission under overseas study, etc.), quantity, transaction currency, amount, parties of transaction and their location, and order time.
 
->(II)Business operation plan, including business processing procedures (specify in detail the complete procedures of transactions, exchanges and payments by business type), customer real-name system management, review of the authenticity of transactions, declaration of the balance of payments statistics, data collection and submission, system construction, data interface between system and banks, system emergency response plan, foreign exchange reserve account management, risk control related to the business conducted, internal operational rules, and compliance management;
 
->(III)The duplicates and photocopies of the Payment Business License, Business License for Enterprise as Legal Person, and Organization Code Certificate;
-
->(IV)Cooperation agreement with bank(s);
-
->(V) Other materials required by the foreign exchange authority.
-
-The links of original documents.
+The links of the original documents.
 
 -- **[English Version](http://www.safe.gov.cn/wps/portal/!ut/p/c5/04_SB8K8xLLM9MSSzPy8xBz9CP0os3gPZxdnX293QwP30FAnA8_AEBc3C1NjI3dXE6B8JG55MwMCusNB9uHXD5I3wAEcDfT9PPJzU_Uj9aPMcZnibGquH5mTmp6YXKlfkBthkGUSqggAHuiZXA!!/dl3/d3/L2dJQSEvUUt3QS9ZQnZ3LzZfSENEQ01LRzEwT085RTBJNkE1U1NDRzNMTDQ!/?WCM_GLOBAL_CONTEXT=/wps/wcm/connect/safe_web_store/state+administration+of+foreign+exchange/rules+and+regulations/fcd6068047a9715089a3a9eee2a1794d)**
 

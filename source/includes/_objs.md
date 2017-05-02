@@ -123,14 +123,14 @@ NO. | Bank code  | Bank
 
 Parameter | Description
 ------- | -------
-number | String. **need encryption**. The card number. 
-valid_date | String. **need encryption**. The valid date of bank card.
-cvv2 | String. **need encryption**. CVV2 of bank card.
-card_holder | String. **need encryption**. The name of card holder
+number | String. **Must be encrypted**. The card number. 
+valid_date | String. **Must be encrypted**. The valid date of bank card.
+cvv2 | String. **Must be encrypted**. CVV2 of bank card.
+card_holder | String. **Must be encrypted**. The name of card holder
 external_customer_id | String. The customer id in merchant system.
 state | ENUM. The state of bank card.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need encryption**. Citizen id number.
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
 
 ## customs_declaration
 
@@ -211,7 +211,7 @@ The payer information.
 
 Parameter | Description
 ------- | -------
-payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WeChat_PAY <br /> - ALIPAY
+payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WECHAT_SCAN <br /> - WECHAT_APP <br /> - WECHAT_WEB <br /> - ALIPAY_SCAN
 [bank_code](#bank) | String. The abbreviation of bank. Available in China. See [bank]
 [payer_info](#payer_info) | Object. The information of payer.
 
@@ -234,7 +234,7 @@ Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
 name | String. The abbreviation of bank. Available in China. See [bank]
-pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [WeChat_scan](#WeChat_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br /> [WeChat_scan](#WeChat_scan)<br />  [alipay_scan](#alipay_scan) <br /> [payer_agreement](#payer_agreement)
+pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [WeChat_scan](#WeChat_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br />  [alipay_scan](#alipay_scan) <br /> [payer_agreement](#payer_agreement)
 verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
 ## payment
@@ -314,9 +314,9 @@ If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_cod
 
 Parameter | Description
 ------- | -------
-payer_name | String. **need encryption**. The name of payer.
+payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need encryption**. Citizen id number.
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 qr_code_url | String. The url of wechat QR-Code pay. This information is returned by UMF.
 
@@ -328,9 +328,9 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 
 Parameter | Description
 ------- | -------
-payer_name | String. **need encryption**. The name of payer.
+payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need encryption**. Citizen id number.
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat native SDK to activate WeChat APP.
 
@@ -341,9 +341,9 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 Parameter | Description
 ------- | -------
 open_id | String. The OpenID is a unique encrypted WeChat ID for each user of an official account, and users can have separate OpenIDs corresponding to different official accounts. 
-payer_name | String. **need encryption**. The name of payer.
+payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need encryption**. Citizen id number.
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 
@@ -353,9 +353,9 @@ The same as wechat_qr_code.
 
 Parameter | Description
 ------- | -------
-payer_name | String. **need encryption**. The name of payer.
+payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **need encryption**. Citizen id number.
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 qr_code_url | String. The url of Ali QR-Code pay. It is returned by UMF.
 
