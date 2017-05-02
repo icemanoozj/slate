@@ -1037,3 +1037,6 @@ The request content is JSON object. The object maybe a payment object, or a refu
 The response will include a [meta object](#meta) and the object that merchant received. The object does not need to set all values. UMF only needs the object id.
 
 ## 3.16 Get WeChat open_id
+
+**It will be released in June 2017.**
+

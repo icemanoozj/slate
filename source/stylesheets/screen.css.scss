@@ -345,7 +345,7 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl, &>blockquote {
     margin-right: $examples-width;
     padding: 0 $main-padding;
     box-sizing: border-box;
@@ -465,6 +465,10 @@ html, body {
     margin-top: 0;
   }
 
+  blockquote {
+    font-style: italic;
+  }
+
   img {
     max-width: 100%;
   }
@@ -536,7 +540,7 @@ html, body {
 // This is all the stuff that appears in the right half of the page
 
 .content {
-  pre, blockquote {
+  pre {
     background-color: $code-bg;
     color: #fff;
 
@@ -565,16 +569,16 @@ html, body {
     @extend %code-font;
   }
 
-  blockquote {
-    &>p {
-      background-color: $code-annotation-bg;
-      border-radius: 5px;
-      padding: $code-annotation-padding;
-      color: #ccc;
-      border-top: 1px solid #000;
-      border-bottom: 1px solid #404040;
-    }
-  }
+  // blockquote {
+  //   &>p {
+  //     background-color: $code-annotation-bg;
+  //     border-radius: 5px;
+  //     padding: $code-annotation-padding;
+  //     color: #ccc;
+  //     border-top: 1px solid #000;
+  //     border-bottom: 1px solid #404040;
+  //   }
+  // }
 }
 
 ////////////////////////////////////////////////////////////////////////////////

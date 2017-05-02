@@ -30,12 +30,31 @@ UMF has a Payment Business License in China (for nationwide Internet payments, m
 
 
 
-[comment]: # (## 6.3 Services)
+## Policies
 
-[comment]: # (### Why UMF needs the details of each payment?)
+### Why UMF needs the details of each payment?
 
+Because of the requirement of Chinese State Administration of Foreign Exchange, every transaction needs the detail information to prove it is the real transaction.
 
+The following is the queto of that document:
 
+>Article 5. Any payment institution applying for the registration on the List of Enterprises Making Foreign Exchange Receipts and Payments under Trade shall present the following documents to the foreign exchange authority at the place of incorporation:
+
+>(I) Written application, stating the applicant's informationsuch as name, place of incorporation, registered capital, equity structure, organizational structure, and the types and scopes of existing payment business and the cross-border foreign exchange payment business being applied for;
+
+>(II)Business operation plan, including business processing procedures (specify in detail the complete procedures of transactions, exchanges and payments by business type), customer real-name system management, review of the authenticity of transactions, declaration of the balance of payments statistics, data collection and submission, system construction, data interface between system and banks, system emergency response plan, foreign exchange reserve account management, risk control related to the business conducted, internal operational rules, and compliance management;
+
+>(III)The duplicates and photocopies of the Payment Business License, Business License for Enterprise as Legal Person, and Organization Code Certificate;
+
+>(IV)Cooperation agreement with bank(s);
+
+>(V) Other materials required by the foreign exchange authority.
+
+The links of original documents.
+
+-- **[English Version](http://www.safe.gov.cn/wps/portal/!ut/p/c5/04_SB8K8xLLM9MSSzPy8xBz9CP0os3gPZxdnX293QwP30FAnA8_AEBc3C1NjI3dXE6B8JG55MwMCusNB9uHXD5I3wAEcDfT9PPJzU_Uj9aPMcZnibGquH5mTmp6YXKlfkBthkGUSqggAHuiZXA!!/dl3/d3/L2dJQSEvUUt3QS9ZQnZ3LzZfSENEQ01LRzEwT085RTBJNkE1U1NDRzNMTDQ!/?WCM_GLOBAL_CONTEXT=/wps/wcm/connect/safe_web_store/state+administration+of+foreign+exchange/rules+and+regulations/fcd6068047a9715089a3a9eee2a1794d)**
+
+-- **[Chinese Version](http://www.safe.gov.cn/wps/portal/!ut/p/c4/04_SB8K8xLLM9MSSzPy8xBz9CP0os3gPZxdnX293QwMLE09nA09Pr0BXLy8PQyNPI_2CbEdFAKLWUno!/?WCM_GLOBAL_CONTEXT=/wps/wcm/connect/safe_web_store/safe_web/zcfg/jcxmwhgl/jcxmzh/node_zcfg_jcxm_jcxmzh_store/0a685180471ba70aaa05ae3b4795588d)**
 
 ## Settlement & Fee
 
