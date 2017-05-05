@@ -26,8 +26,10 @@ exchange_rate | The exchange_rate. **Optional**.
 
 Parameter | Description
 ----------|------------
-name | The full name of bank.
+name | The full name of bank.English.
+name_zh | The full name of bank. 
 code | The abbreviation of bank. Available in China.
+logo_url | The url of the logo of the bank.
 types | The bank types are supported by the bank. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 ### Banks supported by credit card payment
@@ -314,11 +316,11 @@ If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_cod
 
 Parameter | Description
 ------- | -------
-payer_name | String. **Must be encrypted**. The name of payer.
+payer_name | String. **Must be encrypted**. The name of payer.  
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
-qr_code_url | String. The url of wechat QR-Code pay. This information is returned by UMF.
+qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
 
 The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
 
