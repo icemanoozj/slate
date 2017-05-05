@@ -29,7 +29,7 @@ Parameter | Description
 name | The full name of bank.English.
 name_zh | The full name of bank. 
 code | The abbreviation of bank. Available in China.
-logo_url | The url of the logo of the bank.
+logo_url | The url of the logo of bank.
 types | The bank types are supported by the bank. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 ### Banks supported by credit card payment
