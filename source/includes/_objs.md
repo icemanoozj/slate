@@ -308,9 +308,9 @@ is_customs | bool. If the merchant needs UMF to submit the payment information t
 items | Object Array. The items in sub_orders.
 
 
-## wechat_qr_code
+## qr_code_scan
 
-Merchant creates different QR codes for different goods. After users scan these codes by WeChat, they can see related product information and transaction guides on their phone.
+Merchant creates QR code for each order. After users scan these codes by WeChat or AliPay, they can see related product information and transaction guides on their phone. This object can be used for WeChat or AliPay.
 
 If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_code object needs to include in the payer_info object.
 
@@ -322,7 +322,7 @@ citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
 
-The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat, they can pay with WeChat.
+The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat or AliPay, they can pay with WeChat or AliPay.
 
 ## WeChat_in_app
 
@@ -349,17 +349,6 @@ citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 
-## ali_qr_scan
-
-The same as wechat_qr_code.
-
-Parameter | Description
-------- | -------
-payer_name | String. **Must be encrypted**. The name of payer.
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **Must be encrypted**. Citizen id number.
-phone_number | String. The phone number of payer.
-qr_code_url | String. The url of Ali QR-Code pay. It is returned by UMF.
 
 ## pay_info
 
