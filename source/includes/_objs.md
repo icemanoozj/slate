@@ -362,3 +362,57 @@ signType | String. The type of signature. It will be "MD5" in this scenario.
 package | String. The ID of this WeChat payment.
 nonceStr | String. A random string for the generated signature.
 paySign | String. The signature of this request.
+
+
+## transaction
+
+The information of one transaction.
+
+Parameter | Description
+------- | -------
+payments | Object Array of payment.
+refunds | Object Array of refund.
+
+The payment object includes the following information:
+
+Parameter | Description
+------- | -------
+phone_number | User’s phone number
+order | [Object](#order). mer_reference_id, order_date
+amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
+pay_time | The timestamp of charge.
+state | See the define of [payment](#payment).
+
+The refund object includes the following information:
+
+Parameter | Description
+------- | -------
+phone_number | User’s phone number
+amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
+pay_time | The timestamp of charge.
+state | See the define of [refund](#refund).
+
+## reconciliation
+
+The information of one reconciliation.
+
+Parameter | Description
+------- | -------
+phone_number | User’s phone number
+order | [Object](#order). mer_reference_id, order_date
+amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
+pay_time | The timestamp of charge.
+state | See the define of [payment](#payment).
+service_fee | The service fee in CNY.
+exchange_amount | The amount of make exchange. cb_amount, cny_amount, currency, exchange_rate.
+
+The refund object includes the following information:
+
+Parameter | Description
+------- | -------
+phone_number | User’s phone number
+amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
+pay_time | The timestamp of charge.
+state | See the define of [refund](#refund).
+
+
