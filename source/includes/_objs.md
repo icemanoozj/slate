@@ -374,7 +374,7 @@ payments | Object Array of payment.
 refunds | Object Array of refund.
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
-
+<br />
 
 
 The payment object includes the following information:
@@ -389,7 +389,7 @@ pay_date | String. The date of charge request submitted.
 pay_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
 
-
+<br />
 
 
 The refund object includes the following information:
@@ -413,7 +413,7 @@ payments | Object Array of payment.
 refunds | Object Array of refund.
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
-
+<br />
 
 
 The payment object includes the following information:
@@ -430,7 +430,7 @@ state | See the define of [payment](#payment).
 service_fee | The service fee in CNY.
 exchange_amount | The amount of make exchange. cb_amount, cny_amount, currency, exchange_rate.
 
-
+<br />
 
 
 The refund object includes the following information:
