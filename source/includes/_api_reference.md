@@ -1109,21 +1109,8 @@ This interface is an Http download interface and the transaction list is downloa
 
 ## 3.19 Query transactions
 
-**GET**: /payments/transactions?mer_date=20170213
-
-**GET**: /payments/transactions?mer_date=20170213?page_number=2
-
-
-### Request
-
-The request is a http get request. The mer_date must be in the URL.The page_number should be filled when there are too many transactions to return in one response.
-
-### Response
-
-The response is a json String.
 
 ```json
-///exchange_rate?currency=USD
 {
     "meta":{
         "sign":"Alc9iDPd4P2z3LzeaZj73aC2fmeHZmlh59d7+MvZoDRYUsOF3lLGe92VhqWhRERvXCBBOK+SarPSI72pj1rHCqTcVd6/hagHKJa/j4k0CodwsrYXhoayLhu6Y/XG7JllyY2pa84J+xLCv/D81KvwWukOpK3MRNf5yq9zrVaVD5E=",
@@ -1193,27 +1180,24 @@ The response is a json String.
 }
 ```
 
+**GET**: /payments/transactions?mer_date=20170213
 
-## 3.20 Query reconciliation statement
+**GET**: /payments/transactions?mer_date=20170213?page_number=2
 
-**GET**: /payments/reconciliation_statement?settle_date=20170213
-
-**GET**: /payments/reconciliation_statement?settle_date=20170213&page_number=2
-
-A reconciliation statement is a document that begins with a merchant's own record of an account balance in UMF, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
-
-The date of reconciliation statement is based on the settle_date. **Only when UMF transfer money to merchant's account, the reconciliation statment is generated.
 
 ### Request
 
-The request is a http get request. The settle_date must be in the URL.
+The request is a http get request. The mer_date must be in the URL.The page_number should be filled when there are too many transactions to return in one response.
 
 ### Response
 
-This interface is an Http download interface and the transaction list is downloaded as a file.
+The response is a json String.
+
+
+
+## 3.20 Query reconciliation statement
 
 ```json
-///exchange_rate?currency=USD
 {
     "meta":{
         "sign":"Alc9iDPd4P2z3LzeaZj73aC2fmeHZmlh59d7+MvZoDRYUsOF3lLGe92VhqWhRERvXCBBOK+SarPSI72pj1rHCqTcVd6/hagHKJa/j4k0CodwsrYXhoayLhu6Y/XG7JllyY2pa84J+xLCv/D81KvwWukOpK3MRNf5yq9zrVaVD5E=",
@@ -1303,5 +1287,23 @@ This interface is an Http download interface and the transaction list is downloa
     }
 }
 ```
+
+**GET**: /payments/reconciliation_statement?settle_date=20170213
+
+**GET**: /payments/reconciliation_statement?settle_date=20170213&page_number=2
+
+A reconciliation statement is a document that begins with a merchant's own record of an account balance in UMF, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
+
+The date of reconciliation statement is based on the settle_date. **Only when UMF transfer money to merchant's account, the reconciliation statment is generated.
+
+### Request
+
+The request is a http get request. The settle_date must be in the URL.
+
+### Response
+
+This interface is an Http download interface and the transaction list is downloaded as a file.
+
+
 
 
