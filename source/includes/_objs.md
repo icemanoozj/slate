@@ -364,37 +364,41 @@ nonceStr | String. A random string for the generated signature.
 paySign | String. The signature of this request.
 
 
-## transaction
+## transactions
 
-The information of one transaction.
+The information of transactions.
 
 Parameter | Description
 ------- | -------
 payments | Object Array of payment.
 refunds | Object Array of refund.
+pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
 The payment object includes the following information:
 
 Parameter | Description
 ------- | -------
-phone_number | User’s phone number
-order | [Object](#order). mer_reference_id, order_date
-amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
-pay_time | The timestamp of charge.
+payment_id | The id of payment.
+phone_number | User's phone number
+order | [Object](#order). Includes the following parameters: mer_reference_id, order_date
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+pay_date | String. The date of charge request submitted.
+pay_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
 
 The refund object includes the following information:
 
 Parameter | Description
 ------- | -------
-phone_number | User’s phone number
-amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
-pay_time | The timestamp of charge.
+phone_number | User's phone number
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+pay_date | String. The date of refund request submitted.
+pay_time | The timestamp of transaction done.
 state | See the define of [refund](#refund).
 
-## reconciliation
+## reconciliations
 
-The information of one reconciliation.
+The information of reconciliations.
 
 Parameter | Description
 ------- | -------
@@ -414,5 +418,16 @@ phone_number | User’s phone number
 amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
 pay_time | The timestamp of charge.
 state | See the define of [refund](#refund).
+
+
+## pagination
+
+Some API endpoints which return large amount of objects will return paginated responses; as well as the list of objects there will also be a pagination key in the response:
+
+Parameter | Description
+------- | -------
+total_count | Number. The total number of transaction list.
+page_number | Number. The current page number (starts at 1).
+page_size | Number. The number of objects on each page.
 
 
