@@ -374,6 +374,9 @@ payments | Object Array of payment.
 refunds | Object Array of refund.
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
+
+
+
 The payment object includes the following information:
 
 Parameter | Description
@@ -386,10 +389,14 @@ pay_date | String. The date of charge request submitted.
 pay_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
 
+
+
+
 The refund object includes the following information:
 
 Parameter | Description
 ------- | -------
+payment_id | The id of parent payment.
 phone_number | User's phone number
 amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
 pay_date | String. The date of refund request submitted.
@@ -402,18 +409,36 @@ The information of reconciliations.
 
 Parameter | Description
 ------- | -------
-phone_number | User’s phone number
-order | [Object](#order). mer_reference_id, order_date
-amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
-pay_time | The timestamp of charge.
+payments | Object Array of payment.
+refunds | Object Array of refund.
+pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
+
+
+
+
+The payment object includes the following information:
+
+Parameter | Description
+------- | -------
+payment_id | The id of payment.
+phone_number | User's phone number
+order | [Object](#order). Includes the following parameters: mer_reference_id, order_date
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+pay_date | String. The date of charge request submitted.
+pay_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
 service_fee | The service fee in CNY.
 exchange_amount | The amount of make exchange. cb_amount, cny_amount, currency, exchange_rate.
+
+
+
 
 The refund object includes the following information:
 
 Parameter | Description
 ------- | -------
+payment_id | The id of parent payment.
+sub_order | [Object](#sub_order). Includes the following parameters: sub_order_id
 phone_number | User’s phone number
 amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
 pay_time | The timestamp of charge.
