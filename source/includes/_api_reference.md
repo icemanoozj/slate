@@ -1106,3 +1106,202 @@ The request is a http get request. The mer_date must be in the URL.
 
 This interface is an Http download interface and the transaction list is downloaded as a file.
 
+
+## 3.19 Query transactions
+
+**GET**: /payments/transactions?mer_date=20170213
+
+**GET**: /payments/transactions?mer_date=20170213?page_number=2
+
+
+### Request
+
+The request is a http get request. The mer_date must be in the URL.The page_number should be filled when there are too many transactions to return in one response.
+
+### Response
+
+The response is a json String.
+
+```json
+///exchange_rate?currency=USD
+{
+    "meta":{
+        "sign":"Alc9iDPd4P2z3LzeaZj73aC2fmeHZmlh59d7+MvZoDRYUsOF3lLGe92VhqWhRERvXCBBOK+SarPSI72pj1rHCqTcVd6/hagHKJa/j4k0CodwsrYXhoayLhu6Y/XG7JllyY2pa84J+xLCv/D81KvwWukOpK3MRNf5yq9zrVaVD5E=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "transactions":{
+        "payment_summaries":[
+            {
+                "payment_id":"SDSWEWSD23123143DSDFSDF234234",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"TRADE_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code"
+            },
+            {
+                "payment_id":"768HIOUKJHTJHLKHYOIT",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"TRADE_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code"
+            }
+        ],
+        "refund_summaries":[
+            {
+                "refund_id":"IUIUYTHJY58765874KJHKUUTIUI",
+                "payment_id":"SDSWEWSD23123143DSDFSDF234234",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"REFUND_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code"
+            }
+        ],
+        "pagination":{
+            "total_count":3,
+            "page_number":1,
+            "page_size":50
+        }
+    }
+}
+```
+
+
+## 3.20 Query reconciliation statement
+
+**GET**: /payments/reconciliation_statement?settle_date=20170213
+
+**GET**: /payments/reconciliation_statement?settle_date=20170213&page_number=2
+
+A reconciliation statement is a document that begins with a merchant's own record of an account balance in UMF, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
+
+The date of reconciliation statement is based on the settle_date. **Only when UMF transfer money to merchant's account, the reconciliation statment is generated.
+
+### Request
+
+The request is a http get request. The settle_date must be in the URL.
+
+### Response
+
+This interface is an Http download interface and the transaction list is downloaded as a file.
+
+```json
+///exchange_rate?currency=USD
+{
+    "meta":{
+        "sign":"Alc9iDPd4P2z3LzeaZj73aC2fmeHZmlh59d7+MvZoDRYUsOF3lLGe92VhqWhRERvXCBBOK+SarPSI72pj1rHCqTcVd6/hagHKJa/j4k0CodwsrYXhoayLhu6Y/XG7JllyY2pa84J+xLCv/D81KvwWukOpK3MRNf5yq9zrVaVD5E=",
+        "ret_msg":"Success",
+        "ret_code":"0000"
+    },
+    "transactions":{
+        "settle_date":"20170320",
+        "amount":{
+            "total": 78.40,
+            "total_cny": 544.91,
+            "currency": "USD",
+            "exchange_rate":6.9500
+        };
+        "payment_summaries":[
+            {
+                "payment_id":"SDSWEWSD23123143DSDFSDF234234",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"TRADE_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code",
+                "service_fee":"10.00",
+                "exchange_amount":{
+                    "total": 48.19,
+                    "total_cny": 334.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9500
+                }
+            },
+            {
+                "payment_id":"768HIOUKJHTJHLKHYOIT",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"TRADE_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code",
+                "service_fee":"10.00",
+                "exchange_amount":{
+                    "total": 48.19,
+                    "total_cny": 334.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9500
+                }
+            }
+        ],
+        "refund_summaries":[
+            {
+                "refund_id":"IUIUYTHJY58765874KJHKUUTIUI",
+                "payment_id":"SDSWEWSD23123143DSDFSDF234234",
+                "phone_number":"18710129807",
+                "order_date":"20170316",
+                "mer_reference_id":"20170316114145",
+                "amount":{
+                    "total": 49.41,
+                    "total_cny": 344.91,
+                    "currency": "USD",
+                    "exchange_rate":6.9800
+                },
+                "pay_date":"20170317",
+                "pay_time":"2017-03-17T19:20:30+08:00",
+                "state":"REFUND_SUCCESS",
+                "productId":"Payment Gateway - Alipay QR code"
+            }
+        ],
+        "pagination":{
+            "total_count":3,
+            "page_number":1,
+            "page_size":50
+        }
+    }
+}
+```
+
+

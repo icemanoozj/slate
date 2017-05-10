@@ -370,38 +370,9 @@ The information of transactions.
 
 Parameter | Description
 ------- | -------
-payments | Object Array of payment.
-refunds | Object Array of refund.
+payment_summaries | Object Array of [payment_summary](#payment_summary).
+refund_summaries | Object Array of [refund_summary](#refund_summary).
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
-
-<br />
-
-
-The payment object includes the following information:
-
-Parameter | Description
-------- | -------
-payment_id | The id of payment.
-phone_number | User's phone number
-order | [Object](#order). Includes the following parameters: mer_reference_id, order_date
-amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-pay_date | String. The date of charge request submitted.
-pay_time | The timestamp of charge. The timestamp of  transaction done.
-state | See the define of [payment](#payment).
-
-<br />
-
-
-The refund object includes the following information:
-
-Parameter | Description
-------- | -------
-payment_id | The id of parent payment.
-phone_number | User's phone number
-amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-pay_date | String. The date of refund request submitted.
-pay_time | The timestamp of transaction done.
-state | See the define of [refund](#refund).
 
 ## reconciliations
 
@@ -409,42 +380,11 @@ The information of reconciliations.
 
 Parameter | Description
 ------- | -------
-payments | Object Array of payment.
-refunds | Object Array of refund.
+payment_summaries | Object Array of [payment_summary](#payment_summary).
+refund_summaries | Object Array of [refund_summary](#refund_summary).
 settle_date | String. The settlement date.
 amount | Object. The total amount of this reconciliations.
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
-
-<br />
-
-
-The payment object includes the following information:
-
-Parameter | Description
-------- | -------
-payment_id | The id of payment.
-phone_number | User's phone number
-order | [Object](#order). Includes the following parameters: mer_reference_id, order_date
-amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-pay_date | String. The date of charge request submitted.
-pay_time | The timestamp of charge. The timestamp of  transaction done.
-state | See the define of [payment](#payment).
-service_fee | The service fee in CNY.
-exchange_amount | The amount of make exchange. cb_amount, cny_amount, currency, exchange_rate.
-
-<br />
-
-
-The refund object includes the following information:
-
-Parameter | Description
-------- | -------
-payment_id | The id of parent payment.
-sub_order | [Object](#sub_order). Includes the following parameters: sub_order_id
-phone_number | User’s phone number
-amount | [Object](#amount). cb_amount, cny_amount, currency, exchange_rate.
-pay_time | The timestamp of charge.
-state | See the define of [refund](#refund).
 
 
 ## pagination
@@ -457,4 +397,35 @@ total_count | Number. The total number of transaction list.
 page_number | Number. The current page number (starts at 1).
 page_size | Number. The number of objects on each page.
 
+## payment_summary
+
+The summary of a payment object. It is contained in a transactions object or a reconciliations object.
+
+Parameter | Description
+------- | -------
+payment_id | The id of payment.
+phone_number | User's phone number
+order_date | String. The date of order placed.
+mer_reference_id | String. The reference id of the order.
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+pay_date | String. The date of charge request submitted.
+pay_time | The timestamp of charge. The timestamp of  transaction done.
+state | See the define of [payment](#payment).
+productId | String. The product id of UMF.
+service_fee | The service fee in CNY. **Only available in reconciliations object.**
+exchange_amount | The amount of make exchange, it is an amount object. Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate. **Only available in reconciliations object.**
+
+## refund_summary
+
+The summary of a payment object. It is contained in a transactions object or a reconciliations object.
+
+Parameter | Description
+------- | -------
+refund_id | The id of refund.
+payment_id | The id of parent payment.
+phone_number | User's phone number
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+pay_date | String. The date of refund request submitted.
+pay_time | The timestamp of transaction done.
+state | See the define of [refund](#refund).
 
