@@ -236,7 +236,7 @@ Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
 name | String. The abbreviation of bank. Available in China. See [bank]
-pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [WeChat_scan](#WeChat_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br />  [alipay_scan](#alipay_scan) <br /> [payer_agreement](#payer_agreement)
+pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [qr_code_scan](#qr_code_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br /> [payer_agreement](#payer_agreement)
 verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
 ## payment
@@ -404,16 +404,17 @@ The summary of a payment object. It is contained in a transactions object or a r
 Parameter | Description
 ------- | -------
 payment_id | The id of payment.
-phone_number | User's phone number
+phone_number | User's phone number. **Only available in transactions object.**
 order_date | String. The date of order placed.
 mer_reference_id | String. The reference id of the order.
 amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-pay_date | String. The date of charge request submitted.
-pay_time | The timestamp of charge. The timestamp of  transaction done.
+settle_date | String. The date of charge request submitted.
+execute_success_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
 productId | String. The product id of UMF.
 service_fee | The service fee in CNY. **Only available in reconciliations object.**
 exchange_amount | The amount of make exchange, it is an amount object. Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate. **Only available in reconciliations object.**
+exchange_date | The date of making exchange. **Only available in reconciliations object.**
 
 ## refund_summary
 
@@ -423,9 +424,10 @@ Parameter | Description
 ------- | -------
 refund_id | The id of refund.
 payment_id | The id of parent payment.
-phone_number | User's phone number
+phone_number | User's phone number. **Only available in transactions object.**
 amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-pay_date | String. The date of refund request submitted.
-pay_time | The timestamp of transaction done.
+settle_date | String. The date of refund request submitted.
+execute_success_time | The timestamp of transaction done.
 state | See the define of [refund](#refund).
+mer_sub_reference_id | The reference id of sub-order. **Only available in reconciliations object.**
 
