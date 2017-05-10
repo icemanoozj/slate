@@ -411,6 +411,8 @@ Parameter | Description
 ------- | -------
 payments | Object Array of payment.
 refunds | Object Array of refund.
+settle_date | String. The settlement date.
+amount | Object. The total amount of this reconciliations.
 pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
 <br />
