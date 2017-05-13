@@ -1,0 +1,25 @@
+{
+  "name": "rest-api-umf",
+  "version": "0.2.0",
+  "description": "The REST API of UMF.",
+  "main": "index.js",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icemanoozj/slate.git"
+  },
+  "author": "Roger zhuj02@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/icemanoozj/slate/issues"
+  },
+  "homepage": "https://github.com/icemanoozj/slate#readme"
+}

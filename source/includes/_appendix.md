@@ -96,6 +96,8 @@ No. | Error code  | Description
 49 | 00202009 | The refund amount in the refund application is incorrect. 
 50 | 00202010 | The refund amount in the refund application is inconsistent with the original order amount. 
 51 | 00202011 | The currency in the refund application is inconsistent with the original order currency. 
+52 | 00200086 | Verification code was requested more than once in each minute.
+53 | 00290502 | Citizen id or name not correct.
 
 ## Transaction status description
 
