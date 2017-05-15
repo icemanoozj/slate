@@ -207,13 +207,24 @@ sub_orders | Object Array. The array of sub_order objects. Each sub_order can on
 state | ENUM. The state of order.
 user_ip | String. This is the IP address when a customer makes a payment request.
 
+
+## pagination
+
+Some API endpoints which return large amount of objects will return paginated responses; as well as the list of objects there will also be a pagination key in the response:
+
+Parameter | Description
+------- | -------
+total_count | Number. The total number of transaction list.
+page_number | Number. The current page number (starts at 1).
+page_size | Number. The number of objects on each page.
+
 ## payer
 
 The payer information.
 
 Parameter | Description
 ------- | -------
-payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WECHAT_SCAN <br /> - WECHAT_APP <br /> - WECHAT_WEB <br /> - ALIPAY_SCAN
+payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WECHAT_SCAN <br /> - WECHAT_IN_APP <br /> - WECHAT_WEB <br /> - ALIPAY_SCAN
 [bank_code](#bank) | String. The abbreviation of bank. Available in China. See [bank]
 [payer_info](#payer_info) | Object. The information of payer.
 
@@ -230,13 +241,26 @@ last_four_cardid  | The last four card numbers.
 valid_date  | The valid date of card.
 cvv2  | The CVV2 of card.
 
+## pay_info
+
+The pay_info object includes the information of WeChat In-App Payment and WeChat In-App Web-based Payment. 
+
+Parameter | Description
+------- | -------
+appId | String. The unique identifier of the Official Account of UMF
+timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+signType | String. The type of signature. It will be "MD5" in this scenario.
+package | String. The ID of this WeChat payment.
+nonceStr | String. A random string for the generated signature.
+paySign | String. The signature of this request.
+
 ## payer_info
 
 Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
 name | String. The abbreviation of bank. Available in China. See [bank]
-pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [qr_code_scan](#qr_code_scan) <br /> [WeChat_app](#WeChat_app) <br /> [WeChat_browser](#WeChat_browser) <br /> [payer_agreement](#payer_agreement)
+pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [qr_code_scan](#qr_code_scan) <br /> [wechat_in_app](#wechat_in_app) <br /> [wechat_in_app_web](#wechat_in_app_web) <br /> [payer_agreement](#payer_agreement)
 verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
 ## payment
@@ -257,6 +281,53 @@ settle_date | String. The date of this transaction in UMF.
 [risk_info](#risk_info) | Object. The information for anti fraud. Its content depends on the contract between the merchant and UMF.
 [links](#link) | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
+## payment_summary
+
+The summary of a payment object. It is contained in a transactions object or a reconciliations object.
+
+Parameter | Description
+------- | -------
+payment_id | The id of payment.
+phone_number | User's phone number. **Only available in transactions object.**
+order_date | String. The date of order placed.
+mer_reference_id | String. The reference id of the order.
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+settle_date | String. The date of charge request submitted.
+execute_success_time | The timestamp of charge. The timestamp of  transaction done.
+state | See the define of [payment](#payment).
+productId | String. The product id of UMF.
+service_fee | The service fee in CNY. **Only available in reconciliations object.**
+exchange_amount | The amount of make exchange, it is an amount object. Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate. **Only available in reconciliations object.**
+exchange_date | The date of making exchange. **Only available in reconciliations object.**
+
+## qr_code_scan
+
+Merchant creates QR code for each order. After users scan these codes by WeChat or AliPay, they can see related product information and transaction guides on their phone. This object can be used for WeChat or AliPay.
+
+If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_code object needs to include in the payer_info object.
+
+Parameter | Description
+------- | -------
+payer_name | String. **Must be encrypted**. The name of payer.  
+citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_number | String. **Must be encrypted**. Citizen id number.
+phone_number | String. The phone number of payer.
+qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
+
+The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat or AliPay, they can pay with WeChat or AliPay.
+
+## reconciliations
+
+The information of reconciliations.
+
+Parameter | Description
+------- | -------
+payment_summaries | Object Array of [payment_summary](#payment_summary).
+refund_summaries | Object Array of [refund_summary](#refund_summary).
+settle_date | String. The settlement date.
+amount | Object. The total amount of this reconciliations.
+pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
+
 ## refund
 
 Refund object depends on a payment object. One payment may connect many refund objects, which means one payment can be refunded multiple times. The total amount of refund objects must be no more than the amount of payment object. It has the following information:
@@ -268,6 +339,22 @@ id | String. The ID of refund object.
 notify_url | String. The merchant service url. To receive the refund result.
 state | ENUM. The state of refund object. **REFUND_PROCESS**, **REFUND_SUCCESS**, **REFUND_FAIL**, **REFUND_CLOSE**.
 parent_payment | String. The ID of parent payment object.
+
+## refund_summary
+
+The summary of a payment object. It is contained in a transactions object or a reconciliations object.
+
+Parameter | Description
+------- | -------
+refund_id | The id of refund.
+payment_id | The id of parent payment.
+phone_number | User's phone number. **Only available in transactions object.**
+amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
+settle_date | String. The date of refund request submitted.
+execute_success_time | The timestamp of transaction done.
+state | See the define of [refund](#refund).
+mer_sub_reference_id | The reference id of sub-order. **Only available in reconciliations object.**
+
 
 ## risk_info
 
@@ -307,24 +394,18 @@ trans_code | ENUM. The transaction of goods.
 is_customs | bool. If the merchant needs UMF to submit the payment information to customs.
 items | Object Array. The items in sub_orders.
 
+## transactions
 
-## qr_code_scan
-
-Merchant creates QR code for each order. After users scan these codes by WeChat or AliPay, they can see related product information and transaction guides on their phone. This object can be used for WeChat or AliPay.
-
-If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_code object needs to include in the payer_info object.
+The information of transactions.
 
 Parameter | Description
 ------- | -------
-payer_name | String. **Must be encrypted**. The name of payer.  
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
-citizen_id_number | String. **Must be encrypted**. Citizen id number.
-phone_number | String. The phone number of payer.
-qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
+payment_summaries | Object Array of [payment_summary](#payment_summary).
+refund_summaries | Object Array of [refund_summary](#refund_summary).
+pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
 
-The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat or AliPay, they can pay with WeChat or AliPay.
 
-## WeChat_in_app
+## wechat_in_app
 
 The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment.
 
@@ -336,7 +417,7 @@ citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat native SDK to activate WeChat APP.
 
-## WeChat_in_app_web
+## wechat_in_app_web
 
 The UMF will return all the information that WeChat SDK required to activate WeChat and make a payment. Merchant does not need to modify all the information that WeChat need.
 
@@ -349,85 +430,4 @@ citizen_id_number | String. **Must be encrypted**. Citizen id number.
 phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 
-
-## pay_info
-
-The pay_info object includes the information of WeChat In-App Payment and WeChat In-App Web-based Payment. 
-
-Parameter | Description
-------- | -------
-appId | String. The unique identifier of the Official Account of UMF
-timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
-signType | String. The type of signature. It will be "MD5" in this scenario.
-package | String. The ID of this WeChat payment.
-nonceStr | String. A random string for the generated signature.
-paySign | String. The signature of this request.
-
-
-## transactions
-
-The information of transactions.
-
-Parameter | Description
-------- | -------
-payment_summaries | Object Array of [payment_summary](#payment_summary).
-refund_summaries | Object Array of [refund_summary](#refund_summary).
-pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
-
-## reconciliations
-
-The information of reconciliations.
-
-Parameter | Description
-------- | -------
-payment_summaries | Object Array of [payment_summary](#payment_summary).
-refund_summaries | Object Array of [refund_summary](#refund_summary).
-settle_date | String. The settlement date.
-amount | Object. The total amount of this reconciliations.
-pagination | Object. The pagination Object which gives you information about the number of pages in the result, and how many objects are returned.
-
-
-## pagination
-
-Some API endpoints which return large amount of objects will return paginated responses; as well as the list of objects there will also be a pagination key in the response:
-
-Parameter | Description
-------- | -------
-total_count | Number. The total number of transaction list.
-page_number | Number. The current page number (starts at 1).
-page_size | Number. The number of objects on each page.
-
-## payment_summary
-
-The summary of a payment object. It is contained in a transactions object or a reconciliations object.
-
-Parameter | Description
-------- | -------
-payment_id | The id of payment.
-phone_number | User's phone number. **Only available in transactions object.**
-order_date | String. The date of order placed.
-mer_reference_id | String. The reference id of the order.
-amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-settle_date | String. The date of charge request submitted.
-execute_success_time | The timestamp of charge. The timestamp of  transaction done.
-state | See the define of [payment](#payment).
-productId | String. The product id of UMF.
-service_fee | The service fee in CNY. **Only available in reconciliations object.**
-exchange_amount | The amount of make exchange, it is an amount object. Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate. **Only available in reconciliations object.**
-exchange_date | The date of making exchange. **Only available in reconciliations object.**
-
-## refund_summary
-
-The summary of a payment object. It is contained in a transactions object or a reconciliations object.
-
-Parameter | Description
-------- | -------
-refund_id | The id of refund.
-payment_id | The id of parent payment.
-phone_number | User's phone number. **Only available in transactions object.**
-amount | [Object](#amount). Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate.
-settle_date | String. The date of refund request submitted.
-execute_success_time | The timestamp of transaction done.
-state | See the define of [refund](#refund).
-mer_sub_reference_id | The reference id of sub-order. **Only available in reconciliations object.**
 
