@@ -11,15 +11,17 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['']);
 
     grunt.registerTask('addLanguageSel', 'Add Language selection in index*.html.', function (arg1, arg2) {
-        if (arguments.length === 0) {
-            grunt.log.writeln('Task' + this.name + ", No parameter");
-        }
+
         var indexFileNames = ["build/index.html", "build/index_zh_cn.html", "build/index_zh_tw.html"];
 
         for (var f = 0; f < indexFileNames.length; f++) {
-             console.log(f);
+             console.log(indexFileNames[f]);
             var data = rf.readFileSync(indexFileNames[f], "utf-8");
-            var file_postfix = ".html";
+            var postfixIndex = indexFileNames[f].indexOf("_");
+            console.log(postfixIndex);
+            var file_postfix = postfixIndex<=0?".html":indexFileNames[f].substring(postfixIndex);
+            
+            console.log(file_postfix);
             var template = rf.readFileSync("source/patches/language_sel"+file_postfix, "utf-8");
             var lines = data.split('\n');
             var tocifyFound = false;
@@ -39,7 +41,7 @@ module.exports = function (grunt) {
                 }
             }
             rf.writeFileSync(indexFileNames[f], lines.join("\n"), "utf-8");
-            console.log("READ FILE SYNC END："+ indexFileNames[f]);
+            console.log("READ FILE SYNC END: "+ indexFileNames[f]);
         }
         
     });
