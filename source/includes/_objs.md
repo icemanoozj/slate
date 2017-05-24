@@ -259,7 +259,7 @@ paySign | String. The signature of this request.
 Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
-name | String. The abbreviation of bank. Available in China. See [bank]
+name | String. **Must be encrypted**. The name of payer.
 pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [qr_code_scan](#qr_code_scan) <br /> [wechat_in_app](#wechat_in_app) <br /> [wechat_in_app_web](#wechat_in_app_web) <br /> [payer_agreement](#payer_agreement)
 verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
@@ -308,10 +308,8 @@ If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_cod
 
 Parameter | Description
 ------- | -------
-payer_name | String. **Must be encrypted**. The name of payer.  
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
-phone_number | String. The phone number of payer.
 qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
 
 The qr_code_url is the content of QR-Code. The merchant use standard tools transfer the url to a QR-Code. When user scan this QR-Code by WeChat or AliPay, they can pay with WeChat or AliPay.
@@ -411,10 +409,8 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 
 Parameter | Description
 ------- | -------
-payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
-phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat native SDK to activate WeChat APP.
 
 ## wechat_in_app_web
@@ -424,10 +420,8 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 Parameter | Description
 ------- | -------
 open_id | String. The OpenID is a unique encrypted WeChat ID for each user of an official account, and users can have separate OpenIDs corresponding to different official accounts. 
-payer_name | String. **Must be encrypted**. The name of payer.
 citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
-phone_number | String. The phone number of payer.
 [pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 
 
