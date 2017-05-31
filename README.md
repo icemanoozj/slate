@@ -1,14 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/lord/img/master/logo-slate.png" alt="Slate: API Documentation Generator" width="226">
-  <br>
-  <a href="https://travis-ci.org/lord/slate"><img src="https://travis-ci.org/lord/slate.svg?branch=master" alt="Build Status"></a>
-</p>
-
-<p align="center">Slate helps you create beautiful, intelligent, responsive API documentation.</p>
-
-<p align="center"><img src="https://dl.dropboxusercontent.com/u/95847291/github%20images/slate/slate_screenshot_new.png" width=700 alt="Screenshot of Example Documentation created with Slate"></p>
-
-<p align="center"><em>The example above was created with Slate. Check it out at <a href="https://lord.github.io/slate">lord.github.io/slate</a>.</em></p>
 
 Features
 ------------
@@ -112,8 +101,10 @@ Special Thanks
 
 How to install
 ---------------------
-1. install ruby 2.3.3 X64（http://rubyinstaller.org/downloads/）
-2. install ruby DEVELOPMENT KIT (2.0 and above X64)（http://rubyinstaller.org/downloads/）
+
+Windows:
+1. install ruby 2.3.3 X64 [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
+2. install ruby DEVELOPMENT KIT (2.0 and above X64) [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
 3. install nodejs.(最新版即可）
 4. 在环境变量PATH中加入这两个程序.
 5. 安装bundle.    gem install bundler
@@ -123,3 +114,26 @@ How to install
 9. 运行server.           在slate目录下： ./run.bat
 10. 编译为HTML。     在slate目录下： ./build.bat
 11. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
+
+Ubuntu:
+1. install ruby:  
+
+```shell
+  sudo apt-get install ruby
+  sudo apt-get install ruby-dev
+```
+
+2. install nodejs  
+
+```shell
+  curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+```
+
+3. 安装bundle.    gem install bundler
+4. 安装grunt.     npm install -g grunt grunt-cli
+5. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
+6. 安装slate依赖包。在slate目录下：  bundle install
+7. 运行server.           在slate目录下： ./run.bat
+8. 编译为HTML。     在slate目录下： ./build.bat
+9. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
