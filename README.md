@@ -121,11 +121,13 @@ Ubuntu:
 1. install ruby:  
   ```shell
   sudo apt-get install ruby
+  
   sudo apt-get install ruby-dev
   ```
 2. install nodejs  
   ```shell
   curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+
   sudo apt-get install -y nodejs
   ```
 3. 安装bundle.    gem install bundler
