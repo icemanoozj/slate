@@ -103,6 +103,7 @@ How to install
 ---------------------
 
 Windows:
+
 1. install ruby 2.3.3 X64 [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
 2. install ruby DEVELOPMENT KIT (2.0 and above X64) [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
 3. install nodejs.(最新版即可）
@@ -116,6 +117,7 @@ Windows:
 11. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
 
 Ubuntu:
+
 1. install ruby:  
 
 ```shell
