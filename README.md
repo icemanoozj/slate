@@ -119,17 +119,15 @@ Windows:
 Ubuntu:
 
 1. install ruby:  
-  ```shell
+```shell
   sudo apt-get install ruby
-  
   sudo apt-get install ruby-dev
-  ```
+```
 2. install nodejs  
-  ```shell
+```shell
   curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
-
   sudo apt-get install -y nodejs
-  ```
+```
 3. 安装bundle.    gem install bundler
 4. 安装grunt.     npm install -g grunt grunt-cli
 5. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
