@@ -933,10 +933,6 @@ UMF will make a transaction list daily for each merchant. The list includes all 
 
 This date of transaction list is merchant’s order date(mer_date). 
 
-<aside class="notice">
-Note: Please let the operation staff know merchant’s timezone to setup when to generate the list.
-</aside>
-
 ### Request
 
 The request is a http get request. The mer_date must be in the URL.
