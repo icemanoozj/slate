@@ -295,7 +295,7 @@ amount | [Object](#amount). Includes the following parameters: cb_amount, cny_am
 settle_date | String. The date of charge request submitted.
 execute_success_time | The timestamp of charge. The timestamp of  transaction done.
 state | See the define of [payment](#payment).
-productId | String. The product id of UMF.
+product_id | String. The product id of UMF.
 service_fee | The service fee in CNY. **Only available in reconciliations object.**
 exchange_amount | The amount of make exchange, it is an amount object. Includes the following parameters: cb_amount, cny_amount, currency, exchange_rate. **Only available in reconciliations object.**
 exchange_date | The date of making exchange. **Only available in reconciliations object.**

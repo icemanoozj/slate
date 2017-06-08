@@ -59,7 +59,7 @@ Response:
 
 Parameter | Description
 ------- | -------
-expires_in | The remaining lifetime of the access token.
+expires_in | The remaining lifetime of the access token in seconds.
 access_token | The access_token.
 
 ## 3.2 Query available banks
@@ -1067,7 +1067,7 @@ The response will include a [meta object](#meta) and the object that merchant re
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"TRADE_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code"
+                "product_id":"Payment Gateway - Alipay QR code"
             },
             {
                 "payment_id":"768HIOUKJHTJHLKHYOIT",
@@ -1083,7 +1083,7 @@ The response will include a [meta object](#meta) and the object that merchant re
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"TRADE_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code"
+                "product_id":"Payment Gateway - Alipay QR code"
             }
         ],
         "refund_summaries":[
@@ -1091,8 +1091,6 @@ The response will include a [meta object](#meta) and the object that merchant re
                 "refund_id":"IUIUYTHJY58765874KJHKUUTIUI",
                 "payment_id":"SDSWEWSD23123143DSDFSDF234234",
                 "phone_number":"18710129807",
-                "order_date":"20170316",
-                "mer_reference_id":"20170316114145",
                 "amount":{
                     "total": 49.41,
                     "total_cny": 344.91,
@@ -1102,7 +1100,7 @@ The response will include a [meta object](#meta) and the object that merchant re
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"REFUND_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code"
+                "mer_sub_reference_id":"Payment Gateway - Alipay QR code"
             }
         ],
         "pagination":{
@@ -1167,7 +1165,7 @@ The response includes a [transactions](#transactions) object. See the example on
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"TRADE_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code",
+                "product_id":"Payment Gateway - Alipay QR code",
                 "service_fee":"10.00",
                 "exchange_amount":{
                     "total": 48.19,
@@ -1190,14 +1188,14 @@ The response includes a [transactions](#transactions) object. See the example on
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"TRADE_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code",
+                "product_id":"Payment Gateway - Alipay QR code",
                 "service_fee":"10.00",
                 "exchange_amount":{
                     "total": 48.19,
                     "total_cny": 334.91,
                     "currency": "USD",
                     "exchange_rate":6.9500
-                }，
+                },
                 "exchange_date":"20170318",
             }
         ],
@@ -1206,8 +1204,6 @@ The response includes a [transactions](#transactions) object. See the example on
                 "refund_id":"IUIUYTHJY58765874KJHKUUTIUI",
                 "payment_id":"SDSWEWSD23123143DSDFSDF234234",
                 "phone_number":"18710129807",
-                "order_date":"20170316",
-                "mer_reference_id":"20170316114145",
                 "amount":{
                     "total": 49.41,
                     "total_cny": 344.91,
@@ -1217,7 +1213,7 @@ The response includes a [transactions](#transactions) object. See the example on
                 "settle_date":"20170317",
                 "execute_success_time":"2017-03-17T19:20:30+08:00",
                 "state":"REFUND_SUCCESS",
-                "productId":"Payment Gateway - Alipay QR code",
+                "product_id":"Payment Gateway - Alipay QR code",
                 "mer_sub_reference_id": "20170316114145001"
             }
         ],

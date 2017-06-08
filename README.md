@@ -112,9 +112,10 @@ Windows:
 6. 安装grunt.     npm install -g grunt grunt-cli
 7. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
 8. 安装slate依赖包。在slate目录下：  bundle install
-9. 运行server.           在slate目录下： ./run.bat
-10. 编译为HTML。     在slate目录下： ./build.bat
-11. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
+9. 安装nodejs依赖包。在slate目录下：  npm install
+10. 运行server(仅用于本机调试).       在slate目录下： ./run.bat
+11. 编译为HTML。     在slate目录下： ./build.bat
+12. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
 
 Ubuntu:
 
@@ -132,6 +133,7 @@ Ubuntu:
 4. 安装grunt.     npm install -g grunt grunt-cli
 5. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
 6. 安装slate依赖包。在slate目录下：  bundle install
-7. 运行server.           在slate目录下： ./run.bat
-8. 编译为HTML。     在slate目录下： ./build.bat
-9. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
+7. 安装nodejs依赖包。在slate目录下：  npm install
+8. 运行server(仅用于本机调试).       在slate目录下： ./run.bat
+9. 编译为HTML。     在slate目录下： ./build.bat
+10. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
