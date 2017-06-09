@@ -929,9 +929,9 @@ The customs_ declaration_id in the url is the ID of customs_declaration object w
 
 **GET**: /payments/transactions_download?mer_date=20170213
 
-UMF will make a transaction list daily for each merchant. The list includes all the successful transaction within one day(mer_date). The merchant may download the list anytime. 
+UMF will make a transaction list daily for each merchant. The list includes all the successful transaction within one day(mer_date). The merchant may download the list anytime.
 
-This date of transaction list is merchant’s order date(mer_date). 
+This date of transaction list is merchant’s order date(mer_date).
 
 ### Request
 
@@ -941,7 +941,7 @@ The request is a http get request. The mer_date must be in the URL.
 
 This interface is an Http download interface and the transaction list is downloaded as a file.
 
-Each line represents a transaction expect the first and last line. 
+Each line represents a transaction expect the first and last line.
 
 Transaction information are separated by comma and follow the order list below:
 
@@ -1012,7 +1012,7 @@ Get the real-time exchange rate. The returned information is the corresponding a
 
 ### Request
 
-The parameter is currency which is [currency code](#Currency_codes).
+The parameter is currency which is [currency code](#currency-codes).
 
 ### Response
 
