@@ -107,14 +107,14 @@ Windows:
 1. install ruby 2.3.3 X64 [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
 2. install ruby DEVELOPMENT KIT (2.0 and above X64) [http://rubyinstaller.org/downloads/](http://rubyinstaller.org/downloads/)
 3. install nodejs.(最新版即可）
-4. 在环境变量PATH中加入这两个程序.
-5. 安装bundle.    gem install bundler
-6. 安装grunt.     npm install -g grunt grunt-cli
-7. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
-8. 安装slate依赖包。在slate目录下：  bundle install
-9. 安装nodejs依赖包。在slate目录下：  npm install
-10. 运行server(仅用于本机调试).       在slate目录下： ./run.bat
-11. 编译为HTML。     在slate目录下： ./build.bat
+4. 在环境变量PATH中加入这两个程序。
+5. 安装bundle。    `gem install bundler`
+6. 安装grunt。     `npm install -g grunt grunt-cli`
+7. 从git上取源代码。 `git clone https://github.com/icemanoozj/slate.git`
+8. 安装slate依赖包。在slate目录下：  `bundle install`
+9. 安装nodejs依赖包。在slate目录下：  `npm install`
+10. 运行server(仅用于本机调试).       在slate目录下： `./run.bat`
+11. 编译为HTML。     在slate目录下： `./build.bat`
 12. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
 
 Ubuntu:
@@ -129,11 +129,11 @@ Ubuntu:
   curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
   sudo apt-get install -y nodejs
 ```
-3. 安装bundle.    gem install bundler
-4. 安装grunt.     npm install -g grunt grunt-cli
-5. 从git上取源代码。 git clone https://github.com/icemanoozj/slate.git
-6. 安装slate依赖包。在slate目录下：  bundle install
-7. 安装nodejs依赖包。在slate目录下：  npm install
-8. 运行server(仅用于本机调试).       在slate目录下： ./run.bat
-9. 编译为HTML。     在slate目录下： ./build.bat
+3. 安装bundle。    `gem install bundler`
+4. 安装grunt。     `npm install -g grunt grunt-cli`
+5. 从git上取源代码。 `git clone https://github.com/icemanoozj/slate.git`
+6. 安装slate依赖包。在slate目录下：  `bundle install`
+7. 安装nodejs依赖包。在slate目录下：  `npm install`
+8. 运行server(仅用于本机调试).       在slate目录下： `./run.bat`
+9. 编译为HTML。     在slate目录下： `./build.bat`
 10. 编译后的代码放在nginx 或 apache的web目录下,即可通过浏览器访问编译后的静态网页。
