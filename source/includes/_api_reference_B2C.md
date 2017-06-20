@@ -1,4 +1,4 @@
-# 3. Reference
+# 3. B2C Reference
 
 ## 3.1 Get an access token
 
@@ -126,6 +126,8 @@ type | The supported card type of the bank. **CREDIT_CARD**, **DEBIT_CARD**
 ## 3.3 Create a payment
 
 ```json
+## request data:
+
 {
   "payer": {
     "payment_method": "CREDIT_CARD",
@@ -199,6 +201,61 @@ type | The supported card type of the bank. **CREDIT_CARD**, **DEBIT_CARD**
     "business_type": "Y"
   }
 }
+
+## Response data:
+{
+  "meta": {
+    "sign": "RLavJJz3d91oURkEs+YcWL4qLtjgU1zvFdVa2RXm40AmHi9tLX7Fvn7x3IL5qr23nOXopQOihl9Pfi+k6R/ojaq2im/+wJrsBG4d8gV7PboDWkNd7glfca0e7+b4TzjmuV5Qd5qprjnJmslrzsdS9EPofcpaLPE9yMVPbJiBNxs=",
+    "ret_msg": "Success",
+    "ret_code": "0000"
+  },
+  "payment": {
+    "state": "WAIT_BUYER_PAY",
+    "payer": {
+      "payer_info": {
+        "bankCard": {
+          "number": "",
+          "cvv2": "",
+          "valid_date": "",
+          "citizen_id_number": "",
+          "phone": "",
+          "citizen_id_type": "",
+          "payer_name": ""
+        },
+        "payerAgreement": {
+          "usr_busi_agreement_id": "",
+          "usr_pay_agreement_id": ""
+        }
+      }
+    },
+    "order": {
+      "amount": {
+        "total": "100.02",
+        "exchange_rate": {
+          "rate": "6.9193",
+          "currency": "USD"
+        },
+        "currency": "USD",
+        "total_cny": "692.07"
+      },
+      "mer_date": "20170410",
+      "mer_reference_id": "20170411543977"
+    }
+  },
+  "links": [
+    {
+      "ref": "self",
+      "method": "POST",
+      "href": "http://10.10.77.79:8081/V1/spay_rest/payments/payment/PAY_AAGSRXVMGCDZOAJTY2VD2/query?mer_reference_id=20170411543977&mer_date=20170410"
+    },
+    {
+      "ref": "sms_verify",
+      "method": "POST",
+      "href": "http://10.10.77.79:8081/V1/spay_rest/payments/payment/PAY_AAGSRXVMGCDZOAJTY2VD2/verify"
+    }
+  ]
+}
+
 ```
 
 ```shell
@@ -287,17 +344,16 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 Creates a payment to execute later or execute right now, it depends on the payment type.
 
-The following table shows the payment types that UMF supports, all payments must be paid in RMB(Chinese Yuan):
+The following table shows the payment types that UMF supports, all payments must be paid in CNY(Chinese Yuan):
 
-Payment Type | Description
+Payment Method | Description
 ------- | -------
-Credit Card | Pay by credit card
-Debit Card | Pay by debit card
-WeChat QRCode | UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay.
-WeChat Offical Account | The customer may pay for the order inside the WeChat browser.
-WeChat APP | The customer may pay for the order inside a native app.
-AliPay QRCode | UMF returns a QR-Code String. The customer may use their WeChat to scan the QR-Code to pay.
-Protocol ID | This ID presents the payment information. The merchant can use this ID to pay for the order. Payment information includes card_no, user name, phone, cvv2, etc. Same card in different merchant has different protocol ID.
+CREDIT_CARD | Pay by credit card
+DEBIT_CARD | Pay by debit card
+WECHAT_SCAN | UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay.
+WECHAT_WEB | The customer may pay for the order inside the WeChat browser.
+WECHAT_IN_APP  | The customer may pay for the order inside a native app.
+ALIPAY_SCAN | UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay.
 
 Parameters:
 
@@ -308,6 +364,8 @@ Parameters | Description
 notify_url | String. Url of the merchant server. To receive the payment result.
 
 Response:
+
+The Response includes meta information and a payment object. See the example. The created payment object includes the following objects:
 
 Parameters | Description
 ------- | -------
@@ -429,7 +487,7 @@ Return code  | Description of return code
 00060875 | Failed to validate the card bin (validation failure due to incorrect card number) 
 00080707 | The number of verification code requests for the order exceeds the maximum.
 00200027 | The bank is not linked with the merchant on UMF's platform.
-00060869 | Merchant goods are not registered on UMF platform.
+00060869 | Merchant goods are not registered on UMF's platform.
 
 ## 3.5 Execute a payment
 
@@ -580,7 +638,6 @@ Parameter | Description
 ------- | -------
 [meta](#meta) | object. The common information of response.
 [payment](#payment) | object. The payment object.
-
 
 ## 3.6 Payment result notification
 
@@ -785,7 +842,7 @@ Parameter | Description
 [meta](#meta) | object. The common information of response.
 [refund](#refund) | object. The refund object.
 
-## 3.9 Query refund
+## 3.9 Query a refund
 
 ```json
 //request: /payments/refund/REFUND_AAAAAAQZBJMOYAJTY2ZP6
@@ -909,7 +966,7 @@ Merchant may call this url anytime. UMF will return the refund object. If the st
 
 This interface is optional. When merchant needs UMF to commit the payment information to customs, this interface will be called. As soon as the merchant calls this url, the payment information will be sent to the customs system.
 
-The merchant provides the sub-order declaration data to the platform within one month after placing an order, and the platform updates the sub-order declaration data to customs system after receiving it. 
+The merchant provides the sub-order declaration data to UMF within one month after placing an order, and UMF updates the sub-order declaration data to customs system after receiving it. 
 
 ### Request
 
@@ -947,7 +1004,7 @@ Transaction information are separated by comma and follow the order list below:
 
 TRANSDETAIL-START, Merchant number, reconciliation date
 
-Trade number, phone number, order_id, order date, payment date, successful transaction time, transaction foreign currency, price of transaction foreign currency, transaction amount in RMB, exchange rate, reconciliation date, transaction status, transaction type, product ID, refund No. 
+Trade number, phone number, order_id, order date, payment date, successful transaction time, transaction foreign currency, price of transaction foreign currency, transaction amount in CNY, exchange rate, reconciliation date, transaction status, transaction type, product ID, refund No. 
 
 TRANSDETAIL-End, merchant number, reconciliation date, total transaction amount[Enter]
 
@@ -955,7 +1012,7 @@ Field instruction of transaction lists.
 
 NO. | Field | Name | Description
 ----|-------|------|------------
-1 | tradeNo | Trade number  | trade_no generated by platform 
+1 | tradeNo | Trade number  | trade_no generated by UMF 
 2 | mobileId | Phone number | User’s phone number
 3 | orderId | Order id  | Order id generated by merchant.orderId
 4 | orderDate | Order date  | merDate
@@ -963,7 +1020,7 @@ NO. | Field | Name | Description
 6 | platTime | Payment success time | Payment success time or Refund success time
 7 | currency | Foreign currency | Foreign currency
 8 | cb_amount | Foreign currency amount | Unit: two decimal place
-9 | amount | RMB amount | Unit: tow decimal place
+9 | amount | CNY amount | Unit: tow decimal place
 10 | exchangeRate | Exchange rate when place order | Exchange rate 
 11 | transState | Transaction status  | -99: Generate Payment, 0: Success, 1: Failure, 3: Processing, 4: authorization, -1: Reversal.
 12 | transType | Transaction type. | **P**: Payment. <br /> **T**: Refund
@@ -986,7 +1043,6 @@ The request is a http get request. The mer_date must be in the URL.
 
 This interface is an Http download interface and the transaction list is downloaded as a file.
 
-
 ## 3.14 Query exchange rate
 
 ```json
@@ -1008,7 +1064,7 @@ This interface is an Http download interface and the transaction list is downloa
 
 **GET**: /exchange_rate?currency=USD
 
-Get the real-time exchange rate. The returned information is the corresponding amount of RMB.
+Get the real-time exchange rate. The returned information is the corresponding amount of CNY.
 
 ### Request
 

@@ -89,7 +89,7 @@ sequenceDiagram
     Merchant\-\->>Customer: 20. Payment result
 </div>
 
-Explanation of flow chart：
+Explanation of the sequence chart：
 
 1. Customer orders goods at merchant platform.
 2. Merchant generate an order.
@@ -143,7 +143,7 @@ sequenceDiagram
     
 </div>
 
-Explanation of flow chart：
+Explanation of the sequence chart：
 
 1. Customer orders goods at merchant platform.
 2. Merchant generate an order.
@@ -198,7 +198,7 @@ sequenceDiagram
     UMF\-\->>Merchant: 21. Payment result.
 </div>
 
-Explanation of flow chart：
+Explanation of the sequence chart：
 
 1. Customer orders goods at merchant platform.
 2. Merchant generates an order.
@@ -256,7 +256,7 @@ sequenceDiagram
     Merchant App Client\-\->>Customer: 17. Payment result
 </div>
 
-Explanation of flow chart：
+Explanation of the sequence chart：
 
 1. Customer orders goods at merchant platform.
 2. Merchant App Client generate an order.
@@ -300,7 +300,7 @@ sequenceDiagram
     Merchant\-\->>Customer: 10. Refund result
 </div>
 
-Explanation of flow chart：
+Explanation of the sequence chart：
 
 1. Customer select the goods to be returned and refunded at merchant platform. 
 2. Merchant platform generates a refund order.
@@ -312,3 +312,76 @@ Explanation of flow chart：
 8. Bank returns refund result to UMF.
 9. UMF returns a refund object to merchant.
 10. Merchant shows the result to customer.
+
+## 2.7 B2B Payment
+
+B2B Payment scenario: A Chinese company buys from a non-Chinese merchant.
+
+The company can pay in CNY. The Merchant will get local currency, such as USD or CAD. See the [currencys](#currency-codes) we support. 
+
+There are two steps to make a payment.
+
+- Register a company as a client of current Merchant.
+- Use online payment to pay.
+
+### The diagram of register a company.
+
+<div class="mermaid">
+sequenceDiagram
+    participant Company
+    participant Merchant
+    participant UMF
+    participant Bank
+    Company\-\->>Merchant: 1. Commit documents.
+    Merchant\-\->>UMF: 2.Commit documents.
+    UMF\-\->>Bank: 3. Commit documents.
+    Bank\-\->>UMF: 4. Return verify result.
+    UMF\-\->>Merchant: 5. Return verify result.
+    Merchant\-\->>UMF: 6. Regiter a company.
+    UMF\-\->>Merchant: 7. Return the information of registered company.
+</div>
+
+Explanation of the sequence chart (**offline**)：
+
+1. The company commit all the required documents to the Merchant. 
+2. The Merchant commit documents to UMF.
+3. UMF check the document and sent it to the bank.
+4. The bank verify if the company is qualifed to do the business, Then send the result to UMF.
+5. UMF returns the result to Merchant.
+6. **online**. If the company is ok, The merchant will create a company.
+7. **online**. UMF return the information of created company. The most important thing is the company id.
+
+
+### The diagram of make a payment.
+
+<div class="mermaid">
+sequenceDiagram
+    participant Company
+    participant Merchant
+    participant UMF
+    participant Bank
+    Company\-\->>Merchant: 1. Make a payment.
+    Merchant\-\->>UMF: 2.Create a payment.
+    UMF\-\->>Merchant: 3. Return the payment object.
+    Merchant\-\->>Bank: 4. Redirect payment page to online bank.
+    Bank\-\->>Company: 5. Show online payment page.
+    Company\-\->>Bank: 6. Pay it online.
+    Bank\-\->>UMF: 7. Payment result notification.
+    UMF\-\->>Merchant: 8. Payment result notification.
+    Merchant\-\->>UMF: 9. Upload all the required documents.
+
+</div>
+
+Explanation of the sequence chart：
+
+1. The Company select the goods and request a payment.
+2. Merchant platform calls UMF to create a payment. See []
+3. UMF returns the created payment object. The payment object includes the URL to UMF payment service. Merchant should open a new window to UMF payment Service.
+4. The merchant open a new window to the payment URL. The final page belongs to the bank. 
+5. The bank returns the online payment page to the company.
+6. The company fills all the information and commit. The payment must use  business bank account.
+7. Bank send notification of the payment result to UMF.
+8. UMF send notification of the payment result to Merchant.
+9. If the payment is succeed, the merchant should upload all the required documents(contract, bills, invoices ...) to UMF via FTP protocol. UMF will check the documents offline. If everything is ok, the CNY will be exchanged to wanted currency.
+
+

@@ -1,4 +1,4 @@
-# 6. Frequently Asked Questions
+# 7. Frequently Asked Questions
 
 ## About UMF
 

@@ -1,4 +1,4 @@
-# 7. Appendix
+# 8. Appendix
 
 
 ## Transaction encoding and transaction postscript description

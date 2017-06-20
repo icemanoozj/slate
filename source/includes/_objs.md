@@ -1,4 +1,4 @@
-# 4. Object Definitions
+# 5. Object Definitions
 
 ## address
 
@@ -8,9 +8,9 @@ recipient_name  | The name of recipient.
 line1  | The first line of the address. For example, number, street, and so on. Maximum length is 100 characters.
 line2 | The second line of the address. For example, suite, apartment number, and so on. Maximum length is 100 characters.
 city  | The city name. Maximum length is 50 characters.
- state  | The two-letter code for US states or the equivalent for other countries. Maximum length is 100 characters.
- country_code  | [The two-character country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
-postal_code  | The zip code or equivalent. Typically required for countries that have them. Maximum length is 20 characters. Required in certain countries.
+state  | The two-letter code for US states or the equivalent for other countries. Maximum length is 100 characters.
+country_code  | [The two-character country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+postal_code  | The zip code or equivalent. Maximum length is 20 characters. Required in certain countries.
 phone | The phone number's maximum length is 50 characters.
 
 ## amount
@@ -156,6 +156,20 @@ Parameter | Description
 currency | ENUM. The code of currency.
 rate | String. The exchange rate.
 
+## external_enterprise
+
+The external enterprise object is the merchant's customer which make payments by company accounts. It is used in B2B business.
+
+Parameter | Description
+------- | -------
+external_enterprise_id | String. The id of enterprise in Merchant's system.
+enterprise_name | String. The name of enterprise.
+enterprise_phone | String. the phone number of contact.
+enterprise_email | String. The email of contact.
+enterprise_contacts | String. The name of contact .
+busi_type | ENUM. The business type of the company. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.
+enterprise_code | String. The unified social credit code system for legal entities and other organizations. See [Uniform Social Credit Code](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([中文版: 统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))
+
 ## item
 
 Item is the information of same goods in a sub_order object.
@@ -224,9 +238,10 @@ The payer information.
 
 Parameter | Description
 ------- | -------
-payment_method | ENUM. The payment method. Value is:<br />- CREDIT_CARD <br /> - DEBIT_CARD <br /> - WECHAT_SCAN <br /> - WECHAT_IN_APP <br /> - WECHAT_WEB <br /> - ALIPAY_SCAN
-[bank_code](#bank) | String. The abbreviation of bank. Available in China. See [bank]
+payment_method | ENUM. The payment method. The value should be one of the following:<br />- **CREDIT_CARD** : Pay by credit card <br /> - **DEBIT_CARD**: Pay by debit card. <br /> - **WECHAT_SCAN**: UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. <br /> - **WECHAT_IN_APP**: The customer may pay for the order inside a native app. <br /> - **WECHAT_WEB**: The customer may pay for the order inside the WeChat browser. <br /> - **ALIPAY_SCAN**: UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay. <br /> - **B2B_ONLINE_BANKING**: Pay with chinese business bank account.
+[bank_code](#bank) | String. The abbreviation of bank. Available in China. See [Bank](#bank)
 [payer_info](#payer_info) | Object. The information of payer.
+interface_type | ENUM. The type of payment interface. The value should be one of the following:"S2S"(server-to-server), "S2B"(server-to-browser), "S2M"(server-to-mobile)
 
 ## payer_agreement
 
@@ -270,9 +285,9 @@ Payment object is the core concept of this API. It has the following information
 parameters | Description
 ------- | -------
 payment_id | String. The ID of payment object.
-[payer](#paymer) | Object. The payment information.
+[payer](#payer) | Object. The payment information.
 [order](#order) | Object. The order information. Includes sub orders.
-state | ENUM. **-WAIT_BUYER_PAY**: The payment need to be paid. <br /> **-TRADE_SUCCESS**: The payment was succcessufl.<br /> **-TRADE_CLOSED**:The payment was closed because the order was expired.<br /> **-TRADE_CANCEL**: The payment was cancelled.<br /> **-TRADE_FAIL**: The payment was failed.
+state | ENUM. <br />**-WAIT_BUYER_PAY**: The payment need to be paid. <br /> **-TRADE_SUCCESS**: The payment was succcessufl.<br /> **-TRADE_CLOSED**:The payment was closed because the order was expired.<br /> **-TRADE_CANCEL**: The payment was cancelled.<br /> **-TRADE_FAIL**: The payment was failed.
 notify_url | String. Url of the merchant server. To receive the payment result.
 ret_url | String. The return url after the payment was done. Only availabled when the merchant uses the checkout web page of UMF.
 execute_success_time | String. The time of transfer money from customer to UMF.
