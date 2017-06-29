@@ -69,7 +69,7 @@ https:///enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ
     "external_enterprise_id": "10000122",
     "busi_type": "GFHG",
     "enterprise_status": "ENABLE",
-    "rank": "AA/A",
+    "rank": "A",
     "enterprise_name": "华西电子商务有限公司"
   }
 }
@@ -78,7 +78,7 @@ https:///enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ
 
 This is a http get request. The parameter should be replaced by the real id of enterprise_qualification object.
 
-The "rank" means the credit rating of each company in Customs' system. In the Customs' system. There are five rates: AA, A, B, C and D. The AA and A presente high credit. In the UMF, we mark each company as "AA/A" or "OTHERS". If a company's credit rating has not been checked, UMF marks it as "UNKNOWN".
+The "rank" means the credit rating of each company in Customs' system. In the Customs' system. There are five rates: AA, A, B, C and D. The AA and A presente high credit. In the UMF, we mark each company as "A" or "OTHERS". If a company's credit rating has not been checked, UMF marks it as "UNKNOWN".
 
 
 ## 4.3 Create a payment

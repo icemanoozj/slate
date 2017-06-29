@@ -127,10 +127,10 @@ Use the UMF REST APIs in these environments:
 
 Environment | Description | Endpoint
 ------------|-------------|---------
-Sandbox - China | Test. For servers in China. Use your test client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://uat.soopay.net 
-Live - China | Production. For servers in China. Use your live client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://pay.soopay.com
-Sandbox - American | Test. For servers in North America. Use your test client_id and client_secret to generate an access token to make calls to the live URIs. | https://uatfx.soopay.net
-Live - American | Production. For servers in North America. Use your live client_id and client_secret to generate an access token to make calls to the live URIs. | https://payfx.soopay.net
+Sandbox - China | Test. For servers in China. Use your test client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://uat.soopay.net/cberest/v1/
+Live - China | Production. For servers in China. Use your live client_id and client_secret to generate an access token to make calls to the Sandbox URIs. | https://pay.soopay.com/cberest/v1/
+Sandbox - American | Test. For servers in North America. Use your test client_id and client_secret to generate an access token to make calls to the live URIs. | https://uatfx.soopay.net/cberest/v1/
+Live - American | Production. For servers in North America. Use your live client_id and client_secret to generate an access token to make calls to the live URIs. | https://fx.soopay.net/cberest/v1/
 
 
 To construct a REST call, combine:
@@ -178,19 +178,24 @@ UMF system supports GET and POST requests.
 ### HTTP head
 
 To make a REST API call, you must include request headers including the Authorization header with an OAuth 2.0 access token.
-> #### http get header example
-> "Content-Type:application/json" \
-> "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
+
+http get header example:
+
+`Content-Type:application/json`
+
+`Authorization:Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f`
 
 If the request is a POST request, the request headers must include the following information:
 
-- Content-Type: application/json
 - Signature:[SignatureOfPostBody](#1-6-signature-and-verify-signature)
 
-> #### http post header example
-> "Content-Type:application/json" \
-> "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
-> "Signature=p+owOiuS9eVrDQIHaP9CwwR89k99+6MdALuetVW9SKpBJvbvQdO8Sx8P1wlgIN9naa9YQeha/oiVhTFh57dtEpE92HU4jsYXZ2aj8puIP6IXbyDG18vr7Qs1sCfdtT7ziXrv31BIIahn6HKZLtVf/fus2NIyO7f2zl+b34In4dM="
+http post header example:
+
+`Content-Type:application/json` 
+
+`Authorization:Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f`
+
+`Signature:p+owOiuS9eVrDQIHaP9CwwR89k99+6MdALuetVW9SKpBJvbvQdO8Sx8P1wlgIN9naa9YQeha/oiVhTFh57dtEpE92HU4jsYXZ2aj8puIP6IXbyDG18vr7Qs1sCfdtT7ziXrv31BIIahn6HKZLtVf/fus2NIyO7f2zl+b34In4dM=`
 
 ## 1.4 HTTP response
 

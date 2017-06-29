@@ -131,7 +131,7 @@ cvv2 | String. **Must be encrypted**. CVV2 of bank card.
 card_holder | String. **Must be encrypted**. The name of card holder
 external_customer_id | String. The customer id in merchant system.
 state | ENUM. The state of bank card.
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_type | ENUM. The type of citizen id. Currently, it must be **IDENTITY_CARD**.
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 
 ## customs_declaration
@@ -169,6 +169,21 @@ enterprise_email | String. The email of contact.
 enterprise_contacts | String. The name of contact .
 busi_type | ENUM. The business type of the company. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.
 enterprise_code | String. The unified social credit code system for legal entities and other organizations. See [Uniform Social Credit Code](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([中文版: 统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))
+
+## enterprise_qualification
+
+The qualification of enterprise. It is used in B2B business.
+
+Parameter | Description
+------- | -------
+external_enterprise_id | String. The id of enterprise in Merchant's system.
+enterprise_name | String. The name of enterprise.
+enterprise_phone | String. the phone number of contact.
+enterprise_email | String. The email of contact.
+enterprise_contacts | String. The name of contact .
+busi_type | ENUM. The business type of the company. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.
+enterprise_code | String. The unified social credit code system for legal entities and other organizations. See [Uniform Social Credit Code](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([中文版: 统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))
+
 
 ## item
 
@@ -284,7 +299,7 @@ Payment object is the core concept of this API. It has the following information
 
 parameters | Description
 ------- | -------
-payment_id | String. The ID of payment object.
+id | String. The ID of payment object.
 [payer](#payer) | Object. The payment information.
 [order](#order) | Object. The order information. Includes sub orders.
 state | ENUM. <br />**-WAIT_BUYER_PAY**: The payment need to be paid. <br /> **-TRADE_SUCCESS**: The payment was succcessufl.<br /> **-TRADE_CLOSED**:The payment was closed because the order was expired.<br /> **-TRADE_CANCEL**: The payment was cancelled.<br /> **-TRADE_FAIL**: The payment was failed.
@@ -323,7 +338,7 @@ If the merchant want to show a QR-Code to customer for scanning, a wechat_qr_cod
 
 Parameter | Description
 ------- | -------
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_type | ENUM. The type of citizen id. Currently, it must be **IDENTITY_CARD**.
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 qr_code_url | String. The url of wechat QR-Code pay. Thiis information is returned by UMF.
 
@@ -403,7 +418,7 @@ Parameter | Description
 mer_sub_reference_id | String. The ID of sub_order object.
 amount | Object. The amount of sub_order.
 order_summary | String. The summary of sub_order.
-trans_code | ENUM. The transaction of goods.
+trans_code | ENUM. The transaction code of goods. See [Transaction encoding and transaction postscript description](#transaction-encoding-and-transaction-postscript-description)
 is_customs | bool. If the merchant needs UMF to submit the payment information to customs.
 items | Object Array. The items in sub_orders.
 
@@ -424,7 +439,7 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 
 Parameter | Description
 ------- | -------
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_type | ENUM. The type of citizen id. Currently, it must be **IDENTITY_CARD**.
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 [pay_info](#pay_info) | Object. The information for calling WeChat native SDK to activate WeChat APP.
 
@@ -435,7 +450,7 @@ The UMF will return all the information that WeChat SDK required to activate WeC
 Parameter | Description
 ------- | -------
 open_id | String. The OpenID is a unique encrypted WeChat ID for each user of an official account, and users can have separate OpenIDs corresponding to different official accounts. 
-citizen_id_type | String. The type of citizen id. Currently, it must be IDENTITY_CARD
+citizen_id_type | ENUM. The type of citizen id. Currently, it must be **IDENTITY_CARD**.
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 [pay_info](#pay_info) | Object. The information for calling WeChat JS-API to activate WeChat payment in WeChat browser.
 

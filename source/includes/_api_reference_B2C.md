@@ -451,7 +451,9 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 ```
 
-This step is only available for card payment. Merchant sends the card information, and UMF(or the bank) will send SMS to customer's phone. This SMS is part of the parameters of executing the payment.
+This step is only available for card payment. 
+
+In this step, Merchant sends the card information, and UMF(or the bank) will send SMS to customer's phone. This SMS is part of the parameters of executing the payment.
 
 ### Request
 
@@ -460,6 +462,8 @@ This step is only available for card payment. Merchant sends the card informatio
 The payment_id in the url is the real payment id that was created in the previous step([Create a payment](#Create_a_payment)).
 
 ### Parameters
+
+The payer object can be used
 
 Parameter | Description
 ----------|------------

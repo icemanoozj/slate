@@ -1,6 +1,5 @@
 # 2. Tutorials
 
-
 ## 2.1 First Call
 
 To make a REST api call：
@@ -69,7 +68,7 @@ sequenceDiagram
     Merchant\-\->>Customer: 2. Generate order
     Customer\-\->>Merchant: 3. Confirm order
     Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call.
-    Merchant\-\->>UMF: 4. **Optional**. Acquire an access token
+    Merchant\-\->>UMF: 4. Optional. Acquire an access token
     UMF\-\->>Merchant: 5. Return access_token
     Note right of Merchant:  Using access token to make API call
     Merchant\-\->>UMF: 6. Create a payment
@@ -128,7 +127,7 @@ sequenceDiagram
     Merchant\-\->>Customer: 2. Generate order
     Customer\-\->>Merchant: 3. Confirm order
     Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
-    Merchant\-\->>UMF: 4. **Optional**. Acquire an access token
+    Merchant\-\->>UMF: 4. Optional. Acquire an access token
     UMF\-\->>Merchant: 5. Return access_token
     Note right of Merchant:  Using access token to make API call
     Merchant\-\->>UMF: 6. Create a payment
@@ -240,7 +239,7 @@ sequenceDiagram
     Customer\-\->>Merchant App Client: 3. Confirm order
     Merchant App Client\-\->>Merchant App Server: 4. Request for initial a payment
     Note right of Merchant App Server: If the merchant have an unexpired access token. It can be used to make an API call
-    Merchant App Server\-\->>UMF: 5. **Optional**. Acquire an access token
+    Merchant App Server\-\->>UMF: 5. Optional. Acquire an access token
     UMF\-\->>Merchant App Server: 6. Return access_token
     Note right of Merchant App Server:  Using access token to make API call
     Merchant App Server\-\->>UMF: 7. Create a payment
@@ -290,7 +289,7 @@ sequenceDiagram
     Merchant\-\->>Customer: 2. Generate a refund order
     Customer\-\->>Merchant: 3. Confirm the refund order
     Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
-    Merchant\-\->>UMF: 4. **Optional**. Acquire an access token
+    Merchant\-\->>UMF: 4. Optional. Acquire an access token
     UMF\-\->>Merchant: 5. Return access_token
     Note right of Merchant:  Using access token to make API call
     Merchant\-\->>UMF: 6. Request a refund
