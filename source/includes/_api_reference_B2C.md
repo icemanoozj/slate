@@ -7,7 +7,7 @@
 {
     "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
     "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials",
+    "grant_type": "client_credentials"
 }
 
 //response
@@ -24,7 +24,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 -d '{
     "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
     "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials",
+    "grant_type": "client_credentials"
 }'
 
 //response
@@ -1170,7 +1170,7 @@ The response will include a [meta object](#meta) and the object that merchant re
 
 **GET**: /payments/transactions?mer_date=20170213
 
-**GET**: /payments/transactions?mer_date=20170213?page_number=2
+**GET**: /payments/transactions?mer_date=20170213&page_number=2
 
 
 ### Request

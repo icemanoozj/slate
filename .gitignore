@@ -19,6 +19,8 @@ node_modules/
 .sass-cache
 *.lock
 
+package-lock.json
+
 # YARD artifacts
 .yardoc
 _yardoc

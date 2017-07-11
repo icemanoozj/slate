@@ -277,12 +277,12 @@ The pay_info object includes the information of WeChat In-App Payment and WeChat
 
 Parameter | Description
 ------- | -------
-appId | String. The unique identifier of the Official Account of UMF
-timeStamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
-signType | String. The type of signature. It will be "MD5" in this scenario.
+app_id | String. The unique identifier of the Official Account of UMF
+time_stamp | String. The number of seconds that have elapsed since 00:00:00 Coordinated Universal Time (UTC), Thursday, 1 January 1970.
+sign_type | String. The type of signature. It will be "MD5" in this scenario.
 package | String. The ID of this WeChat payment.
-nonceStr | String. A random string for the generated signature.
-paySign | String. The signature of this request.
+nonce_str | String. A random string for the generated signature.
+pay_sign | String. The signature of this request.
 
 ## payer_info
 
