@@ -259,7 +259,7 @@ payment_method | ENUM. The payment method. The value should be one of the follow
 [payer_info](#payer_info) | Object. The information of payer.
 interface_type | ENUM. The type of payment interface. The value should be one of the following: <br/> - **S2S**:server-to-server <br> - **S2B**:server-to-browser <br/> - **S2M**:server-to-mobile
 
-Payment method for each interface_type and for B2C and B2B.
+Available payment_method for each interface_type and for B2C and B2B.
 
 interface_type | B2C | B2B
 ---------------|-----|----
