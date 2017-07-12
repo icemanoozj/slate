@@ -53,7 +53,7 @@ Important: You cannot run the sample requests in this guide as-is. Replace call-
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl -v https://api.sandbox.paypal.com/v1/payments/payment \
+curl -v https://uatfx.soopay.net/cberest/v1/payments/payment \
 -H "Content-Type:application/json" \
 -H "Authorization: Bearer Access-Token" \
 -d '{

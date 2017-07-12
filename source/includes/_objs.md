@@ -254,7 +254,7 @@ The payer information.
 Parameter | Description
 ------- | -------
 payment_method | ENUM. The payment method. The value should be one of the following:<br />- **CREDIT_CARD** : Pay by credit card <br /> - **DEBIT_CARD**: Pay by debit card. <br /> - **WECHAT_SCAN**: UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. <br /> - **WECHAT_IN_APP**: The customer may pay for the order inside a native app. <br /> - **WECHAT_WEB**: The customer may pay for the order inside the WeChat browser. <br /> - **ALIPAY_SCAN**: UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay. <br /> - **B2B_ONLINE_BANKING**: Pay with chinese business bank account.
-[bank_code](#bank) | String. The abbreviation of bank. Available in China. See [Bank](#bank)
+[bank_code](#bank) | String. The abbreviation of bank. Available in China. See [Banks](#banks-supported-by-credit-card-payment)
 [payer_info](#payer_info) | Object. The information of payer.
 interface_type | ENUM. The type of payment interface. The value should be one of the following:"S2S"(server-to-server), "S2B"(server-to-browser), "S2M"(server-to-mobile)
 
@@ -388,24 +388,24 @@ mer_sub_reference_id | The reference id of sub-order. **Only available in reconc
 
 This object is the information of transaction. UMF uses this info to approve or deny the transaction. If the risk of fraud is too high, this transaction will be denied. The anti fraud algorithm will be periodically adjusted.
 
-Codes  | Fields name  | Data type | Field description  | Send or not 
+Field name  | desc  | Data type | Field description  | Send or not 
 -------|--------------|-----------|--------------------|-------------
-B0002 | Transaction type  | String | 01 Deposit, 02 Purchase | Y
-B0003 | Name of the recipient  | String  | When D0008 is either 1 or 3, it is required to send this Field. | C
-B0004 | Phone number of the recipient | String | When D0008 is either 1 or 3, it is required to send this Field. <br /> Such as: 13800011111 | C
-B0005 | Delivery address  | String | When D0008 is either 1 or 3, it is required to send this Field. | C
-B0006 | Registered email  | String | Email of the customer used for registration, must be verified by the merchant | N
-B0007 | mobile phone number | String | Registrant mobile phone number | N
-B0008 | identity card number | String | Registrant identity card number, | When D0009 is 1, it is required to send this Field. | C
-D0001 | Device identification  | String | For example, the MAC code of mobile phone or the terminal identification ID defined internally.  | N
-D0002 | Type of Device  | String | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
-D0003 | User ID  | String  | UserID at the merchant platform | N
-D0004 | User Registration time |  | String | The time that the user registers for the product, which shall be read exactly on the second. <br />Such as:20150311120000 | N
-D0005 | Production form  | String | 1 - android app ; 2 - IOS app; 3- PC | (web page); 4 - Mobile phone | (wap, or html5 page);  | N
-D0007 | The number of successful transactions | String | The number of successful transactions on the merchant platform | N
-D0008 | Category of commodities | String | 0: virtual goods, 1:physical goods, 2: air ticket, 3: electronics | Y
-D0009 | Real name purchase | String | 0: not real name system, 1: real name system | Y
-D0010 | Category of business  | String | 3: Cross-border Payment | Y
+trans_type | Transaction type  | String | 01 Deposit, 02 Purchase | Y
+receiver_name | Name of the recipient  | String  | When D0008 is either 1 or 3, it is required to send this Field. | C
+receiver_moblie_id | Phone number of the recipient | String | When D0008 is either 1 or 3, it is required to send this Field. <br /> Such as: 13800011111 | C
+receiver_address | Delivery address  | String | When D0008 is either 1 or 3, it is required to send this Field. | C
+registration_email | Registered email  | String | Email of the customer used for registration, must be verified by the merchant | N
+registration_moblie_id | mobile phone number | String | Registrant mobile phone number | N
+registration_identify_code | identity card number | String | Registrant identity card number, | When D0009 is 1, it is required to send this Field. | C
+device_id | Device identification  | String | For example, the MAC code of mobile phone or the terminal identification ID defined internally.  | N
+device_type | Type of Device  | String | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
+user_id | User ID  | String  | UserID at the merchant platform | N
+registration_time | User Registration time |  | String | The time that the user registers for the product, which shall be read exactly on the second. <br />Such as:20150311120000 | N
+user_agent | Production form  | String | 1 - android app ; 2 - IOS app; 3- PC | (web page); 4 - Mobile phone | (wap, or html5 page);  | N
+success_transactions_number | The number of successful transactions | String | The number of successful transactions on the merchant platform | N
+goods_type | Category of commodities | String | 0: virtual goods, 1:physical goods, 2: air ticket, 3: electronics | Y
+real_name | Real name purchase | String | 0: not real name system, 1: real name system | Y
+business_type | Category of business  | String | 3: Cross-border Payment | Y
 
 [comment]: # (statement)
 

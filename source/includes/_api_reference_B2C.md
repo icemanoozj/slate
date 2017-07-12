@@ -259,7 +259,7 @@ type | The supported card type of the bank. **CREDIT_CARD**, **DEBIT_CARD**
 ```
 
 ```shell
-$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
+$ curl -v -X POST https://uatfx.soopay.net/cberest/v1/payments/payment \
 -H "Content-Type:application/json" \
 -H "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
 -H "Signature=p+owOiuS9eVrDQIHaP9CwwR89k99+6MdALuetVW9SKpBJvbvQdO8Sx8P1wlgIN9naa9YQeha/oiVhTFh57dtEpE92HU4jsYXZ2aj8puIP6IXbyDG18vr7Qs1sCfdtT7ziXrv31BIIahn6HKZLtVf/fus2NIyO7f2zl+b34In4dM="
@@ -339,21 +339,20 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 ```
 
-
 **POST**: /payments/payment
 
 Creates a payment to execute later or execute right now, it depends on the payment type.
 
-The following table shows the payment types that UMF supports, all payments must be paid in CNY(Chinese Yuan):
+The following table shows the payment types that UMF supports in B2C payment, all payments must be paid in CNY(Chinese Yuan):
 
 Payment Method | Description
 ------- | -------
-CREDIT_CARD | Pay by credit card
-DEBIT_CARD | Pay by debit card
-WECHAT_SCAN | UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay.
-WECHAT_WEB | The customer may pay for the order inside the WeChat browser.
-WECHAT_IN_APP  | The customer may pay for the order inside a native app.
-ALIPAY_SCAN | UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay.
+CREDIT_CARD | Pay by credit card. [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).
+DEBIT_CARD | Pay by debit card. [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).
+WECHAT_SCAN | UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment).
+WECHAT_WEB | The customer may pay for the order inside the WeChat browser. [See the workflow chart of In-App Web-based payment](#2-4-pay-by-wechat-in-app-web-based-payment).
+WECHAT_IN_APP  | The customer may pay for the order inside a native app. [See the workflow chart of Wechat In-App payment](#2-5-pay-by-wechat-in-app-payment).
+ALIPAY_SCAN | UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay.  [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment).
 
 Parameters:
 
