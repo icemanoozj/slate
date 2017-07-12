@@ -131,6 +131,7 @@ cvv2 | String. **Must be encrypted**. CVV2 of bank card.
 card_holder | String. **Must be encrypted**. The name of card holder
 external_customer_id | String. The customer id in merchant system.
 state | ENUM. The state of bank card.
+phone | String. The phone number registered in the bank card issuer.
 citizen_id_type | ENUM. The type of citizen id. Currently, it must be **IDENTITY_CARD**.
 citizen_id_number | String. **Must be encrypted**. Citizen id number.
 
