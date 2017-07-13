@@ -397,7 +397,7 @@ mer_sub_reference_id | The reference id of sub-order. **Only available in reconc
 
 This object is the information of transaction. UMF uses this info to approve or deny the transaction. If the risk of fraud is too high, this transaction will be denied. The anti fraud algorithm will be periodically adjusted.The following parameter values are string types.
 
-Field name  | desc  | Field description  | Send or not 
+Field name | desc | Field description | Send or not 
 -------|--------------|--------------------|-------------
 goods_type | Category of commodities | ENUM. <br/> `0` virtual goods <br/> `1` physical goods <br/> `2` air ticket <br/> `3` electronics | Y
 real_name | Real name purchase | ENUM. <br/> `0` not real name system <br/> `1` real name system | Y
