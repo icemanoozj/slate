@@ -196,7 +196,7 @@ mer_item_id | String. The ID in merchant system.
 type | ENUM. The type of goods. <br/> **CLOTHING** <br/> **FOOD** <br/> **ELECTRONICS** <br/> **OTHER**
 name | String. The goods name.
 description | String. The description of goods.
-[amount](amount) | Object. The amount object. The price of goods.
+[amount](#amount) | Object. The amount object. The price of goods.
 quantity | Number. The quantity of goods.
 
 

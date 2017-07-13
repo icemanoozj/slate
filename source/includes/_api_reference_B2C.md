@@ -110,7 +110,7 @@ https://uatfx.paysoo.com/rest/v1/bank?type=CREDIT_CARD
         }
     ], 
     "meta": {
-        "sign": "NdSx+5ARt+tBw/E2tUAI5/Qm7EfiG3P8aDcxV0vfMX7KW7Tq1NgDEJSlH3CXwzRPKY37CE3Omh8FN5GnE7NFFEHR2BJeeejt9TXRyX8ZOu1vYsQKB1RKrZUvB5fA0bRmKoTdZXjztGBQPPpMVHRjIzOIkQIK7cheiAuKzx9T4jQ=", 
+        "sign": "NdSx+5AtR+tBw/E2tUAI5/Qm7EfiG3P8aDcxV0vfMX7KW7Tq1NgDEJSlH3CXwzRPKY37CE3Omh8FN5GnE7NFFEHR2BJeeejt9TXRyX8ZOu1vYsQKB1RKrZUvB5fA0bRmKoTdZXjztGBQPPpMVHRjIzOIkQIK7cheiAuKzx9T4jQ=", 
         "ret_msg": "successful transaction", 
         "ret_code": "0000"
     }
