@@ -265,7 +265,7 @@ interface_type | B2C | B2B
 ---------------|-----|----
 **S2S** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN |  
 **S2B** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN | B2B_ONLINE_BANKING
-**S2M** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN <br /> WECHAT_IN_APP <br /> WECHAT_WEB
+**S2M** | WECHAT_IN_APP <br /> WECHAT_WEB
 
 ## payer_agreement
 
