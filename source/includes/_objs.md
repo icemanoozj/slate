@@ -399,22 +399,24 @@ This object is the information of transaction. UMF uses this info to approve or 
 
 Field name  | desc  | Field description  | Send or not 
 -------|--------------|--------------------|-------------
+goods_type | Category of commodities | ENUM. <br/> `0` virtual goods <br/> `1` physical goods <br/> `2` air ticket <br/> `3` electronics | Y
+real_name | Real name purchase | ENUM. <br/> `0` not real name system <br/> `1` real name system | Y
+business_type | Category of business  | ENUM `3` Cross-border Payment | Y
 trans_type | Transaction type  | ENUM. <br/> `01` Deposit <br/> `02` Purchase | Y
 receiver_name | Name of the recipient  | When **goods_type** is either `1` or `3`, it is required to send this field. | C
 receiver_moblie_id | Phone number of the recipient | When **goods_type** is either `1` or `3`, it is required to send this field. <br /> Such as: 13800011111 | C
 receiver_address | Delivery address  |  When **goods_type** is either `1` or `3`, it is required to send this field. | C
+registration_identify_code | identity card number | Registrant identity card number,  When **real_name** is `1`, it is required to send this field. | C
 registration_email | Registered email  | Email of the customer used for registration, must be verified by the merchant | N
 registration_moblie_id | mobile phone number | Registrant mobile phone number | N
-registration_identify_code | identity card number | Registrant identity card number,  When **real_name** is `1`, it is required to send this field. | C
 device_id | Device identification  | For example, the MAC code of mobile phone or the terminal identification ID defined internally.  | N
 device_type | Type of Device  | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
 user_id | User ID  | UserID at the merchant platform | N
 registration_time | User Registration time | The time that the user registers for the product, which shall be read exactly on the second. <br />Such as:20150311120000 | N
 user_agent | Production form  | ENUM. <br/> `1` android app <br/> `2` IOS app <br/> `3` PC (web page) <br/> `4` Mobile phone(wap, or html5 page);  | N
 success_transactions_number | The number of successful transactions | The number of successful transactions on the merchant platform | N
-goods_type | Category of commodities | ENUM. <br/> `0` virtual goods <br/> `1` physical goods <br/> `2` air ticket <br/> `3` electronics | Y
-real_name | Real name purchase | ENUM. <br/> `0` not real name system <br/> `1` real name system | Y
-business_type | Category of business  | ENUM `3` Cross-border Payment | Y
+
+
 
 [comment]: # (statement)
 
