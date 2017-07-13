@@ -257,15 +257,15 @@ Parameter | Description
 payment_method | ENUM. The payment method. The value should be one of the following:<br />- **CREDIT_CARD** : Pay by credit card. <br /> [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).<br /> - **DEBIT_CARD**: Pay by debit card. <br /> [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).<br /> - **WECHAT_SCAN**: UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. <br />  [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment).<br /> - **WECHAT_IN_APP**: The customer may pay for the order inside a native app. <br /> [See the workflow chart of Wechat In-App payment](#2-5-pay-by-wechat-in-app-payment).<br /> - **WECHAT_WEB**: The customer may pay for the order inside the WeChat browser. <br /> [See the workflow chart of In-App Web-based payment](#2-4-pay-by-wechat-in-app-web-based-payment).<br /> - **ALIPAY_SCAN**: UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay. <br /> [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment). <br /> - **B2B_ONLINE_BANKING**: Pay with chinese business bank account. <br /> [See the workflow chart of B2B Payment](#2-7-b2b-payment).
 [bank_code](#bank) | String. The abbreviation of bank. Available in China. See [Banks](#banks-supported-by-credit-card-payment)
 [payer_info](#payer_info) | Object. The information of payer.
-interface_type | ENUM. The type of payment interface. The value should be one of the following: <br/> - **S2S**:server-to-server <br> - **S2B**:server-to-browser <br/> - **S2M**:server-to-mobile
+interface_type | ENUM. The type of payment interface. The value should be one of the following: <br/> - **SERVER_TO_SERVER**:server-to-server <br> - **SERVER_TO_BROWSER**:server-to-browser <br/> - **SERVER_TO_MOBILE**:server-to-mobile
 
 Available payment_method for each interface_type and for B2C and B2B.
 
 interface_type | B2C | B2B
 ---------------|-----|----
-**S2S** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN |  
-**S2B** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN | B2B_ONLINE_BANKING
-**S2M** | WECHAT_IN_APP <br /> WECHAT_WEB
+**SERVER_TO_SERVER** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN |  
+**SERVER_TO_BROWSER** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN | B2B_ONLINE_BANKING
+**SERVER_TO_MOBILE** | WECHAT_IN_APP <br /> WECHAT_WEB
 
 ## payer_agreement
 
