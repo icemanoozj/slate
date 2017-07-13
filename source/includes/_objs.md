@@ -413,7 +413,7 @@ device_id | Device identification  | For example, the MAC code of mobile phone o
 device_type | Type of Device  | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
 user_id | User ID  | UserID at the merchant platform | N
 registration_time | User Registration time | The time that the user registers for the product, which shall be read exactly on the second. <br />Such as:20150311120000 | N
-user_agent | Production form  | ENUM. <br/> `1` android app <br/> `2` IOS app <br/> `3`PC (web page) <br/> `4` Mobile phone(wap, or html5 page);  | N
+user_agent | Production form  | ENUM. <br/> `1` android app <br/> `2` IOS app <br/> `3` PC (web page) <br/> `4` Mobile phone(wap, or html5 page);  | N
 success_transactions_number | The number of successful transactions | The number of successful transactions on the merchant platform | N
 
 
