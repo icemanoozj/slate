@@ -193,10 +193,10 @@ Item is the information of same goods in a sub_order object.
 Parameter | Description
 ------- | -------
 mer_item_id | String. The ID in merchant system.
-type | ENUM. The type of goods. **CLOTHING**,  **FOOD**, **ELECTRONICS**, **OTHER**. 
+type | ENUM. The type of goods. <br/> **CLOTHING** <br/> **FOOD** <br/> **ELECTRONICS** <br/> **OTHER**
 name | String. The goods name.
 description | String. The description of goods.
-amount | Object. The amount object. The price of goods.
+[amount](amount) | Object. The amount object. The price of goods.
 quantity | Number. The quantity of goods.
 
 
@@ -233,7 +233,7 @@ order_summary | String. The summary of an order.
 mer_reference_id | String. The ID of order. The same order ID of a merchant will pay only once.
 mer_date | String. The order date. This time will show as-is in the statement. 
 expire_time | String. The payment deadline. If the time expires, UMF will not execute the payment.
-sub_orders | Object Array. The array of sub_order objects. Each sub_order can only have same type goods.
+sub_orders | Object Array. The array of [sub_order](#sub_order) objects. Each sub_order can only have same type goods.
 state | ENUM. The state of order.
 user_ip | String. This is the IP address when a customer makes a payment request.
 
@@ -425,11 +425,11 @@ The same trans_code of goods should in the same sub_order object.
 Parameter | Description
 ------- | -------
 mer_sub_reference_id | String. The ID of sub_order object.
-amount | Object. The amount of sub_order.
+[amount](#amount) | Object. The amount of sub_order.
 order_summary | String. The summary of sub_order.
 trans_code | ENUM. The transaction code of goods. See [Transaction encoding and transaction postscript description](#transaction-encoding-and-transaction-postscript-description)
 is_customs | bool. If the merchant needs UMF to submit the payment information to customs.
-items | Object Array. The items in sub_orders.
+items | Object Array. The array of [item](#item) objects.
 
 ## transactions
 

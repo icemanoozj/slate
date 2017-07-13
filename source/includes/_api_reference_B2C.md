@@ -68,33 +68,52 @@ access_token | The access_token.
 # Request
 curl -v -X GET \
 https://uatfx.paysoo.com/rest/v1/bank?type=CREDIT_CARD
-```
 
-```json
-//Response
+#Response
 {
-  "meta": {
-    "ret_code": "0000",
-    "ret_msg": "SUCCESS",
-    "sign": "Megf8eerjlskdjfalkkuiUUIH"
-  },
-  "banks": [
-    {
-      "name": "Industrial and Commercial Bank of China",
-      "code": "ICBC",
-      "type": [
-        "CREDIT_CARD",
-        "DEBIT_CARD"
-      ]
-    },
-    {
-      "name": "China Merchants Bank",
-      "code": "CMB",
-      "type": [
-        "CREDIT_CARD"
-      ]
+    "banks": [
+        {
+            "name_zh": "农业银行", 
+            "types": [
+                "CREDIT_CARD"
+            ], 
+            "code": "ABC", 
+            "logo_url": "baidu", 
+            "name": "Agricultural Bank of China"
+        }, 
+        {
+            "name_zh": "建设银行", 
+            "types": [
+                "CREDIT_CARD"
+            ], 
+            "code": "CCB", 
+            "logo_url": "baidu", 
+            "name": "China Construction Bank"
+        }, 
+        {
+            "name_zh": "交通银行", 
+            "types": [
+                "CREDIT_CARD"
+            ], 
+            "code": "COMM", 
+            "logo_url": "baidu", 
+            "name": "Bank of Communications"
+        }, 
+        {
+            "name_zh": "工商银行", 
+            "types": [
+                "CREDIT_CARD"
+            ], 
+            "code": "ICBC", 
+            "logo_url": "baidu", 
+            "name": "Industrial and Commercial Bank of China"
+        }
+    ], 
+    "meta": {
+        "sign": "NdSx+5ARt+tBw/E2tUAI5/Qm7EfiG3P8aDcxV0vfMX7KW7Tq1NgDEJSlH3CXwzRPKY37CE3Omh8FN5GnE7NFFEHR2BJeeejt9TXRyX8ZOu1vYsQKB1RKrZUvB5fA0bRmKoTdZXjztGBQPPpMVHRjIzOIkQIK7cheiAuKzx9T4jQ=", 
+        "ret_msg": "successful transaction", 
+        "ret_code": "0000"
     }
-  ]
 }
 ```
 
@@ -114,13 +133,15 @@ type | ENUM. The type of bank cards. Allowed values: **CREDIT_CARD**, **DEBIT_CA
 
 ### Response
 
-The response is a list of [bank](#bank) objects. See the example on the right.
+The response is a list of [bank](#bank) objects. See the example on the right. 
 
 Parameter | Description
-------- | -------
-name | The full name of the bank.
-code | The bank code inside China.
-type | The supported card type of the bank. **CREDIT_CARD**, **DEBIT_CARD**
+----------|------------
+name | The full name of bank.English.
+name_zh | The full name of bank. 
+code | The abbreviation of bank. Available in China.
+logo_url | The url of the logo of bank.
+types | The bank types are supported by the bank. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 
 ## 3.3 Create a payment

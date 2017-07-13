@@ -72,7 +72,7 @@ curl -v https://uatfx.soopay.net/cberest/v1/payments/payment \
         "expire_time ": "2017-02-17T19:20:30-08:00",
         "sub_orders": [
             {
-             "amount":{
+            "amount":{
                 "total": "1000.00",
                 "currency": "USD"
                 },
@@ -81,7 +81,7 @@ curl -v https://uatfx.soopay.net/cberest/v1/payments/payment \
             "is_customs": “TRUE”,
             "items": [
                 {
-                " mer_item_id ": "2343464535",
+                "mer_item_id": "2343464535",
                 "type": " ELECTRONIC",
                 "name ": " Macbook Pro",
                 "description ": " Macbook pro 13’ A3245",
@@ -199,25 +199,56 @@ http post header example:
 
 ## 1.4 HTTP response
 
+<pre class="highlight tab-shell tab-java tab-php tab-csharp">
+      <h3>HTTP status code summary</h3>
+        <table>
+            <thead>
+            <tr>
+            <th>Status code</th>
+            <th>Description</th>
+            </tr>
+            </thead>
+          <tbody>
+            <tr>
+              <th>200 - OK</th>
+              <td class="gd">Everything worked as expected.</td>
+            </tr>
+            <tr>
+              <th>400 - Bad Request</th>
+              <td class="gd">The request was unacceptable, often due to  missing a required parameter.</td>
+            </tr>
+            <tr>
+              <th>401 - Unauthorized</th>
+              <td class="gd">No valid API key provided.</td>
+            </tr>
+            <tr>
+              <th>402 - Request Failed</th>
+              <td class="gd">The parameters were valid but the request failed.</td>
+            </tr>
+            <tr>
+              <th>404 - Not Found</th>
+              <td class="gd">The requested resource doesn't exist.</td>
+            </tr>
+            <tr>
+              <th>409 - Conflict</th>
+              <td class="gd">The request conflicts with another request (perhaps due to using the same idempotent  key).</td>
+            </tr>
+            <tr>
+              <th>429 - Too Many Requests</th>
+              <td class="gd">Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.</td>
+            </tr>
+              <tr><th>500, 502, 503, 504 - Server Errors</th>
+              <td class="gd">Something went wrong on UMF's end. (These are rare.)</td>
+            </tr>
+          </tbody>
+        </table>
+</pre>
+
 All http responses always are json format string with two parts.
 
 - **meta**：The common information of each response. Includes response message, sign, error code, etc.
 
 - **result**: The entity object(s). The name of "result" is not always "result", it changes by the entity type and the quantity of objects. For example: If the returned object is a payment object, then the name of result definitely is a "payment" object, and the content is a json object of payment. If the returned objects may be multiple payment objects, then the name of result is "payments", and the content is a json array of payment.
-
-### HTTP response code
-
-Status code | Description
-------------|------------
-200 | Request OK
-201 | Resource created
-400 | Validation error
-401 | Unauthorized request
-402 | Failed request
-403 | Forbidden
-404 | Resource was not found
-50n | UMF server error
-
 
 ## 1.6 Signature and Verify Signature
 
