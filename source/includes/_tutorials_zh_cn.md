@@ -24,7 +24,7 @@ sequenceDiagram
 * Get an access token
 * Make an API call
 
-### [Get an access token](#3-1-get-an-access-token)
+### [Get an access token](#1-5-get-an-access-token)
 
 Make a /oauth/authorize call with your app's OAuth client_id and secret keys for the basic authentication values. In the request body, set grant_type to client_credentials. When you run the command, UMF generates and returns an access token.
 
@@ -88,7 +88,7 @@ sequenceDiagram
 
 3.用户确认购买订单商品
 
-3.1.商户请求UMF获取Access Token,详见 [Get an access token](#3-1-get-an-access-token)
+3.1.商户请求UMF获取Access Token,详见 [Get an access token](#1-5-get-an-access-token)
 
 3.1.UMF返回access_token
 

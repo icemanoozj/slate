@@ -6,7 +6,7 @@ The UMF REST API uses HTTP methods and a RESTful endpoint structure. The API aut
 Important: You cannot run the sample requests in this guide as-is. Replace call-specific parameters, such as tokens and IDs, with your own values.
 </aside>
 
-## 1.1. API operations
+## 1.1 API operations
 
 ```json
 {
@@ -217,6 +217,68 @@ Status code | Description
 409 - Conflict | The request conflicts with another request (perhaps due to using the same idempotent key).
 429 - Too Many Requests | Too many requests hit the API too quickly. We recommend an exponential backoff of your requests.
 500, 502, 503, 504 - Server Errors | Something went wrong on UMF's end. (These are rare.)
+
+## 1.5 Get an access token
+
+```json
+//request
+{
+    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
+    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
+    "grant_type": "client_credentials"
+}
+
+//response
+{
+ "expires_in": 3600,
+ "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
+}
+
+```
+
+```shell
+$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
+-H "Content-Type:application/json" \
+-d '{
+    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
+    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
+    "grant_type": "client_credentials"
+}'
+
+//response
+{
+ "expires_in": 3600,
+ "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
+}
+
+```
+
+Make an oauth authorize call with your app's OAuth client_id and client_secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials.
+
+### Request
+
+**POST**: /oauth/authorize
+
+Every request must have access_token in the http request header. This interface returns a access_token of current_user. Each token has an expires_in parameter which means this token only available during this period. But if user applies a new access_token, the old one will be disabled immediately.
+
+Parameters:
+
+Parameter | Description
+------- | -------
+client_id | The client identifier issued to the merchant. 
+client_secret | The secret of client issued to the merchant. 
+grant_type | The type of OAuth authentication request. For this scenario, it must be **"client_credentials"** .
+
+### Response
+
+The response is a json format string. It include the access_token and expires_in. 
+
+Response:
+
+Parameter | Description
+------- | -------
+expires_in | The remaining lifetime of the access token in seconds.
+access_token | The access_token.
 
 ## 1.6 Signature and Verify Signature
 

@@ -400,12 +400,12 @@ This object is the information of transaction. UMF uses this info to approve or 
 Field name  | desc  | Data type | Field description  | Send or not 
 -------|--------------|-----------|--------------------|-------------
 trans_type | Transaction type  | String | 01 Deposit, 02 Purchase | Y
-receiver_name | Name of the recipient  | String  | When D0008 is either 1 or 3, it is required to send this Field. | C
-receiver_moblie_id | Phone number of the recipient | String | When D0008 is either 1 or 3, it is required to send this Field. <br /> Such as: 13800011111 | C
-receiver_address | Delivery address  | String | When D0008 is either 1 or 3, it is required to send this Field. | C
+receiver_name | Name of the recipient  | String  | When **goods_type** is either 1 or 3, it is required to send this Field. | C
+receiver_moblie_id | Phone number of the recipient | String | When **goods_type** is either 1 or 3, it is required to send this Field. <br /> Such as: 13800011111 | C
+receiver_address | Delivery address  | String | When **goods_type** is either 1 or 3, it is required to send this Field. | C
 registration_email | Registered email  | String | Email of the customer used for registration, must be verified by the merchant | N
 registration_moblie_id | mobile phone number | String | Registrant mobile phone number | N
-registration_identify_code | identity card number | String | Registrant identity card number, | When D0009 is 1, it is required to send this Field. | C
+registration_identify_code | identity card number | String | Registrant identity card number, | When **real_name** is 1, it is required to send this Field. | C
 device_id | Device identification  | String | For example, the MAC code of mobile phone or the terminal identification ID defined internally.  | N
 device_type | Type of Device  | String | If from the Web terminal, the user shall not be blank. APP can be blank.  | N
 user_id | User ID  | String  | UserID at the merchant platform | N

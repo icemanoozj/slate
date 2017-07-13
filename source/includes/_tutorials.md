@@ -35,9 +35,9 @@ When the merchant account was approved, UMF will send a email to the merchant. T
 
 ### Get an access token
 
-Make a /oauth/authorize call with your app's OAuth client_id and secret key for the basic authentication values. In the request body, set grant_type to "client_credentials". When you call [Get an access token](#3-1-get-an-access-token) , UMF generates and returns an access token.
+Make a /oauth/authorize call with your app's OAuth client_id and secret key for the basic authentication values. In the request body, set grant_type to "client_credentials". When you call [Get an access token](#1-5-get-an-access-token) , UMF generates and returns an access token.
 
-For information about the request headers, see [REST API authentication](#1-2-authentication) and [headers](#1-3-http-request). See the API [Get an access token](#3-1-get-an-access-token).
+For information about the request headers, see [REST API authentication](#1-2-authentication) and [headers](#1-3-http-request). See the API [Get an access token](#1-5-get-an-access-token).
 
 <aside class="notice">
 Note: The access token is valid for the number of seconds specified in the expires_in response field. You must have a valid access token to make API requests—request a new token when the current one expires.
@@ -93,7 +93,7 @@ Explanation of the sequence chart：
 1. Customer orders goods at merchant platform.
 2. Merchant generate an order.
 3. Customer confirm the order.
-4. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 5. UMF returns an access token.
 6. Merchant submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
 7. UMF return a payment object.
@@ -147,7 +147,7 @@ Explanation of the sequence chart：
 1. Customer orders goods at merchant platform.
 2. Merchant generate an order.
 3. Customer confirm the order.
-4. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 5. UMF returns an access token.
 6. Merchant submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
 7. UMF sends a payment request to WeChat/Alipay.
@@ -261,7 +261,7 @@ Explanation of the sequence chart：
 2. Merchant App Client generate an order.
 3. Customer App Client confirm the order.
 4. Request for initial a payment.
-5. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+5. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 6. UMF returns an access token.
 7. Merchant app server submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
 8. UMF sends payment request to WeChat.
@@ -304,7 +304,7 @@ Explanation of the sequence chart：
 1. Customer select the goods to be returned and refunded at merchant platform. 
 2. Merchant platform generates a refund order.
 3. Customer confirm the refund order.
-4. Optional. Merchant [acquire an access token](#3-1-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 5. UMF returns an access token.
 6. Merchant request a refund with all order data to UMF. Call [Create a refund](#3-8-create-a-refund).
 7. UMF sends a refund request to Bank.

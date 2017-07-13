@@ -1,68 +1,6 @@
 # 3. B2C Reference
 
-## 3.1 Get an access token
-
-```json
-//request
-{
-    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
-    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials"
-}
-
-//response
-{
- "expires_in": 3600,
- "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
-}
-
-```
-
-```shell
-$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
--H "Content-Type:application/json" \
--d '{
-    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
-    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials"
-}'
-
-//response
-{
- "expires_in": 3600,
- "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
-}
-
-```
-
-Make an oauth authorize call with your app's OAuth client_id and client_secret keys for an access token. Set content-type in the request to **application/json**. In the request body, set grant_type to client_credentials.
-
-### Request
-
-**POST**: /oauth/authorize
-
-Every request must have access_token in the http request header. This interface returns a access_token of current_user. Each token has an expires_in parameter which means this token only available during this period. But if user applies a new access_token, the old one will be disabled immediately.
-
-Parameters:
-
-Parameter | Description
-------- | -------
-client_id | The client identifier issued to the merchant. 
-client_secret | The secret of client issued to the merchant. 
-grant_type | The type of OAuth authentication request. For this scenario, it must be **"client_credentials"** .
-
-### Response
-
-The response is a json format string. It include the access_token and expires_in. 
-
-Response:
-
-Parameter | Description
-------- | -------
-expires_in | The remaining lifetime of the access token in seconds.
-access_token | The access_token.
-
-## 3.2 Query available banks
+## 3.1 Query available banks
 
 ```shell
 # Request
@@ -144,7 +82,7 @@ logo_url | The url of the logo of bank.
 types | The bank types are supported by the bank. Allowed values: **CREDIT_CARD**, **DEBIT_CARD**
 
 
-## 3.3 Create a payment
+## 3.2 Create a payment
 
 ```json
 ## request data:
@@ -383,7 +321,7 @@ Parameters | Description
 notify_url | String. Url of the merchant server. To receive the payment result.
 [links](#link) | Object Array. The next step links. Depends on the status and payment type. Those links are HATEOAS links.
 
-## 3.4 SMS verification
+## 3.3. SMS verification
 
 ``` json
 //Request:
@@ -502,7 +440,7 @@ Return code  | Description of return code
 00200027 | The bank is not linked with the merchant on UMF's platform.
 00060869 | Merchant goods are not registered on UMF's platform.
 
-## 3.5 Execute a payment
+## 3.4 Execute a payment
 
 ```json
 //Request
@@ -652,7 +590,7 @@ Parameter | Description
 [meta](#meta) | object. The common information of response.
 [payment](#payment) | object. The payment object.
 
-## 3.6 Payment result notification
+## 3.5 Payment result notification
 
 After processing the payment request data of the merchant, UMF will call merchant's service with the payment result.
 
@@ -680,7 +618,7 @@ mer_check_date | Merchant reconciliation date
 mer_trace | Merchant processing statement 
 
 
-## 3.7 Query a payment
+## 3.6 Query a payment
 
 ```json
 //Request: /payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG
@@ -725,7 +663,7 @@ The payment_id in the url is the real payment id that was created in the previou
 
 Merchant may call this url anytime. UMF will return the payment object.
 
-## 3.8 Create a refund
+## 3.7 Create a refund
 
 ```json
 //request
@@ -855,7 +793,7 @@ Parameter | Description
 [meta](#meta) | object. The common information of response.
 [refund](#refund) | object. The refund object.
 
-## 3.9 Query a refund
+## 3.8 Query a refund
 
 ```json
 //request: /payments/refund/REFUND_AAAAAAQZBJMOYAJTY2ZP6
@@ -881,7 +819,7 @@ The refund_id in the url is the real payment ID that was created in the previous
 
 Merchant may call this url anytime. UMF will return the refund object. If the state is "REFUND_SUCCESS", the refund is successful.
 
-## 3.10 Create customs clearance
+## 3.9 Create customs clearance
 
 ```json
 //Request: /payments/payment/PAY_AAEZW4UOJZ6GKAJTY2Z2I/apply_to_customs
@@ -989,13 +927,13 @@ The request includes a [customs_declaration](#customs_declaration) object.
 
 The response will include a customs_declaration object and meta information.
 
-## 3.11 Query customs clearance status
+## 3.10 Query customs clearance status
 
 **GET**: payments/customs_ declarations/customs_declaration_id
 
 The customs_ declaration_id in the url is the ID of customs_declaration object which was created in the previous step([Create customs clearance](#Create_customs_clearance)).
 
-## 3.12 Download transaction list
+## 3.11 Download transaction list
 
 **GET**: /payments/transactions_download?mer_date=20170213
 
@@ -1040,7 +978,7 @@ NO. | Field | Name | Description
 13 | productId | Paid product number  | Paid product defined by UMF 
 14 | refundNo | Refund serial number  | The field has value for the refund transaction. Refund serial number generated by the merchant during refund
 
-## 3.13 Download reconciliation statement
+## 3.12 Download reconciliation statement
 
 **GET**: /payments/reconciliation_statement_download?mer_date=20170213
 
@@ -1056,7 +994,7 @@ The request is a http get request. The mer_date must be in the URL.
 
 This interface is an Http download interface and the transaction list is downloaded as a file.
 
-## 3.14 Query exchange rate
+## 3.13 Query exchange rate
 
 ```json
 ///exchange_rate?currency=USD
@@ -1087,7 +1025,7 @@ The parameter is currency which is [currency code](#currency-codes).
 
 The response will include an [exchange_rate](#exchange_rate) object and [meta  object](#meta).
 
-## 3.15 Notification
+## 3.14 Notification
 
 This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not return the results in the response. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results. See [3.6 Payment result notification](#3-6-payment-result-notification). 
 
@@ -1101,12 +1039,12 @@ The request content is JSON object. The object maybe a payment object, or a refu
 
 The response will include a [meta object](#meta) and the object that merchant received. The object does not need to set all values. UMF only needs the object id.
 
-## 3.16 Get WeChat open_id
+## 3.15 Get WeChat open_id
 
 **It will be released in June 2017.**
 
 
-## 3.17 Query transactions
+## 3.16 Query transactions
 
 
 ```json
@@ -1199,7 +1137,7 @@ The response includes a [transactions](#transactions) object. See the example on
 
 
 
-## 3.18 Query reconciliation statement
+## 3.17 Query reconciliation statement
 
 ```json
 {

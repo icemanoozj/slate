@@ -245,9 +245,9 @@ After processing the payment request data of the merchant, UMF will call merchan
 
 Merchant should give a response after receiving the call.
 
-It is the same with B2C notification. See [3.6 Payment result notification](#3-6-payment-result-notification)
+It is the same with B2C notification. See [3.5 Payment result notification](#3-5-payment-result-notification)
 
-## 4.5 Upload transaction files
+## 4.4 Upload transaction files
 
 After the success of payment, The merchant should upload all the document of the transaction via FTP protocol. The address, username, password should be given by UMF once the merchant account was created.
 
@@ -260,28 +260,28 @@ The rules of file upload:
 1. The file name should follow the rule: mer_reference_id + mer_date + sequence_num(4 digitals).zip. The mer_reference_id and mer_date should be the same with the created payment. The sequence_num is the sequence of the same payment. If the uploaded file have some error, the merchant needs to upload another zipped file with different sequence number.
 1. The uploaded files will be verified by the staffs of UMF. Once the verification is done, UMF exchange the money from CNY to other currency. If the verification does not pass within 24 hours, the payment will be canceled. The money will be returned to payer.
 
-## 4.6 Query a payment
+## 4.5 Query a payment
 
-It is the same with B2C query a payment. See [3.7 Query a payment](#3-7-query-a-payment)
+It is the same with B2C query a payment. See [3.6 Query a payment](#3-6-query-a-payment)
 
-## 4.7 Create a refund
+## 4.6 Create a refund
 
-It is the same with B2C create a refund. See [3.8 Create a refund](#3-8-create-a-refund)
+It is the same with B2C create a refund. See [3.7 Create a refund](#3-7-create-a-refund)
 
-## 4.8 Query a refund
+## 4.7 Query a refund
 
-It is the same with B2C query a refund. See [3.9 Query a refund](#3-9-query-a-refund)
+It is the same with B2C query a refund. See [3.8 Query a refund](#3-8-query-a-refund)
 
-## 4.9 Download transaction list
+## 4.8 Download transaction list
 
-It is the same with B2C download transaction list. See [3.12 Download transaction list](#3-12-download-transaction-list)
+It is the same with B2C download transaction list. See [3.11 Download transaction list](#3-11-download-transaction-list)
 
-## 4.10 Download reconciliation statement
+## 4.9 Download reconciliation statement
 
-It is the same with B2C download reconciliation list. See [3.13 Download reconciliation statement](#3-13-download-reconciliation-statement)
+It is the same with B2C download reconciliation list. See [3.12 Download reconciliation statement](#3-12-download-reconciliation-statement)
 
-## 4.11 Query exchange rate
+## 4.10 Query exchange rate
 
 Get the real-time exchange rate. The returned information is the corresponding amount of CNY.
 
-See [3.14 Query exchange rate](#3-14-query-exchange-rate)
+See [3.13 Query exchange rate](#3-13-query-exchange-rate)
