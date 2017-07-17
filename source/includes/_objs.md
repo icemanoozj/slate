@@ -295,11 +295,13 @@ pay_sign | String. The signature of this request.
 
 ## payer_info
 
+The information of payer.
+
 Parameter | Description
 ------- | -------
 phone | String. The payer's phone number.
 name | String. **Must be encrypted**. The name of payer.
-pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card) <br /> [qr_code_scan](#qr_code_scan) <br /> [wechat_in_app](#wechat_in_app) <br /> [wechat_in_app_web](#wechat_in_app_web) <br /> [payer_agreement](#payer_agreement)
+pay elements object | Object. The name of this parts is different, depends on the payment_method. It can be the following objects.<br /> [bank_card](#bank_card). For pay_type: CREDIT_CARD, DEBIT_CARD <br /> [qr_code_scan](#qr_code_scan). For pay_type: WECHAT_SCAN, ALIPAY_SCAN <br /> [wechat_in_app](#wechat_in_app) For pay_type: WECHAT_IN_APP <br /> [wechat_in_app_web](#wechat_in_app_web) For pay_type: WECHAT_WEB <br /> [payer_agreement](#payer_agreement) For pay_type: CREDIT_CARD, DEBIT_CARD 
 verify_code | String. Only available in bank_card payment. The bank should send a verification code to customer. This verification code will be submitted to bank to prevent fraud.
 
 ## payment

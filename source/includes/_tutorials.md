@@ -383,4 +383,3 @@ Explanation of the sequence chart：
 8. UMF send notification of the payment result to Merchant.
 9. If the payment is succeed, the merchant should upload all the required documents(contract, bills, invoices ...) to UMF via FTP protocol. UMF will check the documents offline. If everything is ok, the CNY will be exchanged to wanted currency.
 
-

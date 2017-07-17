@@ -1,4 +1,4 @@
-# 1. Overview
+﻿# 1. Overview
 
 The UMF REST API uses HTTP methods and a RESTful endpoint structure. The API authorization framework is OAuth 2.0. Merchant format requests in JSON and the APIs return JSON-formatted responses.
 
