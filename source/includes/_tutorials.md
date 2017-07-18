@@ -95,17 +95,17 @@ Explanation of the sequence chart：
 3. Customer confirm the order.
 4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 5. UMF returns an access token.
-6. Merchant submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
+6. Merchant submit order data to UMF. Call [Create a payment](#3-2-create-a-payment).
 7. UMF return a payment object.
-8. Optional. Merchant [query the availabled banks](#3-2-query-available-banks). The bank list is barely changed. Merchant may cache the result and use the cache to speed up the  loading.
+8. Optional. Merchant [query the availabled banks](#3-1-query-available-banks). The bank list is barely changed. Merchant may cache the result and use the cache to speed up the  loading.
 9. UMF returns the available banks.
 10. Merchant show the payment page to customer
 11. Customer select the bank, filling the card info and phone number, acquire a SMS for verification. The phone number must be the same with user regirested in the bank user selected. UMF will check it.
-12. Merchant call the UMF to send a SMS to customer's phone number. Call [SMS verification](#3-4-SMS-verification).
+12. Merchant call the UMF to send a SMS to customer's phone number. Call [SMS verification](#3-3-SMS-verification).
 13. UMF returns a response to UMF to confirm that the SMS was sent.
 14. UMF(or Bank) will send a SMS to customer's phone.
 15. Customer fill the received SMS and submit.
-16. Merchant issues a payment request to the UMF. Call [Execute a payment](#3-5-Execute-a-payment).
+16. Merchant issues a payment request to the UMF. Call [Execute a payment](#3-4-Execute-a-payment).
 17. UMF initiates deduction request to the bank.
 18. UMF receives the result of deduction.
 19. UMF sends the result to merchant.
@@ -149,7 +149,7 @@ Explanation of the sequence chart：
 3. Customer confirm the order.
 4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 5. UMF returns an access token.
-6. Merchant submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
+6. Merchant submit order data to UMF. Call [Create a payment](#3-2-create-a-payment).
 7. UMF sends a payment request to WeChat/Alipay.
 8. WeChat/Alipay returns an URL of QR code to UMF.
 9. UMF returns an ali_qr_scan object.
@@ -202,14 +202,14 @@ Explanation of the sequence chart：
 1. Customer orders goods at merchant platform.
 2. Merchant generates an order.
 3. Customer confirms the order.
-4. Call the authorization page from UMF.Call [Get WeChat open_id](#3-16-get-wechat-open_id).
+4. Call the authorization page from UMF.Call [Get WeChat open_id](#3-15-get-wechat-open_id).
 5. UMF returns the authorization page.
 6. The authorization page requests WeChat open_id. 
 7. The WeChat returns the open_id of current WeChat user.
 8. The authorization page redirect to notify_url(step 4).
 9. **Optional**. The Merchat returns a pending page to wait.
 10. **Optional**. The pending page request a payment.
-11. Merchant send payment request to UMF.Call [Create a payment](#3-3-create-a-payment).
+11. Merchant send payment request to UMF.Call [Create a payment](#3-2-create-a-payment).
 12. UMF sends payment request to WeChat.
 13. WeChat returns payment info to UMF.
 14. UMF returns a WeChat_in_app_web object.
@@ -263,7 +263,7 @@ Explanation of the sequence chart：
 4. Request for initial a payment.
 5. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
 6. UMF returns an access token.
-7. Merchant app server submit order data to UMF. Call [Create a payment](#3-3-create-a-payment).
+7. Merchant app server submit order data to UMF. Call [Create a payment](#3-2-create-a-payment).
 8. UMF sends payment request to WeChat.
 9. WeChat returns payment info to UMF.
 10. UMF returns a WeChat_in_app object to merchant app server.
@@ -275,44 +275,9 @@ Explanation of the sequence chart：
 16. Merchant app server sends the result to merchant app client.
 17. Merchant app client shows the result to customer.
 
-## 2.6 Refund
+## 2.7 B2C Payment
 
-UMF support full refund or partial refund of a payment.
-
-<div class="mermaid">
-sequenceDiagram
-    participant Customer
-    participant Merchant
-    participant UMF
-    participant Bank
-    Customer\-\->>Merchant: 1. select the goods to be returned and refunded
-    Merchant\-\->>Customer: 2. Generate a refund order
-    Customer\-\->>Merchant: 3. Confirm the refund order
-    Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
-    Merchant\-\->>UMF: 4. Optional. Acquire an access token
-    UMF\-\->>Merchant: 5. Return access_token
-    Note right of Merchant:  Using access token to make API call
-    Merchant\-\->>UMF: 6. Request a refund
-    UMF\-\->>Bank: 7. Refund request
-    Bank\-\->>UMF: 8. Return refund result
-    UMF\-\->>Merchant: 9. Return a refund object
-    Merchant\-\->>Customer: 10. Refund result
-</div>
-
-Explanation of the sequence chart：
-
-1. Customer select the goods to be returned and refunded at merchant platform. 
-2. Merchant platform generates a refund order.
-3. Customer confirm the refund order.
-4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
-5. UMF returns an access token.
-6. Merchant request a refund with all order data to UMF. Call [Create a refund](#3-8-create-a-refund).
-7. UMF sends a refund request to Bank.
-8. Bank returns refund result to UMF.
-9. UMF returns a refund object to merchant.
-10. Merchant shows the result to customer.
-
-## 2.7 B2B Payment
+## 2.8 B2B Payment
 
 B2B Payment scenario: A Chinese company buys from a non-Chinese merchant.
 
@@ -383,3 +348,39 @@ Explanation of the sequence chart：
 8. UMF send notification of the payment result to Merchant.
 9. If the payment is succeed, the merchant should upload all the required documents(contract, bills, invoices ...) to UMF via FTP protocol. UMF will check the documents offline. If everything is ok, the CNY will be exchanged to wanted currency.
 
+## 2.9 Refund
+
+UMF support full refund or partial refund of a payment.
+
+<div class="mermaid">
+sequenceDiagram
+    participant Customer
+    participant Merchant
+    participant UMF
+    participant Bank
+    Customer\-\->>Merchant: 1. select the goods to be returned and refunded
+    Merchant\-\->>Customer: 2. Generate a refund order
+    Customer\-\->>Merchant: 3. Confirm the refund order
+    Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
+    Merchant\-\->>UMF: 4. Optional. Acquire an access token
+    UMF\-\->>Merchant: 5. Return access_token
+    Note right of Merchant:  Using access token to make API call
+    Merchant\-\->>UMF: 6. Request a refund
+    UMF\-\->>Bank: 7. Refund request
+    Bank\-\->>UMF: 8. Return refund result
+    UMF\-\->>Merchant: 9. Return a refund object
+    Merchant\-\->>Customer: 10. Refund result
+</div>
+
+Explanation of the sequence chart：
+
+1. Customer select the goods to be returned and refunded at merchant platform. 
+2. Merchant platform generates a refund order.
+3. Customer confirm the refund order.
+4. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+5. UMF returns an access token.
+6. Merchant request a refund with all order data to UMF. Call [Create a refund](#3-8-create-a-refund).
+7. UMF sends a refund request to Bank.
+8. Bank returns refund result to UMF.
+9. UMF returns a refund object to merchant.
+10. Merchant shows the result to customer.
