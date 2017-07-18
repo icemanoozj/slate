@@ -226,7 +226,7 @@ Parameters:
 
 Parameters | Description
 ------- | -------
-[payer](#payer) | Object. The payment information. The payment_method should be "B2B_ONLINE_BANKING", and interface_type should be "CHECKOUT_COUNTER_WEB".
+[payer](#payer) | Object. The payment information. 
 [order](#order) | Object. The order information. Includes sub orders.
 notify_url | String. Url of the merchant server. To receive the payment result.
 

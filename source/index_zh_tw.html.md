@@ -16,8 +16,8 @@ toc_footers:
 includes:
   - overview
   - tutorials_zh_tw
-  - api_reference_B2B
   - api_reference_B2C
+  - api_reference_B2B
   - objs
   - errors
   - faqs

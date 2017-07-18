@@ -1027,7 +1027,7 @@ The response will include an [exchange_rate](#exchange_rate) object and [meta  o
 
 ## 3.14 Notification
 
-This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not return the results in the response. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results. See [3.6 Payment result notification](#3-6-payment-result-notification). 
+This interface is a common interface. The response of execute payment, create refund and create customs_declaration requests will not return the results in the response. The results will be sent by UMF when complete, so the merchant should provide a service to receive the notifications, and give the right response. Or merchant may query those objects to get the results. See [3.5 Payment result notification](#3-5-payment-result-notification). 
 
 ### Request
 
