@@ -264,8 +264,8 @@ Available payment_method for each **interface_type** and **business_type**.
 interface_type | B2C | B2B
 ---------------|-----|----
 **SERVER_TO_SERVER** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> WECHAT_IN_APP <br/> WECHAT_WEB <br/> ALIPAY_SCAN |  
-**SERVER_TO_WEB** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN <br/> NOT_APPLICABLE | NOT_APPLICABLE
-**DIRECT_TO_BANK** | WECHAT_SCAN <br /> ALIPAY_SCAN <br/> NOT_APPLICABLE | NOT_APPLICABLE
+**SERVER_TO_WEB** | CREDIT_CARD <br /> DEBIT_CARD <br /> WECHAT_SCAN <br /> ALIPAY_SCAN <br/> NOT_APPLICABLE |
+**DIRECT_TO_BANK** | WECHAT_SCAN <br /> ALIPAY_SCAN  | NOT_APPLICABLE
 
 ## payer_agreement
 
