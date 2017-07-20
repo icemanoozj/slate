@@ -124,6 +124,66 @@ sequenceDiagram
 
 ## 2.4 Pay by Wechat pay in Apps
 
+Merchants push product messages to their followers via Official Account. With WeChat Pay enabled, their followers can purchase products on the shopping page.
+
+**It will be released in June 2017.**
+
+<div class="mermaid">
+sequenceDiagram
+    participant Customer WeChat Browser
+    participant Merchant
+    participant UMF
+    participant WeChat
+    Customer WeChat Browser\-\->>Merchant: 1. Order goods
+    Note right of Merchant: If the merchant have an unexpired access token. It can be used to make an API call
+    Merchant\-\->>UMF: 2. Optional. Acquire an access token
+    UMF\-\->>Merchant: 3. Return access_token
+    Note right of WeChat Browser:  Call API get WeChat open_id with access token
+    Merchant\-\->>UMF: 4. Request authorization page(html and javascript)
+    UMF\-\->>WeChat Browser: 5. Return autorization page.
+    Merchant\-\->>Customer: 4. Generate order
+    Customer WeChat Browser\-\->>WeChat Browser: 4. Confirm order with access token
+    WeChat Browser\-\->>WeChat: 6. Request open_id
+    WeChat\-\->>WeChat Browser: 7. Return open_id
+    WeChat Browser\-\->>Merchant: 8. Redirect page to notify_url
+    Merchant\-\->>WeChat Browser: 9. Return a pending page.
+    WeChat Browser\-\->>Merchant: 10. Request wechat pay.
+    Merchant\-\->>UMF: 11. Payment request
+    UMF\-\->>WeChat: 12. Payment request
+    WeChat\-\->>UMF: 13. Return payment info
+    UMF\-\->>Merchant: 14. Return a WeChat_in_app_web object
+    Merchant\-\->>WeChat Browser: 15. Activate payment widget
+    WeChat Browser\-\->>WeChat Browser: 16. Call WeChat JS-API
+    Customer\-\->>WeChat: 17. Enter password, finish payment
+    WeChat\-\->>WeChat Browser: 18. Return pending info.
+    WeChat Browser\-\->>WeChat Browser: 19. Redirect to ret_url.
+    WeChat\-\->>UMF: 20. Deduction result.
+    UMF\-\->>Merchant: 21. Payment result.
+</div>
+
+Explanation of the sequence chart：
+
+1. Customer orders goods at merchant platform.
+2. Merchant generates an order.
+3. Customer confirms the order.
+4. Call the authorization page from UMF.Call [Get WeChat open_id](#3-15-get-wechat-open_id).
+5. UMF returns the authorization page.
+6. The authorization page requests WeChat open_id. 
+7. The WeChat returns the open_id of current WeChat user.
+8. The authorization page redirect to notify_url(step 4).
+9. **Optional**. The Merchat returns a pending page to wait.
+10. **Optional**. The pending page request a payment.
+11. Merchant send payment request to UMF.Call [Create a payment](#3-2-create-a-payment).
+12. UMF sends payment request to WeChat.
+13. WeChat returns payment info to UMF.
+14. UMF returns a WeChat_in_app_web object.
+15. Merchant returns info with WeChat_in_app_web object to browser.
+16. The return page activates Wechat payment widget(WeChat JS-API).
+17. Customer enter password and finish the payment in WeChat explore.
+18. WeChat return ap pending page.
+19. The pending page redirect to ret_url(step 11).
+20. WeChat send the payment result to UMF.
+21. UMF send the payment result to Merchat.
 
 ## 2.5 Refund
 
