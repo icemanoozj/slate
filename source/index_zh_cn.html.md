@@ -14,11 +14,11 @@ toc_footers:
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - overview_zh_cn
+  - overview
   - tutorials_zh_cn
   - api_reference_B2C_zh_cn
   - api_reference_B2B
-  - objs_zh_cn
+  - objs
   - errors
   - faqs
   - appendix
