@@ -646,11 +646,12 @@ html, body {
 }
 
 /* the following css is for mermaid*/
-.mermaid{
+.content .mermaid{
   margin-right: $examples-width;
+  clear:none;
 }
 
-.mermaid .label {
+.content .mermaid .label {
   color: #333;
 }
 .node rect,
