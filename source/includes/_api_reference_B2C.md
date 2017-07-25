@@ -982,7 +982,7 @@ NO. | Field | Name | Description
 
 **GET**: /payments/reconciliation_statement_download?mer_date=20170213
 
-A reconciliation statement is a document that begins with a merchant's own record of an account balance in UMF, adds and subtracts reconciling items in a set of additional columns, and then uses these adjustments to arrive at the record of the same account held by a third party.
+A reconciliation statement is generated when UMF transfer money to merchant's bank account. It includes every transactions, severice fee and exchange actions. It shows what parts of the transferd money is made of.
 
 It has the same logic with transaction list download. The date of reconciliation statement is based on the mer_date.
 
