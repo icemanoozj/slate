@@ -168,15 +168,14 @@ Merchants push product messages to their followers via Official Account. With We
 
 <div class="mermaid">
 sequenceDiagram
-    participant Customer
+    participant Consumer
     participant WeChat Browser
     participant Merchant
     participant UMF
     participant WeChat
-    Customer\-\->>Merchant: 1. Order goods
-    Merchant\-\->>Customer: 2. Generate order
-    Customer\-\->>WeChat Browser: 3. Confirm order
-    Note right of WeChat Browser:  Call API with access token
+    Consumer\-\->>Merchant: 1. Order goods
+    Merchant\-\->>Consumer: 2. Generate order
+    Consumer\-\->>WeChat Browser: 3. Confirm order
     WeChat Browser\-\->>UMF: 4. Request authorization page(html and javascript)
     UMF\-\->>WeChat Browser: 5. Return autorization page.
     WeChat Browser\-\->>WeChat: 6. Request open_id
@@ -184,13 +183,14 @@ sequenceDiagram
     WeChat Browser\-\->>Merchant: 8. Redirect page to notify_url
     Merchant\-\->>WeChat Browser: 9. Return a pending page.
     WeChat Browser\-\->>Merchant: 10. Request wechat pay.
+    Note right of Merchant:  Call API with access token
     Merchant\-\->>UMF: 11. Payment request
     UMF\-\->>WeChat: 12. Payment request
     WeChat\-\->>UMF: 13. Return payment info
     UMF\-\->>Merchant: 14. Return a WeChat_in_app_web object
     Merchant\-\->>WeChat Browser: 15. Activate payment widget
     WeChat Browser\-\->>WeChat Browser: 16. Call WeChat JS-API
-    Customer\-\->>WeChat: 17. Enter password, finish payment
+    Consumer\-\->>WeChat: 17. Enter password, finish payment
     WeChat\-\->>WeChat Browser: 18. Return pending info.
     WeChat Browser\-\->>WeChat Browser: 19. Redirect to ret_url.
     WeChat\-\->>UMF: 20. Deduction result.
@@ -199,10 +199,10 @@ sequenceDiagram
 
 Explanation of the sequence chart：
 
-1. Customer orders goods at merchant platform.
+1. Consumer orders goods at merchant platform.
 1. Merchant generates an order.
-1. Customer confirms the order.
-1. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token al ready, This token can be used to make a API call. Please ignore step 4 and setp 5.
+1. Consumer confirms the order.
+1. Consumer authorize merchant to have open_id by request UMF [authorization url](#3-15-get-wechat-open_id)
 1. UMF returns the authorization page.
 1. The authorization page requests WeChat open_id. 
 1. The WeChat returns the open_id of current WeChat user.
@@ -215,7 +215,7 @@ Explanation of the sequence chart：
 1. UMF returns a WeChat_in_app_web object.
 1. Merchant returns info with WeChat_in_app_web object to browser.
 1. The return page activates Wechat payment widget(WeChat JS-API).
-1. Customer enter password and finish the payment in WeChat explore.
+1. Consumer enter password and finish the payment in WeChat explore.
 1. WeChat return ap pending page.
 1. The pending page redirect to ret_url(step 11).
 1. WeChat send the payment result to UMF.

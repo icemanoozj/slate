@@ -5,7 +5,7 @@
 ```shell
 # Request
 curl -v -X GET \
-https://uatfx.paysoo.com/rest/v1/bank?type=CREDIT_CARD
+https://uatfx.soopay.net/rest/v1/bank?type=CREDIT_CARD
 
 #Response
 {
@@ -1041,11 +1041,41 @@ The response will include a [meta object](#meta) and the object that merchant re
 
 ## 3.15 Get WeChat open_id
 
-**It will be released in June 2017.**
+```shell
+# Request
+curl -v -X GET \
+https://uatfx.soopay.net/rest/v1/payments/wechat_openid?notify_url=https://www.baidu.com
 
+#Response
+{
+    "links": [{
+                    "ref": "weChat",
+                    "method": "GET",
+                    "href": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxddc9cfd7324f0fb0&redirect_uri=http%3A%2F%2Ftest3.soopay.net%2Febankpaydev%2FrecvweixinGZHCodeNew.htm%2F%3Freturn_url%3Dhttp%253A%252F%252F10.10.38.49%253A1122%252Fupay%252FcbNotifyMerOpenId.do%253FnotifyUrl%253Dhttps%253A%252F%252Fwww.baidu.com&response_type=code&scope=snsapi_base&state=c017d14162a907883703e5c02249350ccaeac93315589ef0#wechat_redirect"
+    }],
+    "meta": {
+                    "ret_code": "0000",
+                    "ret_msg": "successful transaction"
+    }
+```
+
+### Request
+
+**GET**: /payments/wechat_openid?notify_url=https://www.baidu.com
+
+Get Wechat open_id before call [Create a payment](#3-2-create-a-payment) if the [payment type](#payer) is **WECHAT_WEB**.
+
+#### Parameters
+
+Parameter | Description
+----------|------------
+notify_url | Asynchronous notification url, After the completion of the transaction, UMPay payment platform will send the transaction results to the notify_url via http(s).
+
+### Response
+
+The response is a list of [links](#link) objects. See the example on the right. 
 
 ## 3.16 Query transactions
-
 
 ```json
 {
