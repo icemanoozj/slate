@@ -145,7 +145,7 @@ public class Hello1
 <aside class="notice">
 注意: 您可以在命令行上使用cURL命令. 若您的系统不支持cURL命令, 请下载安装cURL. . 请求包含您自己的access token和payment-specific IDs.
 </aside>
-[Here is a link of cURL](https://curl.haxx.se/download.html)
+[cURL](https://curl.haxx.se/download.html)
 
 和UMF合作后,商户将拥有如下信息.
 
@@ -218,6 +218,67 @@ http post请求头示例:
 404 | 资源未找到
 50n | UMF服务器错误
 
+## 1.5 获取access token
+
+```json
+//request
+{
+    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
+    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
+    "grant_type": "client_credentials"
+}
+
+//response
+{
+ "expires_in": 3600,
+ "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
+}
+
+```
+
+```shell
+$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
+-H "Content-Type:application/json" \
+-d '{
+    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
+    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
+    "grant_type": "client_credentials"
+}'
+
+//response
+{
+ "expires_in": 3600,
+ "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
+}
+
+```
+
+创建一个带有您应用的OAuth client_id和client_secret keys的OAuth授权作为access token. 设置请求的content-type为**application/json**. 在请求的实体里面设置grant_type为 client_credentials.
+
+### 请求
+
+**POST**: /oauth/authorize
+
+每一个请求在请求头里面必须加入access_token. 该接口返回一个当前用户的access_token. 每一个token有一个有效期的参数,意味着每一个token在有效期内有效. 如果用户申请了一个新的 access_token, 旧的access_token将立即不可用.
+
+参数:
+
+参数 | 描述
+------- | -------
+client_id | 发给商户的客户端标识符. 
+client_secret | 发给商户的客户端秘钥. 
+grant_type | OAuth认证请求的类型. 该场景下值必须为**"client_credentials"** .
+
+### 响应
+
+响应结果是一个json格式的字符串. 包含access_token和expires_in. 
+
+响应:
+
+参数 | 说明
+------- | -------
+expires_in | access token的有效期，单位为秒.
+access_token | access_token.
 
 ## 1.6 签名和验签
 
