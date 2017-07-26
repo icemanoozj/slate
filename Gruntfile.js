@@ -15,21 +15,15 @@ module.exports = function (grunt) {
         var indexFileNames = ["build/index.html", "build/index_zh_cn.html", "build/index_zh_tw.html"];
 
         for (var f = 0; f < indexFileNames.length; f++) {
-             console.log(indexFileNames[f]);
             var data = rf.readFileSync(indexFileNames[f], "utf-8");
             var postfixIndex = indexFileNames[f].indexOf("_");
-            console.log(postfixIndex);
             var file_postfix = postfixIndex<=0?".html":indexFileNames[f].substring(postfixIndex);
-            
-            console.log(file_postfix);
             var template = rf.readFileSync("source/patches/language_sel"+file_postfix, "utf-8");
             var lines = data.split('\n');
             var tocifyFound = false;
             var divCounter = 0;
             for (var i = 0; i < lines.length; i++) {
                 if (lines[i].includes("tocify-wrapper")) {
-                    console.log(i);
-                    console.log(lines[i]);
                     tocifyFound = true;
                 }
                 if (tocifyFound && lines[i].includes("</div>")) {
