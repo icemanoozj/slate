@@ -204,22 +204,22 @@ Explanation of the sequence chart：
 1. Customer confirms the order.
 1. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token al ready, This token can be used to make a API call. Please ignore step 4 and setp 5.
 1. UMF returns the authorization page.
-6. The authorization page requests WeChat open_id. 
-7. The WeChat returns the open_id of current WeChat user.
-8. The authorization page redirect to notify_url(step 4).
-9. **Optional**. The Merchat returns a pending page to wait.
-10. **Optional**. The pending page request a payment.
-11. Merchant send payment request to UMF.Call [Create a payment](#3-2-create-a-payment).
-12. UMF sends payment request to WeChat.
-13. WeChat returns payment info to UMF.
-14. UMF returns a WeChat_in_app_web object.
-15. Merchant returns info with WeChat_in_app_web object to browser.
-16. The return page activates Wechat payment widget(WeChat JS-API).
-17. Customer enter password and finish the payment in WeChat explore.
-18. WeChat return ap pending page.
-19. The pending page redirect to ret_url(step 11).
-20. WeChat send the payment result to UMF.
-21. UMF send the payment result to Merchat.
+1. The authorization page requests WeChat open_id. 
+1. The WeChat returns the open_id of current WeChat user.
+1. The authorization page redirect to notify_url(step 4).
+1. **Optional**. The Merchat returns a pending page to wait.
+1. **Optional**. The pending page request a payment.
+1. Merchant send payment request to UMF.Call [Create a payment](#3-2-create-a-payment).
+1. UMF sends payment request to WeChat.
+1. WeChat returns payment info to UMF.
+1. UMF returns a WeChat_in_app_web object.
+1. Merchant returns info with WeChat_in_app_web object to browser.
+1. The return page activates Wechat payment widget(WeChat JS-API).
+1. Customer enter password and finish the payment in WeChat explore.
+1. WeChat return ap pending page.
+1. The pending page redirect to ret_url(step 11).
+1. WeChat send the payment result to UMF.
+1. UMF send the payment result to Merchat.
 
 ## 2.5 Pay by Wechat In-App Payment
 
@@ -258,22 +258,22 @@ sequenceDiagram
 Explanation of the sequence chart：
 
 1. Customer orders goods at merchant platform.
-2. Merchant App Client generate an order.
-3. Customer App Client confirm the order.
-4. Request for initial a payment.
-5. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
-6. UMF returns an access token.
-7. Merchant app server submit order data to UMF. Call [Create a payment](#3-2-create-a-payment).
-8. UMF sends payment request to WeChat.
-9. WeChat returns payment info to UMF.
-10. UMF returns a WeChat_in_app object to merchant app server.
-11. Merchant app server activate Wechat payment widget.
-12. WeChat payment widget activated.
-13. Customer enter password and finish the payment in WeChat explore.
-14. UMF receives the result of deduction.
-15. UMF sends the result to merchant app server.
-16. Merchant app server sends the result to merchant app client.
-17. Merchant app client shows the result to customer.
+1. Merchant App Client generate an order.
+1. Customer App Client confirm the order.
+1. Request for initial a payment.
+1. Optional. Merchant [acquire an access token](#1-5-get-an-access-token). This step is optional. If the merchant have an unexpired access_token already, This token can be used to make a API call. Please ignore step 4 and setp 5.
+1. UMF returns an access token.
+1. Merchant app server submit order data to UMF. Call [Create a payment](#3-2-create-a-payment).
+1. UMF sends payment request to WeChat.
+1. WeChat returns payment info to UMF.
+1. UMF returns a WeChat_in_app object to merchant app server.
+1. Merchant app server activate Wechat payment widget.
+1. WeChat payment widget activated.
+1. Customer enter password and finish the payment in WeChat explore.
+1. UMF receives the result of deduction.
+1. UMF sends the result to merchant app server.
+1. Merchant app server sends the result to merchant app client.
+1. Merchant app client shows the result to customer.
 
 ## 2.7 B2C Payment
 
