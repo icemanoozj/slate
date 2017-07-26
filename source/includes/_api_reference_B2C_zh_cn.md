@@ -1,68 +1,7 @@
 # 3. B2C
 
-## 3.1 获取access token
 
-```json
-//request
-{
-    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
-    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials"
-}
-
-//response
-{
- "expires_in": 3600,
- "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
-}
-
-```
-
-```shell
-$ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
--H "Content-Type:application/json" \
--d '{
-    "client_id": "6bf3b12b9159f55e3863204ac06f19b7a076cfc9",
-    "client_secret": "2dbfedf52da5036bde758189b1d27ebc1858655e",
-    "grant_type": "client_credentials"
-}'
-
-//response
-{
- "expires_in": 3600,
- "access_token": "46bc277fc209a1cf129ba020b26b6d33a11de962645423faf9c71b8b1799ce72"
-}
-
-```
-
-创建一个带有您应用的OAuth client_id和client_secret keys的OAuth授权作为access token. 设置请求的content-type为**application/json**. 在请求的实体里面设置grant_type为 client_credentials.
-
-### 请求
-
-**POST**: /oauth/authorize
-
-每一个请求在请求头里面必须加入access_token. 该接口返回一个当前用户的access_token. 每一个token有一个有效期的参数,意味着每一个token在有效期内有效. 如果用户申请了一个新的 access_token, 旧的access_token将立即不可用.
-
-参数:
-
-参数 | 描述
-------- | -------
-client_id | 发给商户的客户端标识符. 
-client_secret | 发给商户的客户端秘钥. 
-grant_type | OAuth认证请求的类型. 该场景下值必须为**"client_credentials"** .
-
-### 响应
-
-响应结果是一个json格式的字符串. 包含access_token和expires_in. 
-
-响应:
-
-参数 | 说明
-------- | -------
-expires_in | access token的有效期，单位为秒.
-access_token | access_token.
-
-## 3.2 查询银行列表
+## 3.1 查询银行列表
 
 ```shell
 # Request
@@ -123,7 +62,7 @@ code | 在中国境内的银行代码.
 type | 支持的银行卡类型. **CREDIT_CARD**, **DEBIT_CARD**
 
 
-## 3.3 下单
+## 3.2 下单
 
 ```json
 ## request data:
@@ -374,7 +313,7 @@ notify_url | String. 商户服务器的url 接收支付结果.
 notify_url | 字符串. 商户服务器的url 接收支付结果.
 [links](#link) | 对象数组. 下一步操作的链接. 取决于支付类型的状态. 链接是HATEOAS链接.
 
-## 3.4 短信验证码
+## 3.3 短信验证码
 
 ``` json
 //Request:
@@ -459,7 +398,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 **POST**:/payments/payment/payment_id/verify
 
-请求url中的payment_id是在上一步创建的真实payment_id([创建支付单](#3-3)).
+请求url中的payment_id是在上一步创建的真实payment_id([下单](#3-2)).
 
 ### 参数
 
@@ -493,7 +432,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 00200027 | 商户没有配置通道.
 00060869 | 在UMF平台上没有注册商品.
 
-## 3.5 确认支付
+## 3.4 确认支付
 
 ```json
 //Request
@@ -626,7 +565,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 
 **POST**:/payments/payment/payment_id/execute
 
-请求url中的payment_id是在上一步创建的真实payment_id([创建支付单](#3-3)).
+请求url中的payment_id是在上一步创建的真实payment_id([下单](#3-2)).
 
 ### 参数
 
@@ -643,7 +582,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 [meta](#meta) | 对象. 响应的公共信息.
 [payment](#payment) | 对象. 支付对象.
 
-## 3.6 支付结果通知
+## 3.5 支付结果通知
 
 处理完商户的付款请求数据后, UMF将支付结果回调商户服务.
 
@@ -671,7 +610,7 @@ mer_check_date | 商户对账日期
 mer_trace | 商户流水号 
 
 
-## 3.7 订单查询
+## 3.6 订单查询
 
 ```json
 //Request: /payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG
@@ -712,11 +651,11 @@ mer_trace | 商户流水号
 
 **GET**: payments/payment/payment_id
 
-请求url中的payment_id是在上一步创建的真实payment_id([创建支付单](#3-3)).
+请求url中的payment_id是在上一步创建的真实payment_id([下单](#3-2)).
 
 商户可以随时请求该url. UMF将返回一个支付对象.
 
-## 3.8 退款
+## 3.7 退款
 
 ```json
 //request
@@ -821,7 +760,7 @@ mer_trace | 商户流水号
 
 **POST**:/payments/payment/payment_id/refund
 
-请求url中的payment_id是在上一步创建的真实payment_id([创建支付单](#3-3)).
+请求url中的payment_id是在上一步创建的真实payment_id([下单](#3-2)).
 
 该请求创建并发送一个退款对象. 响应结果是UMF创建的退款对象.
 
@@ -846,7 +785,7 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 [meta](#meta) | 对象. 响应的公共信息.
 [refund](#refund) | 对象. 退款对象.
 
-## 3.9 退款查询
+## 3.8 退款查询
 
 ```json
 //request: /payments/refund/REFUND_AAAAAAQZBJMOYAJTY2ZP6
@@ -872,7 +811,7 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 
 商户随时可以请求该url. UMF将返回退款对象. 若state是"REFUND_SUCCESS", 则退款成功.
 
-## 3.10 报关
+## 3.9 报关
 
 ```json
 //Request: /payments/payment/PAY_AAEZW4UOJZ6GKAJTY2Z2I/apply_to_customs
@@ -980,13 +919,13 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 
 响应结果包含一个报关对象和meta信息.
 
-## 3.11 报关状态查询
+## 3.10 报关状态查询
 
 **GET**: payments/customs_ declarations/customs_declaration_id
 
 url中的customs_ declaration_id是在上一步([报关](#3-10))中创建的报关对象的id.
 
-## 3.12 结算列表下载
+## 3.11 结算列表下载
 
 **GET**: /payments/transactions_download?mer_date=20170213
 
@@ -1031,7 +970,7 @@ TRANSDETAIL-End, merchant number, reconciliation date, total transaction amount[
 13 | productId | 购买商品id | UMF定义的已支付商品 
 14 | refundNo | 退款编号  | 该字段对退款交易有用. 退款时商户生成退款编号
 
-## 3.13 对账文件下载
+## 3.12 对账文件下载
 
 **GET**: /payments/reconciliation_statement_download?mer_date=20170213
 
@@ -1047,7 +986,7 @@ http get请求. mer_date必须在请求的url中.
 
 该接口是一个http下载接口, 对账信息被下载为一个文件.
 
-## 3.14 汇率查询
+## 3.13 汇率查询
 
 ```json
 ///exchange_rate?currency=USD
@@ -1078,7 +1017,7 @@ http get请求. mer_date必须在请求的url中.
 
 响应结果包含一个[汇率](#exchange_rate) 对象和[meta](#meta).
 
-## 3.15 通知
+## 3.14 通知
 该接口是一个公共接口. 付款,退款和报关不会实时返回响应结果. 操作完成时UMF将结果通知给商户, 因此商户应该提供一个接收通知的服务并响应正确的结果. 商户也可以查询相应的接口获取结果. 参见[3.6 支付结果通知](#3-6). 
 
 ### 请求
@@ -1091,12 +1030,12 @@ UMF请求到merchant服务器. 请求url是每个对象中的notify_url.
 
 响应结果包含 [meta](#meta) 和商户接收的对象. 该对象不需要设置所有的值. UMF仅仅需要对象的id.
 
-## 3.16 获取微信open_id
+## 3.15 获取微信open_id
 
 **该接口将于2017年6月发布.**
 
 
-## 3.17 结算信息查询
+## 3.16 结算信息查询
 
 
 ```json
@@ -1189,7 +1128,7 @@ page_size | 数字. **可选**. 返回对象的最大值. 默认值: 500
 
 
 
-## 3.18 对账信息查询
+## 3.17 对账信息查询
 
 ```json
 {
