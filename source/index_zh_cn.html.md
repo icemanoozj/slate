@@ -19,7 +19,7 @@ includes:
   - api_reference_B2C_zh_cn
   - api_reference_B2B
   - objs
-  - errors
+  - errors_zh_cn
   - faqs
   - appendix
 
