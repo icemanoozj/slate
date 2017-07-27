@@ -27,7 +27,7 @@ $ curl -v -X POST https://uatfx.soopay.net/cberest/v1/enterprise_qualification \
     "ret_msg": "Success",
     "ret_code": "0000"
   },
-  "external_enterprise":{
+  "enterprise_qualification":{
     "external_enterprise_id": "10000125",
     "enterprise_name": "华西电子商务有限公司",
     "enterprise_phone": "13241359611",
@@ -80,7 +80,7 @@ https://uatfx.soopay.net/cberest/v1/enterprise_qualification/EQ_GEYDAMBQGEZDK7CH
     "ret_msg": "Success",
     "ret_code": "0000"
   },
-  "EnterpriseQualification": {
+  "enterprise_qualification": {
     "external_enterprise_id": "10000122",
     "busi_type": "GFHG",
     "enterprise_status": "ENABLE",
