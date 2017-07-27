@@ -2,19 +2,25 @@
 
 ## 4.1 Regiest a company
 
-```json
-## Request
-{
-  "external_enterprise_id": "10000125",
-  "enterprise_name": "华西电子商务有限公司",
-  "enterprise_phone": "13241359611",
-  "enterprise_email": "fengjian@umpay.com",
-  "enterprise_contacts": "FengJian1",
-  "busi_type": "GFHG",
-  "enterprise_code": "90000331"
-}
+```shell
+## request data:
+$ curl -v -X POST https://uatfx.soopay.net/cberest/v1/enterprise_qualification \
+-H "Content-Type:application/json" \
+-H "Authorization=Bearer ea3b83b316d97bd78166475fe36a3f7219d79e8d04bfc784dec424fba0e9462f" \
+-H "Signature=p+owOiuS9eVrDQIHaP9CwwR89k996MdALuetVW9SKpBJvbvQdO8Sx8P1wlgIN9naa9YQeha/oiVhTFh57dtEpE92HU4jsYXZ2aj8puIP6IXbyDG18vr7Qs1sCfdtT7ziXrv31BIIahn6HKZLtVf/fus2NIyO7f2zl+b34In4dM=" \
+-d '{ 
+  "enterprise_qualification": {
+    "external_enterprise_id": "10000125",
+    "enterprise_name": "华西电子商务有限公司",
+    "enterprise_phone": "13241359611",
+    "enterprise_email": "fengjian@umpay.com",
+    "enterprise_contacts": "FengJian1",
+    "busi_type": "GFHG",
+    "enterprise_code": "90000331"
+  }
+} '
 
-## Response
+## Response data:
 {
   "meta": {
     "sign": "KkIbGZXg49qqc6hHON/+dkxzqu+DYM3BvZ2iwK45SXnGLsH3fCX0lDXb2cf56/cRkI6/oZqlP8vqzRJEeKaopr1oVZTprynSRBthtvcTVZxF+mBLE53A1V3uLPO6qE6Tcg9Ex+nlDm0/ivGGka7kt5u1xpWyfXHRGeaJ8DLbr2c=",
@@ -34,11 +40,13 @@
     {
       "ref": "self",
       "method": "GET",
-      "href": "http://10.10.38.49/V1/enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ"
+      "href": "https://uatfx.soopay.net/cberest/v1//enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ"
     }
   ]
 }
 ```
+
+### Request
 
 **POST**:/enterprise_qualification
 
@@ -48,17 +56,24 @@ The merchant should register their customers in UMF. The status of company is "D
 Important: The company can not make a payment online, until the company's status is "ENABLE".
 </aside>
 
-The Parameter is an external_enterprise object. See the defination of [external_enterprise](#external_enterprise) and example.
+Parameters:
+
+Parameters | Description
+------- | -------
+[enterprise_qualification](#enterprise_qualification) | Object. The enterprise qualification information. 
+
+### Response
+
+The Response includes meta information and a enterprise_qualification object. See the example. 
 
 ## 4.2 Query regiest status
 
-**GET**:/enterprise_qualification/enterprise_id
+```shell
+## Request data:
+curl -v -X GET \
+https://uatfx.soopay.net/cberest/v1/enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ
 
-```json
-## Request
-https:///enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ
-
-## Request
+## Response data:
 {
   "meta": {
     "sign": "GEy9+f2xwLcoMy5cvEsEPUima8A74fJXG9mpyy9qC/9tbvzXvmgcl3oS03ra19PxwFubw5GjpIeYk0E8G3xm0LiJ2LHUF6zLEQH/zt/ioPxcb+s15hY92ZioV8RKNvl16W7w/nonB/tYBkMQAD+1cCDPelVrIYdH4+pwSK4SJ+s=",
@@ -73,13 +88,21 @@ https:///enterprise_qualification/EQ_GEYDAMBQGEZDK7CHIZEEOMRQGE3TANRRGNJQ
     "enterprise_name": "华西电子商务有限公司"
   }
 }
-
 ```
+
+### Request
+
+**GET**:/enterprise_qualification/enterprise_id
 
 This is a http get request. The parameter should be replaced by the real id of enterprise_qualification object.
 
-The "rank" means the credit rating of each company in Customs' system. In the Customs' system. There are five rates: AA, A, B, C and D. The AA and A presente high credit. In the UMF, we mark each company as "A" or "OTHERS". If a company's credit rating has not been checked, UMF marks it as "UNKNOWN".
+### Response
 
+Parameters:
+
+Parameters | Description
+------- | -------
+[enterprise_qualification](#enterprise_qualification) | Object. The enterprise qualification information. 
 
 ## 4.3 Create a payment
 

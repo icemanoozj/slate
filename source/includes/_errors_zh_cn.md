@@ -1,9 +1,6 @@
 # 6. 错误码
 
-<aside class="notice">错误码信息单独存放在includes目录下的_errors.md文件里. Slate允许您有选择的分离您的文件...将文件保存在includes目录下并且将文件添加到index.md文件中. 文件中包含响应的顺序.</aside>
-
-Kittn API使用如下错误码:
-
+API使用如下错误码:
 
 错误码 | 描述
 ---------- | -------

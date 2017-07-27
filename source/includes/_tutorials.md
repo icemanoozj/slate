@@ -297,22 +297,22 @@ sequenceDiagram
     participant UMF
     participant Bank
     Company\-\->>Merchant: 1. Commit documents.
-    Merchant\-\->>UMF: 2.Commit documents.
-    UMF\-\->>Bank: 3. Commit documents.
-    Bank\-\->>UMF: 4. Return verify result.
-    UMF\-\->>Merchant: 5. Return verify result.
+    Merchant\-\->>UMF: 2.Send documents(offline).
+    UMF\-\->>Bank: 3. Send documents(offline).
+    Bank\-\->>UMF: 4. Notify verify result(offline).
+    UMF\-\->>Merchant: 5. Return verify result(offline).
     Merchant\-\->>UMF: 6. Regiter a company.
     UMF\-\->>Merchant: 7. Return the information of registered company.
 </div>
 
-Explanation of the sequence chart (**offline**)：
+Explanation of the sequence chart：
 
 1. The company commit all the required documents to the Merchant. 
 2. The Merchant commit documents to UMF.
 3. UMF check the document and sent it to the bank.
 4. The bank verify if the company is qualifed to do the business, Then send the result to UMF.
 5. UMF returns the result to Merchant.
-6. **online**. If the company is ok, The merchant will create a company.
+6. **online**. If the company is ok, The merchant [register the company](#4-1-regiest-a-company) with UMF end.
 7. **online**. UMF return the information of created company. The most important thing is the company id.
 
 
@@ -353,7 +353,7 @@ Explanation of the sequence chart：
 1. The company fills all the information and commit. The payment must use business bank account.
 1. Bank send notification of the payment result to UMF.
 1. UMF send [notification of the payment result](#3-5-payment-result-notification) to Merchant.
-1. If the payment is succeed, the merchant should upload all the required documents(contract, bills, invoices ...) to UMF via FTP protocol. UMF will check the documents offline. If everything is ok, the CNY will be exchanged to wanted currency.
+1. If the payment is succeed, the merchant should upload all the required documents(contract, bills, invoices ...) to UMF via FTP protocol. UMF will check the documents offline. If everything is ok, the CNY will be exchanged to wanted currency.See how to [upload the reuired documents](#4-4-upload-transaction-files).
 
 ## 2.9 Refund
 

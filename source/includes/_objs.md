@@ -157,20 +157,6 @@ Parameter | Description
 currency | ENUM. The code of currency.
 rate | String. The exchange rate.
 
-## external_enterprise
-
-The external enterprise object is the merchant's customer which make payments by company accounts. It is used in B2B business.
-
-Parameter | Description
-------- | -------
-external_enterprise_id | String. The id of enterprise in Merchant's system.
-enterprise_name | String. The name of enterprise.
-enterprise_phone | String. the phone number of contact.
-enterprise_email | String. The email of contact.
-enterprise_contacts | String. The name of contact .
-busi_type | ENUM. The business type of the company. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.
-enterprise_code | String. The unified social credit code system for legal entities and other organizations. See [Uniform Social Credit Code](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([中文版: 统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))
-
 ## enterprise_qualification
 
 The qualification of enterprise. It is used in B2B business.
@@ -182,6 +168,7 @@ enterprise_name | String. The name of enterprise.
 enterprise_phone | String. the phone number of contact.
 enterprise_email | String. The email of contact.
 enterprise_contacts | String. The name of contact .
+enterprise_status | ENUM. <br/>**ENABLE**: Enterprises passed the qualification audit<br/>**UNKNOWN**:Enterprise qualification audit processing
 busi_type | ENUM. The business type of the company. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.
 enterprise_code | String. The unified social credit code system for legal entities and other organizations. See [Uniform Social Credit Code](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([中文版: 统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))
 
@@ -256,7 +243,7 @@ Parameter | Description
 ------- | -------
 payment_method | ENUM. The payment method. The value should be one of the following:<br />- **CREDIT_CARD** : Pay by credit card. <br /> [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).<br /> - **DEBIT_CARD**: Pay by debit card. <br /> [See the workflow chart of bank card payment](#2-2-pay-by-credit-card-or-debit-card).<br /> - **WECHAT_SCAN**: UMF return a QR-Code String. The customer may use their WeChat scan the QR-Code to pay. <br />  [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment).<br /> - **WECHAT_IN_APP**: The customer may pay for the order inside a native app. <br /> [See the workflow chart of Wechat In-App payment](#2-5-pay-by-wechat-in-app-payment).<br /> - **WECHAT_WEB**: The customer may pay for the order inside the WeChat browser. <br /> [See the workflow chart of In-App Web-based payment](#2-4-pay-by-wechat-in-app-web-based-payment).<br /> - **ALIPAY_SCAN**: UMF returns a QR-Code String. The customer may use their Alipay to scan the QR-Code to pay. <br /> [See the workflow chart of QR Code scan payment](#2-3-pay-by-wechat-alipay-qr-code-payment). <br /> - **NOT_APPLICABLE**: When interface_type is either SERVER_TO_WEB or DIRECT_TO_BANK.
 [bank_code](#bank) | String. The abbreviation of bank. Available in China. See [Banks](#banks-supported-by-credit-card-payment)
-business elements object | Object. The name of this parts is different, depends on the business_type. It can be the following objects. <br/> [payer_info](#payer_info) for B2C. <br/> [external_enterprise](#external_enterprise) for B2B.
+business elements object | Object. The name of this parts is different, depends on the business_type. It can be the following objects. <br/> [payer_info](#payer_info) for B2C. <br/> [enterprise_qualification](#enterprise_qualification) for B2B.
 interface_type | ENUM. The type of payment interface. The value should be one of the following: <br /> - **SERVER_TO_SERVER** : API call <br> - **SERVER_TO_WEB** : Server to UMF website <br/> - **DIRECT_TO_BANK** : Online bank, if payment_method is NOT_APPLICABLE then bank_code must be send.
 business_type | ENUM. The value should be one of the following: <br/> - **B2B** : Business to business.<br/> - **B2C** : Business to consumer.
 Available payment_method for each **interface_type** and **business_type**.
@@ -433,6 +420,7 @@ mer_sub_reference_id | String. The ID of sub_order object.
 order_summary | String. The summary of sub_order.
 trans_code | ENUM. The transaction code of goods. See [Transaction encoding and transaction postscript description](#transaction-encoding-and-transaction-postscript-description)
 is_customs | bool. If the merchant needs UMF to submit the payment information to customs.
+invoice_id | String. This receipt of sub_order.
 items | Object Array. The array of [item](#item) objects.
 
 ## transactions
