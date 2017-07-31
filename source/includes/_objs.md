@@ -9,7 +9,7 @@ line1  | The first line of the address. For example, number, street, and so on. 
 line2 | The second line of the address. For example, suite, apartment number, and so on. Maximum length is 100 characters.
 city  | The city name. Maximum length is 50 characters.
 state  | The two-letter code for US states or the equivalent for other countries. Maximum length is 100 characters.
-country_code  | [The two-character country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
+country_code  | [The two-character country code ISO_3166-1](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)
 postal_code  | The zip code or equivalent. Maximum length is 20 characters. Required in certain countries.
 phone | The phone number's maximum length is 50 characters.
 
@@ -18,7 +18,7 @@ phone | The phone number's maximum length is 50 characters.
 Parameter | Description
 ----------|------------
 total | The total amount charged or refunded. Maximum length is 10 characters. Supports two decimal places.
-currency | The three-character ISO-4217 https://en.wikipedia.org/wiki/ISO_4217#Active_codes currency code. 
+currency | [The three-character currency code ISO-4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes).
 total_cny | The amount in CNY(Chinese Yuan). **Optional**.
 exchange_rate | The exchange_rate. **Optional**.
 
