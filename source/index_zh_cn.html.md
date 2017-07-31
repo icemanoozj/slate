@@ -18,7 +18,7 @@ includes:
   - tutorials_zh_cn
   - api_reference_B2C_zh_cn
   - api_reference_B2B
-  - objs
+  - objs_zh_cn
   - errors_zh_cn
   - faqs
   - appendix
