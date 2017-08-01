@@ -20,7 +20,7 @@ includes:
   - api_reference_B2B
   - objs_zh_cn
   - errors_zh_cn
-  - faqs
+  - faqs_zh_cn
   - appendix
 
 search: true
