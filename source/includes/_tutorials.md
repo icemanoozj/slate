@@ -73,7 +73,7 @@ sequenceDiagram
     Note right of Merchant:  Using access token to make API call
     Merchant\-\->>UMF: 6. Create a payment
     UMF\-\->>Merchant: 7. Return a payment object
-    Merchant\-\->>UMF: 8. **Optional**. Get available banks
+    Merchant\-\->>UMF: 8. Optional. Get available banks
     UMF\-\->>Merchant: 9. Return banks
     Merchant\-\->>Customer: 10. Show the banks to customer.
     Customer\-\->>Merchant: 11. Fill the payment info, acquire verification SMS.
