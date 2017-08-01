@@ -187,7 +187,7 @@ http get请求头示例:
 
 如果请求头是POST请求, 请求头必须包含如下信息:
 
-- Signature:[SignatureOfPostBody](#1-6-signature-and-verify-signature)
+- Signature:[SignatureOfPostBody](#1-6)
 
 http post请求头示例:
 
@@ -305,7 +305,7 @@ DSA或RSA签名算法中私钥和公钥是必须的. UMF的OPENSSL生成公钥�
 
 请求的响应信息使用UMF的安全机制签名. 接收到响应信息后商户需要对结果验签.
 
-响应结果是一个JSON格式的字符串,有两部分组成. 第一部分为 "meta". Signature包含在"meta" 对象. 另一部分是[结果对象](#1-4-http-response). signature是对那些对象签名.
+响应结果是一个JSON格式的字符串,有两部分组成. 第一部分为 "meta". Signature包含在"meta" 对象. 另一部分是[结果对象](#1-4-http). signature是对那些对象签名.
  
 验签步骤:
 
