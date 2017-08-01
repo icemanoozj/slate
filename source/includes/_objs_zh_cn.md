@@ -4,12 +4,12 @@
 
 参数 | 描述 | 约束
 ----------|------------|------------
-recipient_name  | 收件人姓名.  | 收件人姓名
+recipient_name  | 收件人姓名.  | 
 line1  | 地址的第一行. 例如, 街道号, 等等.   | 100个字符以内.
 line2 | 地址的第二行. 例如, 公寓号, 等等.   | 100个字符以内.
 city  | 城市名称.   | 50个字符以内.
 state  | 国家代码.  | 100个字符以内.
-country_code  | [城市代码](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  | 收件人姓名
+country_code  | [城市代码](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements)  | 
 postal_code  | 邮政编码.   | 20个字符以内. 一些国家要求.
 phone | 手机号  | 50个字符以内. 
 
@@ -18,19 +18,19 @@ phone | 手机号  | 50个字符以内.
 参数 | 描述 | 约束
 ----------|------------|------------
 total | 收款或退款的总金额.   | 10个字符以内. 小数点后两位.
-currency | [ISO-4217] (https://en.wikipedia.org/wiki/ISO_4217#Active_codes) 币种代码.  | 收件人姓名 
-total_cny | 人民币金额. **可选**.  | 收件人姓名
-exchange_rate | 汇率. **可选**.  | 收件人姓名
+currency | [ISO-4217] (https://en.wikipedia.org/wiki/ISO_4217#Active_codes) 币种代码.  | 
+total_cny | 人民币金额. **可选**.  | 
+exchange_rate | 汇率. **可选**.  | 
   
 ## bank
 
 参数 | 描述| 约束
 ----------|------------|------------
-name | 英文的银行名称.  | 收件人姓名
-name_zh | 中文的银行名称.  | 收件人姓名 
-code | 银行缩写. 国内银行.  | 收件人姓名
-logo_url | 银行图标地址.  | 收件人姓名
-types | 银行支持的卡类型.   | 可选值: **信用卡**, **借记卡**
+name | 英文的银行名称.  | 
+name_zh | 中文的银行名称.  |  
+code | 银行缩写. 国内银行.  | 
+logo_url | 银行图标地址.  | 
+types | 银行支持的卡类型.   | 可选值: **CREDIT_CARD**, **DEBIT_CARD**
 
 ### 银行列表(支持信用卡支付)
 
@@ -127,12 +127,12 @@ types | 银行支持的卡类型.   | 可选值: **信用卡**, **借记卡**
 ------- | ------- | -------
 number | 卡号| 字符串. **必须加密**.  
 valid_date | 银行卡有效期| 字符串. **必须加密**. 
-cvv2 | 银行卡安全码| String. **Must be encrypted**.
-card_holder | 持卡人姓名| String. **Must be encrypted**. 
+cvv2 | 银行卡安全码| 字符串. **必须加密**.
+card_holder | 持卡人姓名| 字符串. **必须加密**. 
 external_customer_id | 商户系统的用户id.| 字符串
-state | 卡号的状态.| 枚举类型 
+state | 卡号的状态.| 枚举类型  
 phone | 银行预留号码.| 字符串. 
-citizen_id_type | 公民当前身份类型. | 枚举类型, 必须是**身份证**. 
+citizen_id_type | 公民当前身份类型. | 枚举类型, 必须是**IDENTITY_CARD**. 
 citizen_id_number |  身份证号码.| 字符串. **必须加密**.
 
 ## customs_declaration
@@ -147,7 +147,7 @@ freight_amount |  支付运费| 对象. 金额对象.
 tax_amount | 海关税| 对象. 金额对象. 
 ec_plat_id | 海关系统电子商务平台帐号| 
 notify_url | 商户接收通知地址. 从UMF接收地址.| 
-state | 状态| 已接收 <br /> 已提交 <br /> 成功 <br /> 失败
+state | 状态| ACCEPTED <br /> SUBMITTED <br /> SUCCESS <br /> FAIL
 customs_clearance_date | 请求海关日期格式为YYYYMMDD| 
 
 ## exchange_rate
@@ -168,7 +168,7 @@ enterprise_name | 企业名称| 字符串
 enterprise_phone | 手机号| 字符串
 enterprise_email | 邮箱| 字符串
 enterprise_contacts | 联系人姓名| 字符串
-enterprise_status | 企业状态| 枚举. <br/>**可用**: 企业通过资质审核<br/>**未知**:企业资质审核正在处理
+enterprise_status | 企业状态| 枚举. <br/>**ENABLE**: 企业通过资质审核<br/>**UNKNOWN**:企业资质审核正在处理
 busi_type | 企业类型. <br />**-SJHG**: For the company which exchange money to CNY. <br /> **-GFHG**: For the company which exchange money from CNY.| 枚举
 enterprise_code | 法人实体和其他组织统一的社会信用法典体系.请参见 [统一社会信用准则](http://english.gov.cn/policies/latest_releases/2015/06/17/content_281475129090642.htm) ([统一社会信用代码](http://baike.baidu.com/item/%E7%BB%9F%E4%B8%80%E7%A4%BE%E4%BC%9A%E4%BF%A1%E7%94%A8%E4%BB%A3%E7%A0%81))| 字符串.
 
@@ -180,7 +180,7 @@ enterprise_code | 法人实体和其他组织统一的社会信用法典体系.�
 参数 | 描述| 约束
 ------- | -------| -------
 mer_item_id | 商户系统id.| 字符串
-type | 商品类型 <br/> **衣服** <br/> **食品** <br/> **电子产品** <br/> **其他**| 枚举
+type | 商品类型 <br/> **CLOTHING** <br/> **FOOD** <br/> **ELECTRONICS** <br/> **OTHER**| 枚举
 name | 商品名称| 字符串
 description | 商品描述| 字符串
 [amount](#amount) | 金额. 商品的价格.| 对象
@@ -241,7 +241,7 @@ page_size | 每一页的记录大小.| 数字
 
 参数 | 描述| 约束
 ------- | -------| -------
-payment_method | 支付方式. 可选值如下:<br />- **信用卡支付** : 信用卡支付. <br /> [请参见银行卡支付流程](#2-2).<br /> - **借记卡支付**: 借记卡支付. <br /> [请参见银行卡支付流程](#2-2d).<br /> - **微信主扫支付**: UMF返回二维码字符串. 客户可以用微信扫描二维码支付. <br />  [请参见二维码支付流程](#2-3).<br /> - **微信APP支付**: 用户可以在app应用里完成支付. <br /> [请参见微信APP支付流程](#2-5).<br /> - **微信公众号支付**: 用户可以在微信浏览器内完成支付. <br /> [请参见微信公众号支付流程](#2-4).<br /> - **支付宝扫码支付**: UMF返回二维码字符串. 用户使用支付宝扫描二维码完成支付. <br /> [请参见二维码支付流程](#2-3). <br /> - **方式不提供**: 接口类型是收银台或网银直连.| 枚举
+payment_method | 支付方式. 可选值如下:<br />- **CREDIT_CARD** : 信用卡支付. <br /> [请参见银行卡支付流程](#2-2).<br /> - **DEBIT_CARD**: 借记卡支付. <br /> [请参见银行卡支付流程](#2-2d).<br /> - **WECHAT_SCAN**: UMF返回二维码字符串. 客户可以用微信扫描二维码支付. <br />  [请参见二维码支付流程](#2-3).<br /> - **WECHAT_IN_APP**: 用户可以在app应用里完成支付. <br /> [请参见微信APP支付流程](#2-5).<br /> - **WECHAT_WEB**: 用户可以在微信浏览器内完成支付. <br /> [请参见微信公众号支付流程](#2-4).<br /> - **ALIPAY_SCAN**: UMF返回二维码字符串. 用户使用支付宝扫描二维码完成支付. <br /> [请参见二维码支付流程](#2-3). <br /> - **NOT_APPLICABLE**: 接口类型是收银台或网银直连.| 枚举
 [bank_code](#bank) |  国内银行缩写. 请参见[Banks](#banks-supported-by-credit-card-payment)| 枚举
 business elements object |该部分的名称可能是不同的, 取决于企业类型. 可选值如下: <br/> B2C付款的为[付款明细](#payer_info). <br/> B2B付款的为[企业资质](#enterprise_qualification).| 对象
 interface_type |  付款接口类型. 可选值如下: <br /> - **SERVER_TO_SERVER** : API请求 <br> - **SERVER_TO_WEB** : 服务器到UMF收银台 <br/> - **DIRECT_TO_BANK** : 网银, 如果 payment_method的值为NOT_APPLICABLE, bank_code会发送.| 枚举
@@ -288,7 +288,7 @@ pay_sign | 请求的签名.| 字符串
 ------- | -------| -------
 phone | 支付人手机号.| 字符串
 name | **必须加密**. 支付人姓名.| 字符串
-pay elements object | 这部分的名称是不同的, 取决于支付类型. 可选值如下.<br /> [银行卡](#bank_card). 支付类型有: 信用卡支付, 借记卡支付 <br /> [二维码主扫](#qr_code_scan). 支付类型有: 微信主扫支付, 支付宝主扫支付 <br /> [wechat_in_app](#wechat_in_app) 支付类型有: 微信APP支付 <br /> [wechat_in_app_web](#wechat_in_app_web) 支付类型有: 微信公众号支付 <br /> [payer_agreement](#payer_agreement) 支付类型有: 信用卡支付, 借记卡支付| 对象 
+pay elements object | 这部分的名称是不同的, 取决于支付类型. 可选值如下.<br /> [bank_card](#bank_card). 支付类型有: 信用卡支付, 借记卡支付 <br /> [qr_code_scan](#qr_code_scan). 支付类型有: 微信主扫支付, 支付宝主扫支付 <br /> [wechat_in_app](#wechat_in_app) 支付类型有: 微信APP支付 <br /> [wechat_in_app_web](#wechat_in_app_web) 支付类型有: 微信公众号支付 <br /> [payer_agreement](#payer_agreement) 支付类型有: CREDIT_CARD, DEBIT_CARD| 对象 
 verify_code | 仅存在于银行卡支付. 银行会向用户发送短信验证码. 验证码将要提交到银行验证.| 字符串
 
 ## payment
@@ -300,7 +300,7 @@ verify_code | 仅存在于银行卡支付. 银行会向用户发送短信验证�
 id |  支付id.| 字符串
 [payer](#payer) | 支付信息.| 对象.
 [order](#order) | 订单信息. 包含子订单.| 对象
-state |<br />**-待付款**: 付款需要支付. <br /> **-交易成功**: 支付成功.<br /> **-TRADE_CLOSED**:订单过期,支付关闭.<br /> **-TRADE_CANCEL**:付款取消.<br /> **-TRADE_FAIL**: 支付失败.| 枚举
+state |<br />**-WAIT_BUYER_PAY**: 付款需要支付. <br /> **-TRADE_SUCCESS**: 支付成功.<br /> **-TRADE_CLOSED**:订单过期,支付关闭.<br /> **-TRADE_CANCEL**:付款取消.<br /> **-TRADE_FAIL**: 支付失败.| 枚举
 ret_url | 支付完成返回的地址. 仅存在于商户使用UMF的收银台.| 字符串
 execute_success_time | 金额从用户账户转移到UMF账户的时间.| 字符串
 mer_check_date | 交易日期. 日期来自商户系统. 不具有时区信息. 交易将在交易列表和对账列表中标记此日期.| 字符串
@@ -335,7 +335,7 @@ exchange_date | 兑换日期. **仅存在于对账对象.**|
 
 参数 | 描述| 约束
 ------- | -------| -------
-citizen_id_type | 身份证类型. 目前, 必须为**身份证**.| 枚举
+citizen_id_type | 身份证类型. 目前, 必须为**IDENTITY_CARD**.| 枚举
 citizen_id_number |  **必须加密**. 身份证号码.| 字符串
 qr_code_url | 微信二维码支付地址. 该信息由UMF返回| 字符串
 
@@ -362,7 +362,7 @@ pagination | pagination对象返回当前页和当前页的记录数的信息.| 
 id | 退款对象id.| 字符串
 [order](#order) | 一个订单对象，其中包含要返回的商品信息.| 对象
 notify_url | 商户通知地址. 用于接收退款通知.| 字符串
-state | 退款状态. **退款处理中**, **退款成功**, **退款失败**, **退款关闭**.|枚举
+state | 退款状态. **REFUND_PROCESS**, **REFUND_SUCCESS**, **REFUND_FAIL**, **REFUND_CLOSE**.|枚举
 parent_payment | 支付id.| 字符串
 
 ## refund_summary
@@ -401,7 +401,7 @@ device_id | 设备id  | 例如，手机的MAC地址或内部定义的终端标�
 device_type | 设备类型  | 如果是WEB终端, 用户不为空. APP为空.  | 非必填
 user_id | User ID  | 商户平台用户id | 非必填
 registration_time | 用户注册时间 | 用户注册产品的时间，在第二阶段应该准确读取. <br />例如:20150311120000 | 非必填
-user_agent | 产品形态  | 枚举. <br/> `1` android客户端 <br/> `2` IOS客户端 <br/> `3` PC端（web页面） <br/> `4` 手机端（wap或html5等页面）;  | 非必填
+user_agent | 产品形态  | 枚举. <br/> `1` android app <br/> `2` IOS app <br/> `3` PC (web page) <br/> `4` Mobile phone(wap, or html5 page);  | 非必填
 success_transactions_number | 用户成功交易笔数 | 商户平台的成功交易量 | 非必填
 
 
@@ -439,7 +439,7 @@ pagination |  pagination对象返回当前页和当前页的记录数的信息.|
 
 参数 | 描述| 约束
 ------- | -------| -------
-citizen_id_type | 身份证类型. 目前, 必须为 **身份证**.| 枚举
+citizen_id_type | 身份证类型. 目前, 必须为 **IDENTITY_CARD**.| 枚举
 citizen_id_number | **必须加密**. 身份证号码.| 字符串
 [pay_info](#pay_info) | 调用微信本地SDK激活微信APP的信息.| 对象
 
@@ -450,7 +450,7 @@ citizen_id_number | **必须加密**. 身份证号码.| 字符串
 参数 | 描述| 约束
 ------- | -------| -------
 open_id | OpenID是为每个合作用户的唯一微信id, 不同的用户有单独的OpenID. | 字符串
-citizen_id_type | 身份证类型. 目前, 必须为 **身份证**.| 枚举
+citizen_id_type | 身份证类型. 目前, 必须为 **IDENTITY_CARD**.| 枚举
 citizen_id_number | **必须加密**. 身份证号码.| 字符串
 [pay_info](#pay_info) | 在微信浏览器调用微信JS-API唤醒微信支付插件的信息.| 对象
  
