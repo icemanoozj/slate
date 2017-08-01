@@ -778,7 +778,7 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 
 响应结果包含支付对象. 退款对象包含refund_id和state.
 
-若state是"REFUND_SUCCESS", 表示交易完成，退款成功. 若state是"REFUND_PROCESS", 表示交易正在处理, 交易完成后, UMF 将通知商户. 商户也可以查询退款状态 [查询退款](#3-9)
+若state是"REFUND_SUCCESS", 表示交易完成，退款成功. 若state是"REFUND_PROCESS", 表示交易正在处理, 交易完成后, UMF 将通知商户. 商户也可以查询退款状态 [查询退款](#3-8)
 
 参数 | 描述
 ------- | -------
@@ -807,7 +807,7 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 
 **GET**: /payments/refund/refund_id
 
-请求url中的payment_id是在上一步创建的真实payment_id([退款](#3-8)).
+请求url中的payment_id是在上一步创建的真实payment_id([退款](#3-7)).
 
 商户随时可以请求该url. UMF将返回退款对象. 若state是"REFUND_SUCCESS", 则退款成功.
 
@@ -923,7 +923,7 @@ UMF支持全额或部分退款. 部分退款可以多次执行.
 
 **GET**: payments/customs_ declarations/customs_declaration_id
 
-url中的customs_ declaration_id是在上一步([报关](#3-10))中创建的报关对象的id.
+url中的customs_ declaration_id是在上一步([报关](#3-9))中创建的报关对象的id.
 
 ## 3.11 结算列表下载
 
@@ -1018,7 +1018,7 @@ http get请求. mer_date必须在请求的url中.
 响应结果包含一个[汇率](#exchange_rate) 对象和[meta](#meta).
 
 ## 3.14 通知
-该接口是一个公共接口. 付款,退款和报关不会实时返回响应结果. 操作完成时UMF将结果通知给商户, 因此商户应该提供一个接收通知的服务并响应正确的结果. 商户也可以查询相应的接口获取结果. 参见[3.6 支付结果通知](#3-6). 
+该接口是一个公共接口. 付款,退款和报关不会实时返回响应结果. 操作完成时UMF将结果通知给商户, 因此商户应该提供一个接收通知的服务并响应正确的结果. 商户也可以查询相应的接口获取结果. 参见[3.6 支付结果通知](#3-5). 
 
 ### 请求
 
