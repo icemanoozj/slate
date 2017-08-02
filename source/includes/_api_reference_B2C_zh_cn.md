@@ -552,7 +552,7 @@ $ curl -v -X POST https://uatfx.soopay.net/v1/oauth/authorize \
 }
 ```
 
-处理完支付单,并且交易完成后. 资金从用户账户转移到UMF商户.
+处理完支付单,并且交易完成后. 资金从用户账户转移到UMF商户账户.
 
 要执行支付单, 请在请求url中添加payment ID参数, 在请求的JSON body中包含一个payer对象. 
 
