@@ -610,7 +610,7 @@ mer_check_date | 商户对账日期
 mer_trace | 商户流水号 
 
 
-## 3.6 订单查询
+## 3.6 付款查询
 
 ```json
 //Request: /payments/payment/PAY_AAEZW7SW6VQJ6AJTY24KG
@@ -1032,7 +1032,39 @@ UMF请求到merchant服务器. 请求url是每个对象中的notify_url.
 
 ## 3.15 获取微信open_id
 
-**该接口将于2017年6月发布.**
+```shell
+# Request
+curl -v -X GET \
+https://uatfx.soopay.net/rest/v1/payments/wechat_openid?notify_url=https://www.baidu.com
+
+#Response
+{
+    "links": [{
+                    "ref": "weChat",
+                    "method": "GET",
+                    "href": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxddc9cfd7324f0fb0&redirect_uri=http%3A%2F%2Ftest3.soopay.net%2Febankpaydev%2FrecvweixinGZHCodeNew.htm%2F%3Freturn_url%3Dhttp%253A%252F%252F10.10.38.49%253A1122%252Fupay%252FcbNotifyMerOpenId.do%253FnotifyUrl%253Dhttps%253A%252F%252Fwww.baidu.com&response_type=code&scope=snsapi_base&state=c017d14162a907883703e5c02249350ccaeac93315589ef0#wechat_redirect"
+    }],
+    "meta": {
+                    "ret_code": "0000",
+                    "ret_msg": "successful transaction"
+    }
+```
+
+### 请求
+
+**GET**: /payments/wechat_openid?notify_url=https://www.baidu.com
+
+如果[payment type](#payer)为**WECHAT_WEB**时，请求[下单](#3-2-create-a-payment)之前需要获取微信open_id.
+
+#### 参数
+
+参数 | 描述
+----------|------------
+notify_url | 异步通知地址, 交易完成后, 联动优势支付平台将通过http(s)将交易结果发送到通知地址.
+
+### 响应
+
+响应结果为[links](#link)对象列表. 请参见右边示例.
 
 
 ## 3.16 结算信息查询
